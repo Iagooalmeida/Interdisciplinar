@@ -1,0 +1,228 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+header{
+    position: fixed;
+    background: #083449;
+    padding: 20px;
+    width: 100%;
+    height: 30px;
+    z-index: 5;
+}
+.left h3{
+    color: #fff;
+    margin: 0;
+    text-transform: uppercase;
+    font-size: 22px;
+    font-weight: 800;
+}
+.left span{
+    color: #f14141;
+}
+
+.sidebar{
+    position: fixed;
+    width: 250px;
+    height: 100%;
+    margin-top: 70px;
+    padding-top: 30px;
+    left: 0;
+    background: #0f597d;
+    transition: 0.5s;
+    transition-property: left;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -ms-transition: 0.5s;
+    -o-transition: 0.5s;
+}
+.sidebar .image{
+    width: 108px;
+    height: 108px;
+    border-radius: 100px;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    -ms-border-radius: 100px;
+    -o-border-radius: 100px;
+    background-color: #07a;
+}
+.sidebar h2{
+    color: #ccc;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+.sidebar a{
+    color: #fff;
+    display: block;
+    width: 100%;
+    line-height: 60px;
+    text-decoration: none;
+    padding-left: 40px;
+    box-sizing: border-box;
+    transition: 0.5s;
+    transition-property:background ;
+}
+
+.sidebar .center{
+    text-align: center;
+}
+
+.sidebar a:hover{
+    background: #51b3ec;
+}
+.sidebar ion-icon{
+    padding-right: 10px;
+}
+label #sidebar_btn{
+    z-index: 1;
+    position: fixed;
+    left: 300px;
+    color: #fff;
+    font-size: 25px;
+    margin: 5px 0;
+    cursor: pointer;
+    transition: 0.5s;
+    transition-property:color ;
+}
+label #sidebar_btn:hover{
+    color: #51b3ec;
+}
+#check:checked ~ .sidebar{
+    left: -190px;
+}
+#check:checked ~ .sidebar a span{
+    display: none;
+}
+#check:checked ~ .sidebar a{
+    font-size: 20px;
+    margin-left: 170px;
+    width: 80px;
+}
+.content{
+    background: url(../img/bg.png) no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    transition: 0.5s;
+    /* width: calc(100%  - 250px); */
+    position: relative;
+    margin-left: 250px;
+    top: 69px;
+    z-index: 1;
+    overflow: hidden;   
+}
+#check:checked ~ .content{
+    margin-left: 60px;
+}
+#check{
+    display: none;
+}
+
+div#listaRegistros {
+    background: white;
+    padding: 3rem;
+    margin: 50px 30px;
+}
+
+#listaRegistros{ display: none; }
+        #cadastroRegistro{
+            display: none;
+            flex-direction: column;
+            gap: 30px;
+            background: white;
+            margin: 5vh;
+            padding: 3rem;
+            
+        }
+
+        body[page=lista] #listaRegistros{ display: block; }
+        body[page=cadastro] #cadastroRegistro{ display: flex; }
+        
+        /*
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 14px;
+        } */
+
+
+        #listaRegistros .filtro{
+            margin: 4vh auto;
+        }
+
+        table{
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead{
+            background: gainsboro;
+        }
+
+        table th,
+        table td{
+            font-size: 14px;
+            padding: 10px 15px;
+            border: solid 1px #ccc;
+        }
+
+        button{
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            background-color: #07a;
+            color: #fff;
+            margin: 3px;
+            padding: 10px 15px;
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+            -ms-border-radius: 4px;
+            -o-border-radius: 4px;
+}
+        button.cinza{
+            background-color: #ccc;
+            color: #666;
+        }
+        button.vermelho{
+            background-color: #a00;
+        }
+        button:hover{
+            opacity: 0.8;
+        }
+
+        input{
+            border: solid 1px #ccc;
+            border-radius: 4px;
+            padding: 10px;
+        }
+
+        .label>div{
+            display: flex;
+        }
+        .label>div>input{
+            flex: 1;
+        }
+
+        .name_id {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .name_id .label:nth-last-child(1){
+            width: 70%;
+        }
+
+       .titulo_ask{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .titulo_ask h1{
+            color: #B00B18;
+            font-size: 24px;
+        }

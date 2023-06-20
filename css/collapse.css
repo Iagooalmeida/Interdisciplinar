@@ -1,0 +1,111 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    background: none;
+}
+
+.page {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100vh;
+    width: 100vw;
+    max-width: 1024px;
+    padding: 2rem;
+    font-family: sans-serif;
+    color: var(--dark);
+    flex-direction: column;
+    gap: 2rem;
+    margin: auto;
+}
+
+:root {
+    --radius: 8px;
+    --easing: ease;
+    --duration: 0.3s;
+    --gap: 1rem;
+    --dark: #181818;
+    --grey-3: #c4c4c4;
+    --grey-2: #dedede;
+    --grey-1: #f8f8f8;
+}
+
+button {
+    padding: 0.5rem 0.75rem;
+    border-radius: var(--radius);
+    background-color: var(--grey-2);
+    cursor: pointer;
+    transition: background-color var(--duration) var(--easing);
+    user-select: none;
+}
+
+button:hover {
+    background-color: var(--grey-3);
+}
+
+hr {
+    height: 1px;
+    background: var(--dark);
+}
+
+.card {
+    width: 100%;
+    border-radius: var(--radius);
+    background-color: var(--grey-1);
+    --arrow-translate-y: -50%;
+    --arrow-rotation: 45deg;
+}
+
+.card[open] {
+    --arrow-translate-y: -60%;
+    --arrow-rotation: 135deg;
+}
+
+.card__header {
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    gap: var(--gap);
+    width: 100%;
+    padding: var(--gap);
+}
+
+.card__avatar {
+    border-radius: var(--radius);
+}
+
+.card__indicator {
+    height: 12px;
+    width: 12px;
+    position: relative;
+}
+
+.card__indicator::before {
+    transition: transform var(--duration) var(--easing);
+    border-style: solid;
+    border-width: 0.25em 0.25em 0 0;
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(var(--arrow-translate-y)) rotate(var(--arrow-rotation));
+}
+
+.card__actions {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: var(--gap);
+}
+
+.card__body {
+    display: flex;
+    flex-direction: column;
+    padding: var(--gap);
+    gap: var(--gap);
+}
