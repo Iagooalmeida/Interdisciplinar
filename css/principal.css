@@ -108,7 +108,7 @@ body{
 		}
 			.nav-item a {
 				display: block;
-				padding: 38px 29px;
+				padding: 38px 26px;
 				text-decoration: none;
 				color: #b32d30;
                 font-size: 19px;
@@ -125,7 +125,7 @@ body{
                     background-color: #76a1b8;
 				}
 				
-                #cabecalho .nav-item a[href="index.html"] {
+                #cabecalho .nav-item a[href="principal.html"] {
                     text-shadow: #1C1C1C 2px 4px 3px;
                     background-color: #0f597d7d;
                     border-bottom: 3px solid black;
@@ -139,7 +139,7 @@ body{
 		overflow: hidden;
 		top: 0;
 		left: 0;
-		background: #06C;	
+		background: #2e3e46;
 		border-radius: 5px;
 		line-height: 40px;
 		width: 100%;
@@ -190,7 +190,7 @@ body{
         min-height: 40px;
         width: 100%;
         padding: 0;
-        background-color: #06C;
+        background-color: #2e3e46;
 	}
 		.nav-list {
 			width: 100%;
@@ -202,6 +202,9 @@ body{
 				border-top:  1px solid #FFCF00;
 				
 			}
+                .nav-item a{
+                    color: whitesmoke;
+                }
 				.nav-item:first-child a {
 					border-radius: 5px 5px 0 0;
 				}
@@ -232,7 +235,7 @@ body{
     padding: 90px 0;
     position: relative;
     z-index: 1;
-    top: 135px;
+    top: 150px;
     margin-inline-end: 0.8rem;
 }
 
@@ -583,7 +586,7 @@ textarea#mensagem {
     border: 1px solid #000000;
     /* height: 25vh; */
     position: relative;
-    top: 134px;
+    top: 151px;
     background: #0F597D;
     width: 100%;
     
@@ -640,6 +643,9 @@ textarea#mensagem {
      .itens_lateral{
         width: 320px;
      }
+     .card__header {
+        font-size: 0.95em;
+    }
   }
 
 
