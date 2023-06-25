@@ -29,7 +29,7 @@ body{
     z-index: 100;
     transition: transform 0.3s ease-in-out;
     border-bottom: 4px outset #b9b6b642;
-    background: #6b8c9d
+    background: #577281;
 }
 
 #cabecalho .card_cabecalho{
@@ -122,12 +122,12 @@ body{
 					color: #fff;
 					border-bottom: 3px solid #000080;
 					/* padding-bottom: 14px; */
-                    background-color: #76a1b8;
+                    background-color: #26607d7d;
 				}
 				
                 #cabecalho .nav-item a[href="principal.html"] {
                     text-shadow: #1C1C1C 2px 4px 3px;
-                    background-color: #0f597d7d;
+                    background-color: #173d507d;
                     border-bottom: 3px solid black;
                     color: white;
                 }
@@ -175,7 +175,7 @@ body{
 	
 	.nav-mobile {
 		left: 50%;
-		width: 260px;
+		width: 252px;
         margin-left: -250px;
 	}
 
@@ -214,10 +214,13 @@ body{
 				}
 				
 				.nav-item a:hover {
-					border: none; 
-					border-radius: 20px;
+					border: none;
 					-webkit-border-radius: 20px;
-				}
+					-moz-border-radius: 20px;
+					-ms-border-radius: 20px;
+					-o-border-radius: 20px;
+                    border-radius: 20px;
+}
 				
 
 	/* Deixa o menu mobile visivel só para celulares e tablets */
@@ -290,6 +293,7 @@ button {
     background-color: var(--grey-2);
     cursor: pointer;
     transition: background-color var(--duration) var(--easing);
+    -webkit-user-select: none;
     user-select: none;
 }
 
@@ -371,6 +375,8 @@ img.card__avatar{
 
 .card__body a{
     text-decoration: none;
+    color: #b32d30;
+    font-weight: 600;
 }
 
 .card__body .pag_links{
@@ -398,13 +404,17 @@ img.card__avatar{
 } 
 
 .contato_whatsapp img{
-    width: 86px;
+    width: 82px;
     float: left;
+    transition: all 0.2s ease-out;
 }
 
 .contato_whatsapp img:hover{
+    -o-transform: scale3d(1.2, 1.2, 1.2);
+    -webkit-transform: scale3d(1.2, 1.2, 1.2);
+    -moz-transform: scale3d(1.2, 1.2, 1.2);
+    -ms-transform: scale3d(1.2, 1.2, 1.2);
     transform: scale3d(1.2, 1.2, 1.2);
-    -webkit-transform: scale3d(1.2, 1.2, 1.2)
 }
 
 .contato_whatsapp:hover::after {
@@ -425,7 +435,7 @@ img.card__avatar{
     margin-inline-start: 48px;
     padding: 30px;
     margin-inline-end: 6px;
-    height: fit-content;
+    height: max-content;
 }
 
 
@@ -455,6 +465,12 @@ img.card__avatar{
     flex-direction: column;
     padding: 14px 0 2px 0;
     opacity: 0.8;
+}
+
+.flex-container .itens_lateral span{
+    color: #b32d30;
+    font-weight: 900;
+    font-size: 1.21em;
 }
 
 .floating_placehold input{
@@ -496,7 +512,6 @@ textarea#mensagem {
     margin: 6px 2px;
     cursor: pointer;
     border: 1px solid;
-    transform: skew(-10deg);
     transition: all 0.3s ease-out;
     display: inline-block;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -504,6 +519,7 @@ textarea#mensagem {
     -moz-transform: skew(-10deg);
     -ms-transform: skew(-10deg);
     -o-transform: skew(-10deg);
+    transform: skew(-10deg);
 }
   .itens_lateral .button_enviar:hover{
     background-color: #b32d30;
@@ -516,7 +532,6 @@ textarea#mensagem {
     background-color: #fff;
     border: none;
     border: 1px solid #b32d30;
-    transform: skew(-10deg);
     transition: all 0.3s ease-out;
     display: inline-block;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -524,23 +539,16 @@ textarea#mensagem {
     -moz-transform: skew(-10deg);
     -ms-transform: skew(-10deg);
     -o-transform: skew(-10deg);
+    transform: skew(-10deg);
+    color: #b32d30;
+    font-size: 16px;
 }
 
   .itens_lateral .button_noticia:hover{
     background: #b32d30;
-  }
-
-  .itens_lateral .button_noticia a{
-    text-decoration: none;
-    color: #b32d30;
-    padding: 12px 20px;
-    font: 15px arial;
-    transition: all 0.3s ease-out;
-  }
-
-  .itens_lateral .button_noticia a:hover{
     color: white;
   }
+
 
 .thumbnail_lateral a {
     text-decoration: none;
@@ -713,6 +721,7 @@ textarea#mensagem {
     .logotipo{
         justify-content: center;
         width: 60%;
+        padding: 2.5vh;
     }
 
     .itens_lateral{
@@ -735,7 +744,7 @@ textarea#mensagem {
     #cabecalho .redes-sociais{
         display: inline-block;
         width: 98px;
-        margin-block-start: 1rem;
+        margin-block-start: 1.5rem;
     }
 
     #cabecalho .redes-sociais img{

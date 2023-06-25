@@ -5,16 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/principal.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="shortcut icon" href="img/fatec_icon.ico" type="image/x-icon">
     <title>Pagina Principal</title>
+
+    <script>
+        const handlePhone = (event) => {
+        let input = event.target
+        input.value = phoneMask(input.value)
+        }
+
+        const phoneMask = (value) => {
+        if (!value) return ""
+        value = value.replace(/\D/g,'')
+        value = value.replace(/(\d{2})(\d)/,"($1) $2")
+        value = value.replace(/(\d)(\d{4})$/,"$1-$2")
+        return value
+        }
+    </script>
+
 </head>
 <body>
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+          <div class="vw-plugin-top-wrapper"></div>
+        </div>
+      </div>
+      <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+      <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+      </script>
+    </div>  
     <header id="cabecalho">
         <div class="contato">
             <div class="head_contact">
                 <a href="#"><h3>Tel: (19) 3843-1996</h3></a> 
                 <a href="mailto:"><h3>E-mail: email@email.com.br</h3></a> 
             </div>
-            <div class="social_media">
+            <div  class="social_media">
                 <a href="https://www.instagram.com/fatecdeitapira/"><img src="img/instagram-social-platform-icon-png.png" alt="Instagram"></a> 
                 <a href="https://www.facebook.com/fatecitapira"><img src="img/logo_facebook.png" alt="Facebook"></a> 
                 <a href="#"><img src="img/twitter.png" alt="twitter"></a> 
@@ -24,7 +52,7 @@
 
         <div class="card_cabecalho">
             <figure class="logotipo">
-                <a href="#"><img src="img/logo_fatec.png" alt="Logo Fatec Itapira"></a>
+                <a href="#"><img src="img/logo_fatec.png" alt="Logo Fatec Itapira" title="logo_fatec"></a>
             </figure>
             <div class="redes-sociais">
                 <a href="https://www.instagram.com/fatecdeitapira/"><img src="img/instagram-social-platform-icon-png.png" alt="Instagram"></a> 
@@ -32,10 +60,10 @@
                 <a href="#"><img src="img/twitter.png" alt="twitter"></a> 
                 <a href="#"><img src="img/youtube.png" alt="icone-youtube"></a> 
             </div>
-            <nav class="nav">
+            <nav class="nav" title="menu">
 				<ul class="nav-list">
 					<li class="nav-item"><a href="https://fatecitapira.edu.br/">Home</a></li>
-                    <li class="nav-item"><a href="#">Vestibular</a></li>
+                    <li class="nav-item"><a href="https://www.vestibularfatec.com.br/home/" target="_blank">Vestibular</a></li>
                     <li class="nav-item"><a href="principal.html" title="duvidas">Dúvidas frequentes</a></li>
                     <li class="nav-item"><a href="login.html">Login</a></li>
 				</ul>
@@ -48,7 +76,7 @@
                 <p>Principais Perguntas e Respostas para o FAQ </p>
                 <details class="card">
                     <summary class="card__header">
-                        <img class="card__avatar" src="img/cps_fatec.jpg">
+                        <img class="card__avatar" alt="Imagem cps_fatec" src="img/cps_fatec.jpg">
                         <h1>Como faço para trancar minha matrícula?</h1>
                         <span class="card__indicator"></span>
                     
@@ -62,13 +90,13 @@
                              disponível no site da Fatec de Itapira. <strong>Link abaixo:</strong> 
                         </p>
                         <hr>
-                        <a href="https://fatecitapira.edu.br" target="_blank">Site Fatec</a>
+                        <a href="https://fatecitapira.edu.br" target="_blank" aria-label="Link para acessar site fatec">Site Fatec</a>
                     </div>
                 </details>
         
                 <details class="card">
                     <summary class="card__header">
-                        <img class="card__avatar" src="img/siga fatec.png">
+                        <img class="card__avatar" alt="Imagem cps_fatec" src="img/siga fatec.png">
                         <h1>Como faço para pedir um atestado?</h1>
                         <span class="card__indicator"></span>
                     
@@ -90,7 +118,7 @@
 
                 <details class="card">
                     <summary class="card__header">
-                        <img class="card__avatar" src="img/cps_fatec.jpg">
+                        <img class="card__avatar" alt="Imagem siga fatec" src="img/cps_fatec.jpg">
                         <h1>Como faço para ver o meu horário de aula?</h1>
                         <span class="card__indicator"></span>
                     
@@ -109,7 +137,7 @@
         
                 <details class="card">
                     <summary class="card__header">
-                        <img class="card__avatar" src="img/siga fatec.png">
+                        <img class="card__avatar" alt="Imagem aqui" src="img/siga fatec.png">
                         <h1>Como fazer minha rematrícula?</h1>
                         <span class="card__indicator"></span>
                         
@@ -125,7 +153,7 @@
                         </p>
                         <hr>
                         <div class="pag_links">
-                            <span>Portal:  <a href="https://siga.cps.sp.gov.br/aluno/login.aspx">Siga</a></span>
+                            <span>Portal:  <a href="https://siga.cps.sp.gov.br/aluno/login.aspx" target="_blank">Siga</a></span>
                             <span>Site: <a href="https://fatecitapira.edu.br" target="_blank">Fatec Itapira</a></span>
                         </div>                      
                     </div>
@@ -133,7 +161,7 @@
                 
                 <details class="card">
                     <summary class="card__header">
-                        <img class="card__avatar" src="img/cps_fatec.jpg">
+                        <img class="card__avatar" alt="Imagem aqui" src="img/cps_fatec.jpg">
                         <h1>Perdi minha senha do e-mail, como eu resolvo ?</h1>
                         <span class="card__indicator"></span>
                     
@@ -147,7 +175,7 @@
 
                 <details class="card">
                     <summary class="card__header">
-                        <img class="card__avatar" src="img/cps_fatec.jpg">
+                        <img class="card__avatar" alt="Imagem aqui" src="img/cps_fatec.jpg">
                         <h1>Não consigo acessar o SIGA, como eu faço?</h1>
                         <span class="card__indicator"></span>
                     
@@ -165,7 +193,7 @@
 
                 <details class="card">
                     <summary class="card__header">
-                        <img class="card__avatar" src="img/cps_fatec.jpg">
+                        <img class="card__avatar" alt="Imagem aqui" src="img/cps_fatec.jpg">
                         <h1>Quem é o coordenador? (alunos ingressantes)</h1>
                         <span class="card__indicator"></span>
                     
@@ -200,7 +228,7 @@
 
                 <details class="card">
                     <summary class="card__header">
-                        <img class="card__avatar" src="img/cps_fatec.jpg">
+                        <img class="card__avatar" alt="Imagem aqui" src="img/cps_fatec.jpg">
                         <h1>Posso usar a biblioteca/laboratório fora do horário de aula?</h1>
                         <span class="card__indicator"></span>
                     
@@ -219,7 +247,7 @@
 
                 <details class="card">
                     <summary class="card__header">
-                        <img class="card__avatar" src="img/cps_fatec.jpg">
+                        <img class="card__avatar" alt="Imagem aqui" src="img/cps_fatec.jpg">
                         <h1>Qual o horário de funcionamento da biblioteca?</h1>
                         <span class="card__indicator"></span>
                     
@@ -239,7 +267,7 @@
 
                 <details class="card">
                     <summary class="card__header">
-                        <img class="card__avatar" src="img/cps_fatec.jpg">
+                        <img class="card__avatar" alt="Imagem aqui" src="img/cps_fatec.jpg">
                         <h1>Quando abre o vestibular?</h1>
                         <span class="card__indicator"></span>
                     
@@ -263,7 +291,7 @@
 
                 <details class="card">
                     <summary class="card__header">
-                        <img class="card__avatar" src="img/cps_fatec.jpg">
+                        <img class="card__avatar" alt="Imagem cps_fatec" src="img/cps_fatec.jpg">
                         <h1>Quais os cursos?</h1>
                         <span class="card__indicator"></span>
                     
@@ -290,7 +318,7 @@
 
                 <details class="card">
                     <summary class="card__header">
-                        <img class="card__avatar" src="img/cps_fatec.jpg">
+                        <img class="card__avatar" alt="Imagem cps_fatec" src="img/cps_fatec.jpg">
                         <h1>Como faço para ver o meu horário de aula?</h1>
                         <span class="card__indicator"></span>
                     
@@ -320,8 +348,8 @@
                     <h1>Dúvidas e Sugestões</h1>
                 </header>
                 <div class="floating_placehold">
-                    <label for="nome" >Nome:</label>
-                    <input type="text" name="lateral-nome" id="nome" >              
+                    <label for="nome" >Nome: <span>*</span></label>
+                    <input type="text" name="lateral-nome" id="nome" required>              
                 </div>
 
                 <div class="floating_placehold">
@@ -331,10 +359,10 @@
                     
                 <div class="floating_placehold">
                     <label for="telefone" name="telefone">Telefone: </label>
-                    <input type="tel" name="telefone" id="telefone">
+                    <input type="tel" name="telefone" id="telefone" maxlength="15" onkeyup="handlePhone(event)">
                 </div>
                     <textarea name="messagem" id="mensagem" cols="36" rows="6" placeholder="Mensagem"></textarea>
-                <button type="button" class="button_enviar" onclick="alert('Enviado com sucesso! ')">
+                <button type="button" class="button_enviar">
                     Enviar
                 </button>
             </form>
@@ -343,7 +371,7 @@
                 <h1>Últimas Noticias</h1>
             </div>
             <figure class="thumbnail_lateral">
-                <a href="#"><img src="img/thumbnail_destaque.gif" alt="Vestibular fatec"> 
+                <a href="#"><img src="img/thumbnail_destaque.gif" alt="Banner Vestibular fatec Itapira" title="Vestibular Fatec"> 
                     <figcaption class="img_legenda">
                         <img src="icon/icone_calender.png" alt="icon">
                         <p>24/05/2023<p>
@@ -371,7 +399,7 @@
                 </div>
                 <!-- Botão para acessar outras noticias -->
                 <button type="button" class="button_noticia">
-                    <a href="#">Todas as Noticias</a> 
+                    Todas as Noticias
                 </button>
             </figure>
 
@@ -391,7 +419,7 @@
         <div class="container_footer">
             <!-- Css relacionado ao contato endereço -->
             <div class="footer">
-                <div class="img_icone">
+                <div class="img_icone" title="icone">
                     <img src="icon/location-icon-white-png.png" width="30px" height="auto" alt="">
                 </div>               
                 <h2><strong>Endereço</strong></h2>
@@ -399,7 +427,7 @@
             </div>
              <!-- Css relacionado ao contato telefone -->
             <div class="footer">
-                <div class="img_icone">
+                <div class="img_icone"  title="icone">
                     <img src="icon/telefone-do-lab-white-contact-icon-png.png" width="30px" height="auto" alt="icone telefone">
                 </div>         
                 <h2><strong>Telefone:</strong></h2>
@@ -408,7 +436,7 @@
             </div>
             <!-- Css relacionado ao E-mail -->
             <div class="footer">
-                <div class="img_icone">
+                <div class="img_icone"  title="icone">
                     <img src="icon/mail-png-994910.png" width="40px" height="auto" alt="icone email">
                 </div>
                     <h2><strong>E-mail</strong></h2>
