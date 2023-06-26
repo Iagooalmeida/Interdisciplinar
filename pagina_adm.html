@@ -29,6 +29,7 @@
         </div>
         <a href="#" onclick="vizualizar('lista', true)"><ion-icon name="desktop-outline"></ion-icon><span>Painel</span></a>
         <a href="pag_cad_user.html"><ion-icon name="person-outline"></ion-icon><span>Usuário</span></a>
+        <a href="pag_lista_sugestao.html"><ion-icon name="help-outline"></ion-icon><span>Dúvidas</span></a>
         <a href="#"><ion-icon name="information-circle-outline"></ion-icon><span>Sobre</span></a>
         <a href="#"><ion-icon name="settings-outline"></ion-icon><span>Configuração</span></a>
         <a href="login.html"><ion-icon name="exit-outline"></ion-icon><span>Sair</span></a>
@@ -42,8 +43,8 @@
                 <button class="inserir" onclick="vizualizar('cadastro', true)">Inserir</button>
             </div>
     
-            <div style='display: flex;' class="filtro">
-                <input style='flex:1' placeholder="PESQUISAR" autofocus id='inputPesquisa' />
+            <div style='display: flex; outline: none;' class="filtro">
+                <input style='flex:1; outline: none;'  placeholder="PESQUISAR" autofocus id='inputPesquisa' />
             </div>
     
             <table>
@@ -90,7 +91,8 @@
             <div class="label">
                 <div>Resposta</div>
                 <div>
-                    <input type="text" id="resposta">
+                    <!-- <input type="text" id="resposta"> -->
+                    <textarea name="messagem"  id="resposta" cols="36" rows="7" maxlength="500"></textarea>
                 </div>      
             </div>
     

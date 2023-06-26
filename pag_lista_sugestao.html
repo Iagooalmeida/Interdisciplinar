@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/menu_lateral.css">
+    <meta name="author" content="Iago Almeida">
+    <meta name="description" content="Litas de dúvidas feito pelos usuários">
+    <title>Dúvidas e Sugestões</title>
+</head>
+<body page="lista">
+    <!--header começo-->
+    <header>
+        <label for="check">
+            <ion-icon name="menu-outline" id="sidebar_btn"></ion-icon>
+        </label>
+        <div class="left">
+            <h3>Fatec <span>Itapira</span></h3>
+        </div>
+    </header>
+    <input type="checkbox" id="check">
+    <!--header final-->
+    <!--sidebar começo-->
+    <div class="sidebar">
+        <div class="center">
+            <img src="icon/manager_icon_129392.png" class="image" alt="">
+            <h2>Admin</h2>
+        </div>
+        <a href="pagina_adm.html"><ion-icon name="desktop-outline"></ion-icon><span>Painel</span></a>
+        <a href="pag_cad_user.html"><ion-icon name="person-outline"></ion-icon><span>Usuário</span></a>
+        <a href="pag_lista_sugestao.html"><ion-icon name="help-outline"></ion-icon><span>Dúvidas</span></a>
+        <a href="#"><ion-icon name="information-circle-outline"></ion-icon><span>Sobre</span></a>
+        <a href="#"><ion-icon name="settings-outline"></ion-icon><span>Configuração</span></a>
+        <a href="login.html"><ion-icon name="exit-outline"></ion-icon><span>Sair</span></a>
+    </div>
+    <!--sidebar final-->
+    <div class="content">
+        <div id="listaRegistros">
+            <table id="dataTable">
+                <thead>
+                  <tr>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th class="phone">Telefone</th>
+                    <th>Mensagem</th>
+                    <th>Ação</th>
+                  </tr>
+                </thead>
+                <tbody>
+                </tbody>
+              </table>
+              <script src="js/tabela.js"></script>
+        </div>
+    </div>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

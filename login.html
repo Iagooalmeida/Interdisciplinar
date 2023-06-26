@@ -2,10 +2,22 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
     <title>Página de Login</title>
+    <script>
+        function redirecionar(){
+            const email = document.getElementById("email").value;
+            const senha = document.getElementById("senha").value;
+
+            if (email === "" || senha === ""){
+                alert("Por favor, preencha todos os campos do formulário.");
+                return;
+            }
+
+            window.location.href = "pagina_adm.html";
+        }         
+    </script>
 </head>
 <body>
     <main id="flex-container">
@@ -19,11 +31,11 @@
                 <div class="card_conteudo">
                     <div class="conteudo_area">
                         <label for="email">E-mail: </label>
-                        <input type="email" name="email" id="email" class="text-input">
+                        <input type="email" name="email" id="email" class="text-input" required>
                     </div>
                     <div class="conteudo_area">
                         <label for="senha">Senha: </label>
-                        <input type="password" name="senha" id="senha">
+                        <input type="password" name="senha" id="senha" required>
                     </div>
                     <div class="conteudo_verificacao">
                         <input type="checkbox" name="lembrar_user" id="lembrar_user">
@@ -33,10 +45,12 @@
                     
                 </div>             
                 <div class="button">
-                    <input type="button" value="Entrar" class="submit">                
+                    <input type="button" onclick="redirecionar()" value="Entrar" class="submit">                
                 </div>
                 <div class="retornar" style="text-align: center;">
-                    <button type="submit" class="btn_voltar" style="background: rgb(146, 0, 0); padding: 8px;"><a href="index.html" style="text-decoration: none; color: white;">Voltar</a></button>
+                    <button type="submit" class="btn_voltar" style="background: rgb(146, 0, 0); padding: 5px;">
+                        <a href="principal.html" style="text-decoration: none; color: white;">Voltar</a>
+                    </button>
                 </div>        
             </form>
 

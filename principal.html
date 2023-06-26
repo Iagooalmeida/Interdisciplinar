@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/principal.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link rel="shortcut icon" href="img/fatec_icon.ico" type="image/x-icon">
+    <meta name="author" content="Iago Almeida">
     <title>Pagina Principal</title>
 
     <script>
@@ -21,6 +22,11 @@
         value = value.replace(/(\d)(\d{4})$/,"$1-$2")
         return value
         }
+    </script>
+    <script>
+        function redirecionar(){
+            window.location.href = "https://fatecitapira.edu.br/maisnoticias.html";
+        }         
     </script>
 
 </head>
@@ -65,7 +71,7 @@
 					<li class="nav-item"><a href="https://fatecitapira.edu.br/">Home</a></li>
                     <li class="nav-item"><a href="https://www.vestibularfatec.com.br/home/" target="_blank">Vestibular</a></li>
                     <li class="nav-item"><a href="principal.html" title="duvidas">Dúvidas frequentes</a></li>
-                    <li class="nav-item"><a href="login.html">Login</a></li>
+                    <li class="nav-item"><a href="login.html">Painel</a></li>
 				</ul>
 			</nav>
     </header>
@@ -343,7 +349,7 @@
         </section>
 
         <aside class="itens_lateral">
-            <form action="#" method="post">
+            <form id="myForm" action="#" method="post">
                 <header class="lateral_titulo">
                     <h1>Dúvidas e Sugestões</h1>
                 </header>
@@ -359,10 +365,10 @@
                     
                 <div class="floating_placehold">
                     <label for="telefone" name="telefone">Telefone: </label>
-                    <input type="tel" name="telefone" id="telefone" maxlength="15" onkeyup="handlePhone(event)">
+                    <input type="tel" name="telefone" id="phone" maxlength="15" onkeyup="handlePhone(event)">
                 </div>
-                    <textarea name="messagem" id="mensagem" cols="36" rows="6" placeholder="Mensagem"></textarea>
-                <button type="button" class="button_enviar">
+                <textarea name="messagem" id="message" cols="36" rows="6" placeholder="Mensagem"></textarea>
+                <button type="button" onclick="storeFormData()" class="button_enviar">
                     Enviar
                 </button>
             </form>
@@ -398,7 +404,7 @@
                     <h1>Edital Diretório Acadêmico 2023</h1>
                 </div>
                 <!-- Botão para acessar outras noticias -->
-                <button type="button" class="button_noticia">
+                <button type="button" onclick="redirecionar()" class="button_noticia">
                     Todas as Noticias
                 </button>
             </figure>
@@ -449,6 +455,7 @@
     </footer>
 
     <script src="js/comportamento.js"></script>
+    <script src="js/form.js"></script>
 </body>
 <!-- <script src="js/querySelector.js"></script> -->
 </html>
