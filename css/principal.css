@@ -265,6 +265,7 @@ body{
 
 .page h1{
     color: #2e3e46;
+    font-size: 1.23em;
 }
 
 .page h1:nth-child(1){
@@ -273,7 +274,12 @@ body{
 }
 
 .page p{
-    font-size: large;
+    font-size: medium;
+}
+
+.page h2{
+    font-size: 1.12em;
+    color: #2e3e46;
 }
 
 :root {
@@ -334,7 +340,7 @@ hr {
 }
 
 img.card__avatar{
-    width: 64px;
+    width: 62px;
 }
 
 .card__indicator {
@@ -488,7 +494,7 @@ img.card__avatar{
     font-size: 0.9875em;
 }
 
-textarea#mensagem {
+textarea#message {
     margin: 30px auto;
     width: 100%;
     outline: none;
@@ -651,7 +657,7 @@ textarea#mensagem {
         width: 320px;
      }
      .card__header {
-        font-size: 0.95em;
+        font-size: 0.9em;
     }
   }
 
@@ -752,6 +758,15 @@ textarea#mensagem {
         height: auto;
         margin: 0 7px;
     }
+
+    .page{
+        padding: 1em;
+        
+    }
+
+    .page p {
+        font-size: 15px;
+    }
 }
 
 .rodape .Copyright{
@@ -771,6 +786,9 @@ textarea#mensagem {
     .itens_lateral .lateral_titulo:nth-child(2){
         width: 100%;
     }
+    .page h2{
+        text-align: center;
+    }
 }
 
 @media only screen and (max-width: 420px){
@@ -781,7 +799,11 @@ textarea#mensagem {
 
     .page{
         padding: 0.2rem;
-    }  
+    } 
+    
+    .page p{
+        text-align: justify;
+    }
 
     .rodape .container_footer .footer:nth-child(2) {
         width: 335px;

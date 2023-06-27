@@ -7,7 +7,7 @@
 }
 header{
     position: fixed;
-    background: #083449;
+    background: #2c5668;
     padding: 20px;
     width: 100%;
     height: 30px;
@@ -21,7 +21,7 @@ header{
     font-weight: 800;
 }
 .left span{
-    color: #f14141;
+    color: #ff7a7a;
 }
 
 .sidebar{
@@ -31,7 +31,7 @@ header{
     margin-top: 70px;
     padding-top: 30px;
     left: 0;
-    background: #0f597d;
+    background: #39677e;
     transition: 0.5s;
     transition-property: left;
     -webkit-transition: 0.5s;
@@ -47,7 +47,7 @@ header{
     -moz-border-radius: 100px;
     -ms-border-radius: 100px;
     -o-border-radius: 100px;
-    background-color: #07a;
+    background-color: #daf3ff;
 }
 .sidebar h2{
     color: #ccc;
@@ -58,7 +58,7 @@ header{
     color: #fff;
     display: block;
     width: 100%;
-    line-height: 60px;
+    line-height: 48px;
     text-decoration: none;
     padding-left: 40px;
     box-sizing: border-box;
@@ -71,7 +71,7 @@ header{
 }
 
 .sidebar a:hover{
-    background: #51b3ec;
+    background: #304650;
 }
 .sidebar ion-icon{
     padding-right: 10px;
@@ -168,6 +168,10 @@ div#listaRegistros {
             border: solid 1px #ccc;
         }
 
+        .phone:nth-child(3){
+            width: 9vw;
+        }
+
         button{
             border: none;
             border-radius: 4px;
@@ -203,6 +207,23 @@ div#listaRegistros {
         }
         .label>div>input{
             flex: 1;
+            outline-color: #b00b184a;
+            font-size: 0.96em;
+        }
+
+        textarea#resposta {
+            border: 1px solid #b5b5b5;
+            text-indent: 3px;
+            outline-color: #b00b184a;
+            font-size: 0.96em;
+        }
+
+        .label>div>textarea{
+            flex: 1;
+        }
+
+        .label div{
+            color: #B00B18;
         }
 
         .name_id {
@@ -213,7 +234,7 @@ div#listaRegistros {
         }
 
         .name_id .label:nth-last-child(1){
-            width: 70%;
+            flex: 1;
         }
 
        .titulo_ask{
