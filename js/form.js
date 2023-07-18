@@ -1,9 +1,9 @@
 function storeFormData() {
     // Obter os valores dos campos do formulário
-    const nome = document.getElementById("nome").value;
-    const email = document.getElementById("email").value;
-    const phone = document.getElementById("phone").value;
-    const message = document.getElementById("message").value;
+    const nome = document.getElementById("nome").value.trim();
+    const email = document.getElementById("email").value.trim() ;
+    const phone = document.getElementById("phone").value.trim();
+    const message = document.getElementById("message").value.trim();
 
      // Verificar se algum campo está vazio
   if (nome === "" || email === "" || phone === "" || message === "") {
@@ -11,7 +11,22 @@ function storeFormData() {
     return;
   }
 
-  
+  // Validar formato de e-mail
+  function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
+
+  if (!isValidEmail(email)) {
+    alert("Por favor, insira um endereço de e-mail válido.");
+    return;
+  }
+
+  if (message.length > 500) {
+    alert("A mensagem não pode exceder 500 caracteres.");
+    return;
+  }
+
     // Criar um objeto com os dados do formulário
     const formData = {
       nome: nome,
@@ -19,6 +34,7 @@ function storeFormData() {
       phone: phone,
       message: message
     };
+    
 
     // Exibir a mensagem de confirmação
     alert("Enviado com sucesso!!!");
