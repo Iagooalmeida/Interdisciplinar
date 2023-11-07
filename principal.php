@@ -31,7 +31,7 @@ require_once 'conexao.php';
     <script>
         function redirecionar() {
             window.location.href = "https://fatecitapira.edu.br/maisnoticias.html";
-        }
+        }         
     </script>
 
 </head>
@@ -54,7 +54,8 @@ require_once 'conexao.php';
                 <a href="#"><img src="img/logo_fatec.png" alt="Logo Fatec Itapira" title="logo_fatec"></a>
             </figure>
             <div class="redes-sociais">
-                <a href="https://www.instagram.com/fatecdeitapira/"><img src="img/instagram-social-platform-icon-png.png" alt="Instagram"></a>
+                <a href="https://www.instagram.com/fatecdeitapira/"><img
+                        src="img/instagram-social-platform-icon-png.png" alt="Instagram"></a>
                 <a href="https://www.facebook.com/fatecitapira"><img src="img/logo_facebook.png" alt="Facebook"></a>
                 <a href="#"><img src="img/twitter.png" alt="twitter"></a>
                 <a href="#"><img src="img/youtube.png" alt="icone-youtube"></a>
@@ -62,16 +63,18 @@ require_once 'conexao.php';
             <nav class="nav" title="menu">
                 <ul class="nav-list">
                     <li class="nav-item"><a href="https://fatecitapira.edu.br/">Home</a></li>
-                    <li class="nav-item"><a href="https://www.vestibularfatec.com.br/home/" target="_blank">Vestibular</a></li>
+                    <li class="nav-item"><a href="https://www.vestibularfatec.com.br/home/"
+                            target="_blank">Vestibular</a></li>
                     <li class="nav-item"><a href="principal.html" title="duvidas">Dúvidas frequentes</a></li>
-                    <<<<<<< HEAD:principal.html <li class="nav-item"><a href="login.html">Painel</a></li>
+<<<<<<< HEAD:principal.html
+                    <li class="nav-item"><a href="login.html">Painel</a></li>
                 </ul>
             </nav>
-            =======
-            <li class="nav-item"><a href="login/login.html">Painel</a></li>
-            </ul>
-            </nav>
-            >>>>>>> bd82789412040cc602d557134a036fd64c5f7efa:principal.php
+=======
+                    <li class="nav-item"><a href="login/login.html">Painel</a></li>
+				</ul>
+			</nav>
+>>>>>>> bd82789412040cc602d557134a036fd64c5f7efa:principal.php
     </header>
     <main main class="flex-container">
         <section class="conteudo">
@@ -98,7 +101,8 @@ require_once 'conexao.php';
                             disponível no site da Fatec de Itapira. <strong>Link abaixo:</strong>
                         </p>
                         <hr>
-                        <a href="https://fatecitapira.edu.br" target="_blank" aria-label="Link para acessar site fatec">Site Fatec</a>
+                        <a href="https://fatecitapira.edu.br" target="_blank"
+                            aria-label="Link para acessar site fatec">Site Fatec</a>
                     </div>
                 </details>
 
@@ -170,7 +174,8 @@ require_once 'conexao.php';
                         </p>
                         <hr>
                         <div class="pag_links">
-                            <span>Portal: <a href="https://siga.cps.sp.gov.br/aluno/login.aspx" target="_blank">Siga</a></span>
+                            <span>Portal: <a href="https://siga.cps.sp.gov.br/aluno/login.aspx"
+                                    target="_blank">Siga</a></span>
                             <span>Site: <a href="https://fatecitapira.edu.br" target="_blank">Fatec Itapira</a></span>
                         </div>
                     </div>
@@ -398,8 +403,13 @@ require_once 'conexao.php';
                     <h1>Dúvidas e Sugestões</h1>
                 </header>
                 <div class="floating_placehold">
+<<<<<<< HEAD:principal.html
                     <label for="nome">Nome: <span>*</span></label>
-                    <input type="text" name="nome" id="nome" required>
+                    <input type="text" name="lateral-nome" id="nome" required>
+=======
+                    <label for="nome" >Nome: <span>*</span></label>
+                    <input type="text" name="nome" id="nome" required>              
+>>>>>>> bd82789412040cc602d557134a036fd64c5f7efa:principal.php
                 </div>
 
                 <div class="floating_placehold">
@@ -414,7 +424,7 @@ require_once 'conexao.php';
                 <div class="floating_placehold">
                     <label for="Tema">Escolha tema da sugestão:</label>
                     <select id="Tema" name="Tema" required>
-                        <!-- Adicione opção padrão -->
+                         <!-- Adicione opção padrão -->
                         <option value="" selected disabled>Escolha um tema</option>
                         <?php
                         try {
@@ -438,7 +448,8 @@ require_once 'conexao.php';
                 <h1>Últimas Noticias</h1>
             </div>
             <figure class="thumbnail_lateral">
-                <a href="#"><img src="img/thumbnail_destaque.gif" alt="Banner Vestibular fatec Itapira" title="Vestibular Fatec">
+                <a href="#"><img src="img/thumbnail_destaque.gif" alt="Banner Vestibular fatec Itapira"
+                        title="Vestibular Fatec">
                     <figcaption class="img_legenda">
                         <img src="icon/icone_calender.png" alt="icon">
                         <p>24/05/2023
@@ -497,7 +508,8 @@ require_once 'conexao.php';
             <!-- Css relacionado ao contato telefone -->
             <div class="footer">
                 <div class="img_icone" title="icone">
-                    <img src="icon/telefone-do-lab-white-contact-icon-png.png" width="30px" height="auto" alt="icone telefone">
+                    <img src="icon/telefone-do-lab-white-contact-icon-png.png" width="30px" height="auto"
+                        alt="icone telefone">
                 </div>
                 <h2><strong>Telefone:</strong></h2>
                 <p>Telefones: (19) 3843-1996</p>
