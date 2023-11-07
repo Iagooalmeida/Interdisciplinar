@@ -5,6 +5,11 @@
     padding: 0;
     font-family: 'Poppins', sans-serif;
 }
+
+body {
+    background-color: #e9e9e9;
+}
+
 header{
     position: fixed;
     background: #2c5668;
@@ -105,14 +110,15 @@ label #sidebar_btn:hover{
     background: url(../img/bg.png) no-repeat;
     background-size: cover;
     background-position: center;
-    height: 100vh;
     transition: 0.5s;
     /* width: calc(100%  - 250px); */
     position: relative;
     margin-left: 250px;
     top: 69px;
     z-index: 1;
-    overflow: hidden;   
+    overflow: hidden;
+    /* height: 100vh; */
+     
 }
 #check:checked ~ .content{
     margin-left: 60px;
@@ -139,7 +145,7 @@ div#listaRegistros {
         }
 
         body[page=lista] #listaRegistros{ display: block; }
-        body[page=cadastro] #cadastroRegistro{ display: flex; }
+        body[page=cadastro] #cadastroRegistro{ display: none; }
         
         /*
         body{
@@ -163,6 +169,7 @@ div#listaRegistros {
 
         table th,
         table td{
+            text-align: center;
             font-size: 14px;
             padding: 10px 15px;
             border: solid 1px #ccc;
