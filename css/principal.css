@@ -487,6 +487,11 @@ img.card__avatar {
   font-size: 0.9875em;
 }
 
+select#Tema {
+    margin-block-start: 14px;
+    height: 28px;
+}
+
 textarea#message {
   margin: 30px auto;
   width: 100%;

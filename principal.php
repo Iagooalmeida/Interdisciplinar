@@ -1,3 +1,7 @@
+<?php
+require_once 'conexao.php';
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -62,9 +66,15 @@
                     <li class="nav-item"><a href="https://www.vestibularfatec.com.br/home/"
                             target="_blank">Vestibular</a></li>
                     <li class="nav-item"><a href="principal.html" title="duvidas">Dúvidas frequentes</a></li>
+<<<<<<< HEAD:principal.html
                     <li class="nav-item"><a href="login.html">Painel</a></li>
                 </ul>
             </nav>
+=======
+                    <li class="nav-item"><a href="login/login.html">Painel</a></li>
+				</ul>
+			</nav>
+>>>>>>> bd82789412040cc602d557134a036fd64c5f7efa:principal.php
     </header>
     <main main class="flex-container">
         <section class="conteudo">
@@ -388,13 +398,18 @@
         </section>
 
         <aside class="itens_lateral">
-            <form id="myForm" action="#" method="post">
+            <form id="myForm" action="gravarSugestoes.php" method="post">
                 <header class="lateral_titulo">
                     <h1>Dúvidas e Sugestões</h1>
                 </header>
                 <div class="floating_placehold">
+<<<<<<< HEAD:principal.html
                     <label for="nome">Nome: <span>*</span></label>
                     <input type="text" name="lateral-nome" id="nome" required>
+=======
+                    <label for="nome" >Nome: <span>*</span></label>
+                    <input type="text" name="nome" id="nome" required>              
+>>>>>>> bd82789412040cc602d557134a036fd64c5f7efa:principal.php
                 </div>
 
                 <div class="floating_placehold">
@@ -406,8 +421,25 @@
                     <label for="telefone" name="telefone">Telefone: </label>
                     <input type="tel" name="telefone" id="phone" maxlength="15" onkeyup="handlePhone(event)">
                 </div>
+                <div class="floating_placehold">
+                    <label for="Tema">Escolha tema da sugestão:</label>
+                    <select id="Tema" name="Tema" required>
+                         <!-- Adicione opção padrão -->
+                        <option value="" selected disabled>Escolha um tema</option>
+                        <?php
+                        try {
+                            $stmtTemas = $conn->query("SELECT idTemas, NomeTema FROM temas");
+                            while ($tema = $stmtTemas->fetch(PDO::FETCH_ASSOC)) {
+                                echo "<option value='{$tema['idTemas']}'>{$tema['NomeTema']}</option>";
+                            }
+                        } catch (PDOException $e) {
+                            echo "Erro ao obter temas: " . $e->getMessage();
+                        }
+                        ?>
+                    </select>
+                </div>
                 <textarea name="messagem" id="message" cols="36" rows="6" placeholder="Mensagem"></textarea>
-                <button type="button" onclick="storeFormData()" class="button_enviar">
+                <button type="submit" class="button_enviar">
                     Enviar
                 </button>
             </form>
@@ -499,7 +531,6 @@
     </footer>
 
     <script src="js/comportamento.js"></script>
-    <script src="js/form.js"></script>
 </body>
 <!-- <script src="js/querySelector.js"></script> -->
 
