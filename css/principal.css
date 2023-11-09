@@ -93,6 +93,7 @@ body {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
 }
 
 .logotipo img {
@@ -128,8 +129,8 @@ body {
 
 .nav-item a:hover {
   color: #fff;
-  border-bottom: 3px solid #000080;
-  background-color: #26607d7d;
+  /* border-bottom: 3px solid #000080; */
+  background-color: #2E3E46;
 }
 
 /* Menu responsivo tags adcionada no javaScript */

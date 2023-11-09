@@ -111,7 +111,7 @@ CREATE TABLE `usuarios` (
   `Tel_Cel` varchar(15) DEFAULT NULL,
   `Funcao` varchar(30) DEFAULT NULL,
   `NivelAcesso` int(11) NOT NULL DEFAULT 1,
-  `DataCadastro` date NOT NULL DEFAULT curdate(),
+  `DataCadastro` date NOT NULL,
   `DataUltimaAtualizacao` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `FotoPath` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

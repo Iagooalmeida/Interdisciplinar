@@ -66,15 +66,9 @@ require_once 'conexao.php';
                     <li class="nav-item"><a href="https://www.vestibularfatec.com.br/home/"
                             target="_blank">Vestibular</a></li>
                     <li class="nav-item"><a href="principal.html" title="duvidas">Dúvidas frequentes</a></li>
-<<<<<<< HEAD:principal.html
-                    <li class="nav-item"><a href="login.html">Painel</a></li>
+                    <li class="nav-item"><a href="login/login.html">Painel</a></li>
                 </ul>
             </nav>
-=======
-                    <li class="nav-item"><a href="login/login.html">Painel</a></li>
-				</ul>
-			</nav>
->>>>>>> bd82789412040cc602d557134a036fd64c5f7efa:principal.php
     </header>
     <main main class="flex-container">
         <section class="conteudo">
@@ -403,13 +397,8 @@ require_once 'conexao.php';
                     <h1>Dúvidas e Sugestões</h1>
                 </header>
                 <div class="floating_placehold">
-<<<<<<< HEAD:principal.html
                     <label for="nome">Nome: <span>*</span></label>
-                    <input type="text" name="lateral-nome" id="nome" required>
-=======
-                    <label for="nome" >Nome: <span>*</span></label>
-                    <input type="text" name="nome" id="nome" required>              
->>>>>>> bd82789412040cc602d557134a036fd64c5f7efa:principal.php
+                    <input type="text" name="nome" id="nome" required>
                 </div>
 
                 <div class="floating_placehold">
@@ -424,7 +413,7 @@ require_once 'conexao.php';
                 <div class="floating_placehold">
                     <label for="Tema">Escolha tema da sugestão:</label>
                     <select id="Tema" name="Tema" required>
-                         <!-- Adicione opção padrão -->
+                        <!-- Adicione opção padrão -->
                         <option value="" selected disabled>Escolha um tema</option>
                         <?php
                         try {
