@@ -154,6 +154,11 @@ div#listaRegistros {
         } */
 
 
+        a{
+            text-decoration: none;
+        }
+
+
         #listaRegistros .filtro{
             margin: 4vh auto;
         }
@@ -201,6 +206,19 @@ div#listaRegistros {
         }
         button:hover{
             opacity: 0.8;
+        }
+
+        button.excluir-btn {
+            background-color: #a00;
+            padding: 1px 4px;
+        }
+
+        i.edit.material-icons {
+            background: #0077aa;
+            color: white;
+            padding:  1px 4px 7.6px 4px;
+            border-radius: 4px;
+            margin: 3px;
         }
 
         input{

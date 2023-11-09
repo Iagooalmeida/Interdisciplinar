@@ -60,7 +60,7 @@ $usuarios = $usuario->listarUsuarios();
 
             <div class="titulo_ask">
                 <h1>Cadastro de Usuários</h1>
-                <a href="Views/cadastroUsuario.html"><button>Inserir</button></a>
+                <a href="Views/cadastroUsuario.html"><button>Cadastrar</button></a>
             </div>
     
             <div style='display: flex;' class="filtro">
