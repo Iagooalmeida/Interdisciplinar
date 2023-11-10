@@ -176,7 +176,7 @@ div#listaRegistros {
         table td{
             text-align: center;
             font-size: 14px;
-            padding: 10px 15px;
+            padding: 10px;
             border: solid 1px #ccc;
         }
 
@@ -272,3 +272,57 @@ div#listaRegistros {
             color: #B00B18;
             font-size: 24px;
         }
+
+/*Css para o modal*/
+.modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 50%;
+            background-color: #fff; /* Cor de fundo do modal */
+            border-radius: 8px; /* Borda arredondada */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Sombra */
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .modal-content h2 {
+            color: #333;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        .modal {
+            transition: opacity 0.5s ease;
+            background-color: rgba(0, 0, 0, 0.9);
+            -webkit-transition: opacity 0.5s ease;
+            -moz-transition: opacity 0.5s ease;
+            -ms-transition: opacity 0.5s ease;
+            -o-transition: opacity 0.5s ease;
+}
+        

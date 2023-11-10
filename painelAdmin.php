@@ -26,32 +26,36 @@ $perguntas = $pergunta->listarPerguntas();
     <link rel="stylesheet" href="css/format.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script>
-    $(document).ready(function () {
-        $(".excluir-btn").on("click", function () {
-            var idPergunta = $(this).data("id");
+    <!-- Inclua outros scripts se necessário -->
+    <script src="js/modal.js"></script>
 
-            if (confirm('Tem certeza que deseja excluir este usuário?')) {
-                $.ajax({
-                    url: "Controllers/excluir_Pergunta.php",
-                    method: "POST",
-                    data: { acao: "excluir", id: idPergunta },
-                    success: function (data) {
-                        // Faça algo após a exclusão, se necessário
-                        console.log(data);
-                        // Recarregar a página ou atualizar a lista, por exemplo
-                        location.reload();
-                    },
-                    error: function (error) {
-                        console.error("Erro ao excluir: ", error);
-                    }
-                });
-            }
+
+    <script>
+        $(document).ready(function () {
+            $(".excluir-btn").on("click", function () {
+                var idPergunta = $(this).data("id");
+
+                if (confirm('Tem certeza que deseja excluir este usuário?')) {
+                    $.ajax({
+                        url: "Controllers/excluir_Pergunta.php",
+                        method: "POST",
+                        data: { acao: "excluir", id: idPergunta },
+                        success: function (data) {
+                            // Faça algo após a exclusão, se necessário
+                            console.log(data);
+                            // Recarregar a página ou atualizar a lista, por exemplo
+                            location.reload();
+                        },
+                        error: function (error) {
+                            console.error("Erro ao excluir: ", error);
+                        }
+                    });
+                }
+            });
         });
-    });
-</script>
+    </script>
 
-    
+
 </head>
 <body page='lista'>
     <input type="checkbox" id="check">
@@ -108,7 +112,7 @@ $perguntas = $pergunta->listarPerguntas();
                             <td><?php echo $lista['idPerguntas']; ?></td>
                             <td><?php echo $lista['Autor'] ?></td>
                             <td><?php echo $lista['ConteudoPergunta']?></td>
-                            <td><?php echo substr($lista['Resposta'], 0, 50) . (strlen($lista['Resposta']) > 50 ? '...' : ''); ?></td>
+                            <td><?php echo substr($lista['Resposta'], 0, 60) . (strlen($lista['Resposta']) > 60 ? '...' : ''); ?></td>
                             <td><?php echo $lista['Status']?></td>
                             <td>
                                 <a href="#"  class="detalhes-btn" data-id="<?php echo $lista['idPerguntas']; ?>" title="Detalhes">
@@ -131,6 +135,21 @@ $perguntas = $pergunta->listarPerguntas();
 
              <?php endif; ?>     
         </div>
+
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Detalhes da Pergunta</h2>
+                <p><strong>ID:</strong><span id="detalhe-id"></span></p>
+                <p><strong>Autor:</strong> <span id="detalhe-autor"></span></p>
+                <p><strong>Conteúdo da Pergunta:</strong> <br><span id="detalhe-conteudo"></span></p>
+                <p><strong>Resposta:</strong> <span id="detalhe-resposta"></span></p>
+                <p><strong>Status:</strong> <span id="detalhe-status"></span></p>
+                <p><strong>Data do Cadastro:</strong> <span id="detalhe-data"></span></p>
+                <p><strong>Última Atualização:</strong> <span id="detalhe-atualizacao"></span></p>
+            </div>
+        </div>
+
     
     
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>

@@ -2,6 +2,7 @@
 
 class Perguntas
 {
+    public $idPergunta;
     private $conn;
     private $autor;
     private $conteudoPergunta;
@@ -165,6 +166,53 @@ class Perguntas
             return false;
         }
     }
-}
 
+    public function obterDetalhesPergunta($idPergunta)
+    {
+        try {
+            // Limpa o ID para evitar SQL injection
+            $idPergunta = $this->limparInput($idPergunta);
+
+            // Prepara a query SQL para obter as informações da pergunta
+            $sql = "SELECT * FROM perguntas WHERE idPerguntas = :idPergunta";
+
+            // Prepara a query
+            $stmt = $this->conn->prepare($sql);
+
+            // Binda os parâmetros
+            $stmt->bindParam(':idPergunta', $idPergunta, PDO::PARAM_INT);
+
+            // Executa a query
+            $stmt->execute();
+
+            // Obtém os resultados como um array associativo
+            $detalhesPergunta = $stmt->fetch(PDO::FETCH_ASSOC);
+            
+            // Converte as datas para o formato brasileiro
+            $detalhesPergunta['DataSubmissao'] = (new DateTime($detalhesPergunta['DataSubmissao']))->format('d/m/Y H:i:s');
+            $detalhesPergunta['UltimaAtualizacao'] = $detalhesPergunta['UltimaAtualizacao'] ? (new DateTime($detalhesPergunta['UltimaAtualizacao']))->format('d/m/Y H:i:s') : null;
+
+            // Retorna os detalhes da pergunta
+            echo json_encode($detalhesPergunta);
+            exit;
+
+            // Verifica se há resultados
+            if (!$detalhesPergunta) {
+                // Pode retornar null ou um array vazio, dependendo da sua lógica
+                return null;
+            }
+
+            // Retorna os detalhes da pergunta
+            return $detalhesPergunta;
+
+
+            // Retorna os detalhes da pergunta
+            return $detalhesPergunta;
+        } catch (Exception $e) {
+            // Trate o erro conforme necessário (ex: log, exibir mensagem, etc.)
+            error_log("Erro ao obter detalhes da pergunta (ID: $idPergunta): " . $e->getMessage());
+            return false;
+        }
+    }
+}
 ?>
