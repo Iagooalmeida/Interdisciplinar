@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 06-Nov-2023 às 22:30
+-- Tempo de geração: 09-Nov-2023 às 22:33
 -- Versão do servidor: 10.4.13-MariaDB
 -- versão do PHP: 7.2.31
 
@@ -42,16 +42,23 @@ CREATE TABLE `atualizacoes` (
 
 CREATE TABLE `perguntas` (
   `idPerguntas` int(10) UNSIGNED NOT NULL,
-  `Usuarios_idUsuarios` int(10) UNSIGNED NOT NULL,
+  `Usuarios_idUsuarios` int(10) UNSIGNED DEFAULT NULL,
   `temas_idTemas` int(10) UNSIGNED NOT NULL,
   `Autor` varchar(30) DEFAULT NULL,
   `ConteudoPergunta` text NOT NULL,
-  `Resposta` text DEFAULT NULL,
-  `Status` varchar(50) DEFAULT NULL,
-  `DataSubmissao` datetime NOT NULL,
+  `Resposta` text DEFAULT 'Aguardando Resposta',
+  `Status` varchar(50) DEFAULT 'Pendente',
+  `DataSubmissao` datetime NOT NULL DEFAULT current_timestamp(),
   `UltimaAtualizacao` datetime DEFAULT NULL,
   `Visivel` tinyint(1) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `perguntas`
+--
+
+INSERT INTO `perguntas` (`idPerguntas`, `Usuarios_idUsuarios`, `temas_idTemas`, `Autor`, `ConteudoPergunta`, `Resposta`, `Status`, `DataSubmissao`, `UltimaAtualizacao`, `Visivel`) VALUES
+(2, NULL, 1, 'Iago de Oliveira Almeida', 'Como fazer a rematricula ?', 'Pendente', 'Pendente', '2023-11-09 04:02:41', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -75,7 +82,8 @@ CREATE TABLE `sugestoes` (
 --
 
 INSERT INTO `sugestoes` (`idSugestao`, `Nome`, `Email`, `Telefone`, `ConteudoSugestao`, `Status`, `DataSubmissao`, `idTema`) VALUES
-(1, 'Iago de Oliveira Almeida', 'iago732@gmail.com', '(19) 99668-3933', 'Como eu faço matricula ?', 'Pendente', '2023-11-05 04:22:29', 2);
+(1, 'Iago de Oliveira Almeida', 'iago732@gmail.com', '(19) 99668-3933', 'Teste', 'Pendente', '2023-11-08 03:17:39', 2),
+(2, 'Iago de Oliveira Almeida', 'iago732@gmail.com', '(19) 99668-3933', 'Como fazer a rematricula ?', 'Pendente', '2023-11-09 04:02:41', 1);
 
 -- --------------------------------------------------------
 
@@ -111,7 +119,7 @@ CREATE TABLE `usuarios` (
   `Tel_Cel` varchar(15) DEFAULT NULL,
   `Funcao` varchar(30) DEFAULT NULL,
   `NivelAcesso` int(11) NOT NULL DEFAULT 1,
-  `DataCadastro` date NOT NULL,
+  `DataCadastro` date NOT NULL DEFAULT curdate(),
   `DataUltimaAtualizacao` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `FotoPath` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -121,10 +129,10 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`idUsuarios`, `NomeUsuario`, `Email`, `Senha`, `Tel_Cel`, `Funcao`, `NivelAcesso`, `DataCadastro`, `DataUltimaAtualizacao`, `FotoPath`) VALUES
-(1, 'Master', 'master@hotmail.com', '$2y$10$0IntQVhK4NG.h9b5rixIEunZaiuLL.bOBvvUbZ5/vsu90UXK3.vKu', '(19) 9999-99999', 'Administrador', 0, '2023-11-04', '2023-11-06 11:38:57', 'uploads/miguel.png'),
 (2, 'Sogeking', 'iago732@gmail.com', '$2y$10$mK1GeggMB1vvRnUFhhrwVef16TBxl5IZ6xNy.Fz8y/WGY1hlBBVo.', '(19) 9895-47956', 'Administrador', 1, '2023-11-05', '2023-11-07 01:24:21', NULL),
 (3, 'Sogeking', 'iayo732@gmail.com', '$2y$10$grMimdVYGd4WPVh0NUjdMOhTCYeWuWkpTEZSlpMMbh4e1EDWM9mwa', '1989547956', 'Administrador', 1, '2023-11-05', '2023-11-06 10:00:30', NULL),
-(4, 'teste', 'teste23teste@gaymail.com', '$2y$10$VpQwx6/YJsPgQjOTVqYM4.bq2LngrCO5hK9NrCre6X7QEQxt7YA1q', '187849561548', 'Administrador', 1, '2023-11-05', '2023-11-07 00:50:52', NULL);
+(11, 'Fernado', 'feh732@gmail.com', '$2y$10$FQeme1dz9jTOUx9oTywdXOk.9pZ5bMJUiE1wt2BTXPPG85m65G8ee', '1999999999', 'Coordenador', 1, '2023-11-07', '2023-11-07 09:58:50', 'uploads/manager_icon_129392.png'),
+(12, '$resultado', 'iago7325@gmail.com', '$2y$10$q5K8wT6TO2fzWpyztcJoVeUOA8GNpLpp/zNO84FVbD3epeTBv29yO', '', 'Administrador', 1, '2023-11-07', '2023-11-07 11:09:48', 'uploads/manager_icon_129392.png');
 
 --
 -- Índices para tabelas despejadas
@@ -181,13 +189,13 @@ ALTER TABLE `atualizacoes`
 -- AUTO_INCREMENT de tabela `perguntas`
 --
 ALTER TABLE `perguntas`
-  MODIFY `idPerguntas` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `idPerguntas` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `sugestoes`
 --
 ALTER TABLE `sugestoes`
-  MODIFY `idSugestao` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idSugestao` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `temas`
@@ -199,7 +207,7 @@ ALTER TABLE `temas`
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `idUsuarios` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idUsuarios` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Restrições para despejos de tabelas

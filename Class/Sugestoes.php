@@ -110,7 +110,10 @@ class Sugestoes
         }
     }
 
-    // Outros métodos da classe conforme necessário
+    public function validarEmail()
+    {
+        return !empty($this->getEmail()) && filter_var($this->getEmail(), FILTER_VALIDATE_EMAIL);
+    }
 }
 
 ?>
