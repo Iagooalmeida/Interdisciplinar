@@ -53,13 +53,7 @@ require_once 'conexao.php';
             <figure class="logotipo">
                 <a href="#"><img src="img/logo_fatec.png" alt="Logo Fatec Itapira" title="logo_fatec"></a>
             </figure>
-            <div class="redes-sociais">
-                <a href="https://www.instagram.com/fatecdeitapira/"><img
-                        src="img/instagram-social-platform-icon-png.png" alt="Instagram"></a>
-                <a href="https://www.facebook.com/fatecitapira"><img src="img/logo_facebook.png" alt="Facebook"></a>
-                <a href="#"><img src="img/twitter.png" alt="twitter"></a>
-                <a href="#"><img src="img/youtube.png" alt="icone-youtube"></a>
-            </div>
+
             <nav class="nav" title="menu">
                 <ul class="nav-list">
                     <li class="nav-item"><a href="https://fatecitapira.edu.br/">Home</a></li>
@@ -433,45 +427,6 @@ require_once 'conexao.php';
                 </button>
             </form>
 
-            <div class="lateral_titulo">
-                <h1>Últimas Noticias</h1>
-            </div>
-            <figure class="thumbnail_lateral">
-                <a href="#"><img src="img/thumbnail_destaque.gif" alt="Banner Vestibular fatec Itapira"
-                        title="Vestibular Fatec">
-                    <figcaption class="img_legenda">
-                        <img src="icon/icone_calender.png" alt="icon">
-                        <p>24/05/2023
-                        <p>
-                    </figcaption>
-                </a>
-
-                <!-- Titulo da imagem postada -->
-                <div class="descricao">
-                    <h1>Inscrições Abertas Vestibular 2023</h1>
-                </div>
-            </figure>
-
-            <figure class="thumbnail_lateral">
-
-                <a href="#"><img src="img/thumbnail_destaque.gif" alt="Vestibular fatec">
-                    <figcaption class="img_legenda">
-                        <img src="icon/icone_calender.png" alt="icon">
-                        <p>23/04/2023
-                        <p>
-                    </figcaption>
-                </a>
-
-                <!-- Titulo da imagem postada -->
-                <div class="descricao">
-                    <h1>Edital Diretório Acadêmico 2023</h1>
-                </div>
-                <!-- Botão para acessar outras noticias -->
-                <button type="button" onclick="redirecionar()" class="button_noticia">
-                    Todas as Noticias
-                </button>
-            </figure>
-
 
 
     </main>
@@ -521,6 +476,6 @@ require_once 'conexao.php';
 
     <script src="js/comportamento.js"></script>
 </body>
-<!-- <script src="js/querySelector.js"></script> -->
+
 
 </html>
