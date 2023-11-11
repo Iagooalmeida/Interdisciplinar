@@ -2,6 +2,7 @@
 
     require_once '../Class/Perguntas.php';
     require_once '../conexao.php';
+    require_once '../Controllers/verificacao.php';
 
     // Verifica se um ID de usuário foi passado na URL
     if (isset($_GET['id'])) {

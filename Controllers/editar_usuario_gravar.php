@@ -1,6 +1,7 @@
 <?php
 require_once '../Class/Usuario.php';
 require_once '../conexao.php';
+require_once 'verificacao.php';
 
 // Verifica se o formulário foi enviado
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -17,26 +18,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $telCel = isset($_POST["Tel_Cel"]) ? trim($_POST["Tel_Cel"]) : null;
     $funcao = isset($_POST["Funcao"]) ? trim($_POST["Funcao"]) : null;
 
-    // Validações adicionais, se necessário
+    $uploadsDirectory = __DIR__ . "/../uploads/";
 
     // Verifica se um arquivo de foto foi enviado
     if (isset($_FILES['Foto']) && $_FILES['Foto']['error'] == UPLOAD_ERR_OK) {
-        $fotoPath = "uploads/" . basename($_FILES['Foto']['name']);
+        $fotoNomeOriginal = basename($_FILES['Foto']['name']);
+        $fotoPath = $uploadsDirectory . $fotoNomeOriginal;
         $fotoTipo = strtolower(pathinfo($fotoPath, PATHINFO_EXTENSION));
-
+    
         // Verifica se o arquivo é uma imagem
         $permitidos = array('jpg', 'jpeg', 'png', 'gif');
         if (!in_array($fotoTipo, $permitidos)) {
             echo "Apenas arquivos de imagem são permitidos.";
             exit();
         }
-
+    
+        // Gera um nome de arquivo único usando MD5
+        $fotoNomeHash = md5($fotoNomeOriginal . time()) . '.' . $fotoTipo;
+    
+        $fotoPath =  $uploadsDirectory . $fotoNomeHash;
+    
         // Move o arquivo para a pasta de uploads
         move_uploaded_file($_FILES['Foto']['tmp_name'], $fotoPath);
     } else {
-        $fotoPath = null;
+        // Se nenhum novo arquivo foi enviado, mantenha o caminho atual
+        $fotoPath = isset($_POST['fotoAtual']) ? $_POST['fotoAtual'] : null;
     }
-
 
     if (!empty($senha)) {
         // Se a senha foi fornecida, atualiza o usuário com a nova senha

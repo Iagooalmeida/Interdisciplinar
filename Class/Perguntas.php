@@ -58,7 +58,8 @@ class Perguntas
     public function listarPerguntas()
     {
         try {
-            $sql = "SELECT * FROM perguntas";
+            $sql = "SELECT perguntas.*, temas.NomeTema FROM perguntas
+                LEFT JOIN temas ON perguntas.temas_idTemas = temas.idTemas";
             $stmt = $this->conn->query($sql);
 
             if ($stmt) {

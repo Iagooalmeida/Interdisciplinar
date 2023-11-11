@@ -2,6 +2,7 @@
 // Inclua os arquivos necessários
 require_once '../Class/Perguntas.php';
 require_once '../conexao.php';
+require_once 'verificacao.php';
 
 // Verifique se o ID da pergunta foi fornecido
 if (isset($_POST['idPergunta'])) {

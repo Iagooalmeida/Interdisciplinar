@@ -89,7 +89,8 @@ $usuarios = $usuario->listarUsuarios();
                     <td><?php
                         // Verifica se há um caminho da imagem e exibe a tag <img>
                         if (!empty($user['FotoPath'])) {
-                            echo '<img src="' . $user['FotoPath'] . '" alt="Foto do Usuário" style="max-width: 100px; max-height: 100px; border-radius: 20%;">';
+                            $caminhoImagem = 'uploads/' . basename($user['FotoPath']);
+                            echo '<img src="' . $caminhoImagem . '" alt="Foto do Usuário" style="max-width: 100px; max-height: 100px; border-radius: 20%;">';
                         } else {
                             echo '<img src="uploads/manager_icon_129392.png" alt="Imagem Padrão" style="max-width: 100px; max-height: 100px; border-radius: 40%;">';
                         }

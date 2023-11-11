@@ -1,6 +1,7 @@
 <?php
 require_once '../Class/Perguntas.php';
 require_once '../conexao.php';
+require_once 'verificacao.php';
 
 // Verifica se o formulário foi enviado
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['acao']) && $_POST['acao'] == 'excluir') {
