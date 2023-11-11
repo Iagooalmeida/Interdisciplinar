@@ -28,32 +28,7 @@ $perguntas = $pergunta->listarPerguntas();
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <!-- Inclua outros scripts se necessário -->
     <script src="js/modal.js"></script>
-
-
-    <script>
-        $(document).ready(function () {
-            $(".excluir-btn").on("click", function () {
-                var idPergunta = $(this).data("id");
-
-                if (confirm('Tem certeza que deseja excluir este usuário?')) {
-                    $.ajax({
-                        url: "Controllers/excluir_Pergunta.php",
-                        method: "POST",
-                        data: { acao: "excluir", id: idPergunta },
-                        success: function (data) {
-                            // Faça algo após a exclusão, se necessário
-                            console.log(data);
-                            // Recarregar a página ou atualizar a lista, por exemplo
-                            location.reload();
-                        },
-                        error: function (error) {
-                            console.error("Erro ao excluir: ", error);
-                        }
-                    });
-                }
-            });
-        });
-    </script>
+    <script src="js/filtroPerguntas.js"></script>
 
 
 </head>
@@ -90,9 +65,30 @@ $perguntas = $pergunta->listarPerguntas();
                 <h1>Cadastro de Perguntas FAQ</h1>
                 <a href="Views/cadastroUsuario.html"><button>Inserir</button></a>
             </div>
+
+            <!-- Adicione isso onde deseja exibir os filtros -->
+            
+
     
             <div style='display: flex; outline: none;' class="filtro">
-                <input style='flex:1; outline: none;'  placeholder="PESQUISAR" autofocus id='inputPesquisa' />
+                <form id="filtroForm">
+                    
+                    <input type="radio" id="filtroId" name="filtro" value="id">
+                    <label for="filtroId">ID</label>
+                   
+                    <input type="radio" id="filtroAutor" name="filtro" value="autor">
+                    <label for="filtroAutor">Autor</label>
+
+                    <input type="radio" id="filtroTema" name="filtro" value="tema">
+                    <label for="filtroTema">Tema</label>
+
+                    <input type="radio" id="filtroStatus" name="filtro" value="status">
+                    <label for="filtroStatus">Status</label>
+
+                    <input type="text" autofocus id="filtroInput" placeholder="Digite o termo de pesquisa">
+
+                    <button type="button" onclick="limparFiltro()">Limpar</button>
+                </form>
             </div>
 
             <?php if(!empty($perguntas)) :?>
@@ -103,6 +99,7 @@ $perguntas = $pergunta->listarPerguntas();
                             <th>Autor</th>
                             <th>pergunta</th>
                             <th>Resposta</th>
+                            <th>Tema</th>
                             <th>Status</th>
                             <th>Ações</th>
                         </tr>
@@ -113,6 +110,7 @@ $perguntas = $pergunta->listarPerguntas();
                             <td><?php echo $lista['Autor'] ?></td>
                             <td><?php echo $lista['ConteudoPergunta']?></td>
                             <td><?php echo substr($lista['Resposta'], 0, 60) . (strlen($lista['Resposta']) > 60 ? '...' : ''); ?></td>
+                            <td><?php echo $lista['NomeTema']; ?></td>
                             <td><?php echo $lista['Status']?></td>
                             <td>
                                 <a href="#"  class="detalhes-btn" data-id="<?php echo $lista['idPerguntas']; ?>" title="Detalhes">

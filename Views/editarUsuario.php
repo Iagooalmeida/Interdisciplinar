@@ -1,6 +1,7 @@
 <?php
 require_once '../Class/Usuario.php';
 require_once '../conexao.php';
+require_once '../Controllers/verificacao.php';
 
 // Verifica se um ID de usuário foi passado na URL
 if (isset($_GET['id'])) {
@@ -31,6 +32,12 @@ if (isset($_GET['id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Usuário</title>
+    <script>
+        function cancelarEdicao() {
+            // Use window.history para voltar para a página anterior
+            window.history.back();
+        }
+    </script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -93,11 +100,15 @@ if (isset($_GET['id'])) {
                 <option value="Administrador">Administrador</option>
                 <option value="Coordenador">Coordenador</option>
             </select>
+        
+        <input type="hidden" name="fotoAtual" value="<?php echo $dadosUsuario['FotoPath']; ?>">
+
 
         <label for="Foto">Carregar Foto:</label>
         <input type="file" id="Foto" name="Foto">
     
         <button type="submit">Atualizar</button>
+        <button style="background: darkgray;" type="button" onclick="cancelarEdicao()">Cancelar</button>
     </form>
 </body>
 </html>
