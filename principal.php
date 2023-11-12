@@ -63,6 +63,8 @@ require_once 'conexao.php';
                     <li class="nav-item"><a href="login/login.html">Painel</a></li>
                 </ul>
             </nav>
+        </div>
+
     </header>
     <main main class="flex-container">
         <section class="conteudo">
@@ -429,13 +431,13 @@ require_once 'conexao.php';
 
 
 
-    </main>
-    <div class="contato_whatsapp">
-        <a href="https://api.whatsapp.com/send?phone=551938635210&amp;text=" target="_blank" rel="whatsapp">
-            <img src="icon/whatsapp-icon-png-whatsapp-transparent.png" alt="Whatsapp">
-        </a>
-    </div>
-    </aside>
+
+        </aside>
+        <div class="contato_whatsapp">
+            <a href="https://api.whatsapp.com/send?phone=551938635210&amp;text=" target="_blank" rel="whatsapp">
+                <img src="icon/whatsapp-icon-png-whatsapp-transparent.png" alt="Whatsapp">
+            </a>
+        </div>
     </main>
 
     <!-- Rodapé da página -->
