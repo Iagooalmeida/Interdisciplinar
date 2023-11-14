@@ -7,12 +7,23 @@ class Perguntas
     private $autor;
     private $conteudoPergunta;
     private $dataSubmissao;
+    private $resposta;
     private $visivel;
     public $idTema;
+    public $status;
 
     public function __construct($conn)
     {
         $this->conn = $conn;
+    }
+
+    public function getResposta()
+    {
+        return $this->resposta;
+    }
+
+    public function setResposta($resposta){
+        $this->resposta = $resposta;
     }
 
     public function getAutor()
@@ -93,7 +104,6 @@ class Perguntas
             $this->conteudoPergunta = $this->limparInput($this->conteudoPergunta);
             $this->idTema = $this->limparInput($idTema);
 
-            // Define outros valores conforme necessário, por exemplo, dataSubmissao e visivel
 
             // Sua lógica de inserção no banco aqui
             $sql = "INSERT INTO perguntas (temas_idTemas, Autor, ConteudoPergunta)
@@ -110,6 +120,31 @@ class Perguntas
         } catch (Exception $e) {
             // Trate o erro conforme necessário (ex: log, exibir mensagem, etc.)
             error_log("Erro ao cadastrar pergunta: " . $e->getMessage());
+            return false;
+        }
+    }
+
+    public function atualizarPergunta($idPergunta, $idUsuario, $nomeUsuario, $conteudoPergunta, $resposta, $idTema, $status) {
+        try {
+            // Sua lógica para atualizar a pergunta no banco de dados
+            $query = "UPDATE perguntas SET Usuarios_idUsuarios = :idUsuario, temas_idTemas = :idTema, Autor = :nomeUsuario, ConteudoPergunta = :conteudoPergunta, Resposta = :resposta, Status = :status WHERE idPerguntas = :idPergunta";
+
+            $stmt = $this->conn->prepare($query);
+
+            $stmt->bindParam(':idUsuario', $idUsuario);
+            $stmt->bindParam(':idTema', $idTema);
+            $stmt->bindParam(':nomeUsuario', $nomeUsuario);
+            $stmt->bindParam(':conteudoPergunta', $conteudoPergunta);
+            $stmt->bindParam(':resposta', $resposta);    
+            $stmt->bindParam(':status', $status);
+            $stmt->bindParam(':idPergunta', $idPergunta);
+
+            // Execute a query
+            $stmt->execute();
+
+            return true; // Se chegou até aqui, a atualização foi bem-sucedida
+        } catch (PDOException $e) {
+            echo "Erro na atualização: " . $e->getMessage();
             return false;
         }
     }

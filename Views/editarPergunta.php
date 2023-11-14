@@ -101,11 +101,17 @@
     </head>
     <body>
         
-        <form action="editar_pergunta_gravar.php" method="post">
+        <form action="../Controllers/editar_pergunta_gravar.php" method="post">
             <h1>Editar Pergunta</h1>
+            <!-- Adicione os campos ocultos para idUsuario e nomeUsuario -->
+            <input type="hidden" name="idUsuario" value="<?php echo $_SESSION['idUsuario']; ?>">
+            <input type="hidden" name="nomeUsuario" value="<?php echo $_SESSION['nomeUsuario']; ?>">
+
+            <input type="hidden" name="idPergunta" value="<?php echo $idPergunta; ?>">
+
             <!-- Campos do formulário -->
-            <label for="conteudo">Conteúdo da Pergunta:</label>
-            <textarea name="conteudo" id="conteudo" rows="4" cols="50"><?php echo $dadosPergunta['ConteudoPergunta']; ?></textarea>
+            <label for="ConteudoPergunta">Conteúdo da Pergunta:</label>
+            <textarea name="ConteudoPergunta" id="ConteudoPergunta" rows="4" cols="50"><?php echo $dadosPergunta['ConteudoPergunta']; ?></textarea>
 
             <label for="resposta">Resposta:</label>
             <textarea name="resposta" id="resposta" rows="8" cols="60"><?php echo $dadosPergunta['Resposta']; ?></textarea>
@@ -133,15 +139,10 @@
 
             <label for="status">Status:</label>
             <select name="status" id="status">
-                <option value="Aprovar">Aprovar</option>
+                <option value="Aprovado">Aprovado</option>
                 <option value="Pendente">Pendente</option>
                 <option value="Reprovado">Reprovado</option>
             </select>
-
-            <!-- Campos ocultos para enviar idUsuario e nome -->
-            <input type="hidden" name="idUsuario" value="<?php echo $idUsuario; ?>">
-            <input type="hidden" name="nomeUsuario" value="<?php echo $nomeUsuario; ?>">
-            <input type="hidden" name="idPergunta" value="<?php echo $idPergunta; ?>">
 
             <!-- Botão de submit -->
             <button type="submit">Atualizar Pergunta</button>

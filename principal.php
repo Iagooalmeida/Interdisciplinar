@@ -384,11 +384,60 @@ require_once 'conexao.php';
                     </div>
                 </details>
 
+                <?php
+                    // Faça a consulta para obter temas e perguntas correspondentes
+                    $query = "SELECT t.idTemas, t.NomeTema, p.ConteudoPergunta, p.Resposta
+                            FROM temas t
+                            LEFT JOIN perguntas p ON t.idTemas = p.temas_idTemas
+                            WHERE p.Status = 'Aprovado'
+                            ORDER BY t.NomeTema";
+
+                    $stmt = $conn->prepare($query);
+                    $stmt->execute();
+
+                    // Verifique se há temas e perguntas correspondentes
+                    if ($stmt->rowCount() > 0) {
+                        $temaAtual = null;
+
+                        foreach ($stmt as $row) {
+                            // Verifica se o tema mudou
+                            if ($temaAtual !== $row['NomeTema']) {
+                                // Se sim, exibe um cabeçalho para o novo tema
+                                echo '<h2>' . $row['NomeTema'] . '</h2>';
+                                $temaAtual = $row['NomeTema'];
+                            }
+                            echo '<details class="card">';
+                            echo '<summary class="card__header">';
+                            echo '<img class="card__avatar" alt="Imagem cps_fatec" src="img/cps_fatec.jpg">';
+                            echo "<h1>" . nl2br($row['ConteudoPergunta']) . "</h1>";
+                            echo '<span class="card__indicator"></span>';
+                            echo '</summary>';
+
+                            echo '<div class="card__body">';
+                            echo "<p>" . nl2br($row['Resposta']) . "</p>";
+
+                            // Adicione links específicos (substitua os URLs pelos corretos)
+                            echo '<p>Links dos sites Abaixo</p>';
+                            echo '<hr>';
+                            echo '<div class="pag_links">';
+                            echo '<span> Portal: <a href="https://siga.cps.sp.gov.br/aluno/login.aspx" target="_blank">Siga</a> </span>';
+                            echo '<span> Site: <a href="https://fatecitapira.edu.br" target="_blank">Fatec Itapira</a> </span>';
+                            echo '</div>';
+
+                            echo '</div>';
+                            echo '</details>';
+                        }
+                    } else {
+                        // Se não houver perguntas aprovadas, exiba uma mensagem ou faça algo adequado
+                        echo '<p>Nenhuma pergunta aprovada no momento.</p>';
+                    }
+                    ?>
+
             </div>
         </section>
 
         <aside class="itens_lateral">
-            <form id="myForm" action="gravarSugestoes.php" method="post">
+            <form id="myForm" action="Controllers/gravarSugestoes.php" method="post">
                 <header class="lateral_titulo">
                     <h1>Dúvidas e Sugestões</h1>
                 </header>
