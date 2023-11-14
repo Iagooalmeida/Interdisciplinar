@@ -66,7 +66,12 @@ foreach ($resultado as $row) {
     </div>
     <!--sidebar final-->
 
-    <div id="teste"><canvas id="grafico"></canvas></div>
+
+    <div class="conteudo">
+        <div id="grafico_pai"><canvas id="grafico"></canvas></div>
+    </div>
+
+
 
     <script>
         const ctx = document.getElementById('grafico').getContext('2d');
@@ -79,6 +84,9 @@ foreach ($resultado as $row) {
                     data: <?php echo json_encode($quantidade); ?>,
                 }]
             },
+
+
+
             options: {
                 scales: {
                     y: {
@@ -88,8 +96,26 @@ foreach ($resultado as $row) {
                         }
                     }
 
-                }
-            }
+                },
+
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Quantidade de Perguntas por Tema'
+                    },
+
+                },
+
+                scales: {
+                    x: {
+                        display: false,
+                    },
+                    y: {
+                        display: false,
+                    }
+                },
+
+            },
         });
     </script>
 
