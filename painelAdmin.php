@@ -14,6 +14,18 @@ if (!isset($_SESSION['idUsuario'])) {
 $pergunta = new Perguntas($conn);
 $perguntas = $pergunta->listarPerguntas();
 
+
+$stmt = $conn->prepare("SELECT NomeTema, COUNT(NomeTema) AS Quantidade FROM temas GROUP BY NomeTema;");
+$stmt->execute();
+
+$resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+foreach ($resultado as $row) {
+    $tema[] = $row['NomeTema'];
+    $quantidade[] = $row['Quantidade'];
+}
+
 ?>
 
 <!DOCTYPE html>
