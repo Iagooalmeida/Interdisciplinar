@@ -1,8 +1,7 @@
 <?php
 require_once '../Class/Sugestoes.php';
-require_once '../conexao.php';
 require_once '../Class/Perguntas.php';
-require_once 'verificacao.php';
+require_once '../conexao.php';
 
 // Verifica se o formulário foi enviado
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -22,29 +21,44 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Obtém o tema selecionado
     $temaSelecionado = isset($_POST["Tema"]) ? $_POST["Tema"] : null;
 
-    // Realize validações específicas da classe Sugestoes
+    // Realiza validações específicas da classe Sugestoes
     if (!$sugestao->validarEmail()) {
-        echo "O email da sugestão é obrigatório e deve ser válido.";
+        echo '<script>';
+        echo 'alert("O email da sugestão é obrigatório e deve ser válido.");';
+        echo 'window.location.href = "../principal.php";';
+        echo '</script>';
         exit();
     }
 
     // Insere a sugestão no banco
     $sugestao->inserirSugestao($temaSelecionado);
 
-    // Realize validações específicas da classe Perguntas
+    // Realiza validações específicas da classe Perguntas
     if (!$pergunta->validarConteudoPergunta()) {
-        echo "O conteúdo da pergunta não pode estar vazio.";
+        echo '<script>';
+        echo 'alert("O conteúdo da pergunta não pode estar vazio.");';
+        echo 'window.location.href = "../principal.php";';
+        echo '</script>';
         exit();
     }
 
-    if ($pergunta->cadastrarPergunta($temaSelecionado)) {
-        echo "Pergunta gravada com sucesso!";
-    } else {
-        echo "Erro ao gravar a pergunta.";
+    try {
+        // Cadastra a pergunta no banco
+        if ($pergunta->cadastrarPergunta($temaSelecionado)) {
+            echo '<script>';
+            echo 'alert("Pergunta gravada com sucesso!");';
+            echo 'window.location.href = "../principal.php";';
+            echo '</script>';
+        } else {
+            throw new Exception("Erro ao gravar a pergunta.");
+        }
+    } catch (Exception $e) {
+        echo '<script>';
+        echo 'alert("Erro: ' . $e->getMessage() . '");';
+        echo 'window.location.href = "../principal.php";';
+        echo '</script>';
     }
 
-    // Redireciona para a página FAQ após a inserção
-    header("Location: ../principal.php");
     exit();
 }
 ?>

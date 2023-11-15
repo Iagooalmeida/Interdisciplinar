@@ -12,7 +12,7 @@ if (!isset($_SESSION['idUsuario'])) {
 }
 
 $pergunta = new Perguntas($conn);
-$perguntas = $pergunta->listarPerguntas();
+$perguntas = $pergunta->listarPerguntas(); 
 
 
 $stmt = $conn->prepare("SELECT NomeTema, COUNT(NomeTema) AS Quantidade FROM temas GROUP BY NomeTema;");
@@ -30,7 +30,6 @@ foreach ($resultado as $row) {
 
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -45,7 +44,6 @@ foreach ($resultado as $row) {
 
 
 </head>
-
 <body page='lista'>
     <input type="checkbox" id="check">
     <!--header começo-->
@@ -80,13 +78,13 @@ foreach ($resultado as $row) {
             </div>
 
             <!-- Adicione isso onde deseja exibir os filtros -->
-
+                
             <div style='display: flex; outline: none;' class="filtro">
                 <form id="filtroForm">
-
+                    
                     <input type="radio" id="filtroId" name="filtro" value="id">
                     <label for="filtroId">ID</label>
-
+                   
                     <input type="radio" id="filtroAutor" name="filtro" value="autor">
                     <label for="filtroAutor">Autor</label>
 
@@ -102,7 +100,7 @@ foreach ($resultado as $row) {
                 </form>
             </div>
 
-            <?php if (!empty($perguntas)): ?>
+            <?php if(!empty($perguntas)) :?>
                 <table>
                     <thead>
                         <tr>
@@ -117,27 +115,14 @@ foreach ($resultado as $row) {
                     </thead>
                     <?php foreach ($perguntas as $lista): ?>
                         <tr>
+                            <td><?php echo $lista['idPerguntas']; ?></td>
+                            <td><?php echo $lista['Autor'] ?></td>
+                            <td><?php echo $lista['ConteudoPergunta']?></td>
+                            <td><?php echo substr($lista['Resposta'], 0, 60) . (strlen($lista['Resposta']) > 60 ? '...' : ''); ?></td>
+                            <td><?php echo $lista['NomeTema']; ?></td>
+                            <td><?php echo $lista['Status']?></td>
                             <td>
-                                <?php echo $lista['idPerguntas']; ?>
-                            </td>
-                            <td>
-                                <?php echo $lista['Autor'] ?>
-                            </td>
-                            <td>
-                                <?php echo $lista['ConteudoPergunta'] ?>
-                            </td>
-                            <td>
-                                <?php echo substr($lista['Resposta'], 0, 60) . (strlen($lista['Resposta']) > 60 ? '...' : ''); ?>
-                            </td>
-                            <td>
-                                <?php echo $lista['NomeTema']; ?>
-                            </td>
-                            <td>
-                                <?php echo $lista['Status'] ?>
-                            </td>
-                            <td>
-                                <a href="#" class="detalhes-btn" data-id="<?php echo $lista['idPerguntas']; ?>"
-                                    title="Detalhes">
+                                <a href="#"  class="detalhes-btn" data-id="<?php echo $lista['idPerguntas']; ?>" title="Detalhes">
                                     <i style="background: indigo;" class="edit material-icons">info</i>
                                 </a>
 
@@ -145,18 +130,17 @@ foreach ($resultado as $row) {
                                     <i class=" edit material-icons">edit</i>
                                 </a>
 
-                                <button type="button" class="excluir-btn" data-id="<?php echo $lista['idPerguntas']; ?>"
-                                    title="Excluir">
+                                <button type="button" class="excluir-btn" data-id="<?php echo $lista['idPerguntas']; ?>" title="Excluir">
                                     <i class="material-icons">delete</i>
                                 </button>
                             </td>
                         </tr>
-                    <?php endforeach; ?>
+                    <?php endforeach; ?>    
                 </table>
-            <?php else: ?>
+                <?php else: ?>
                 <p>Nenhuma pergunta cadastrada.</p>
 
-            <?php endif; ?>
+             <?php endif; ?>     
         </div>
 
         <div id="myModal" class="modal">
@@ -173,10 +157,9 @@ foreach ($resultado as $row) {
             </div>
         </div>
 
-
-
-        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    
+    
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
-
 </html>

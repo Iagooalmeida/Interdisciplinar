@@ -216,6 +216,7 @@ class Usuario
                     $_SESSION['idUsuario'] = $usuario['idUsuarios'];
                     $_SESSION['nomeUsuario'] = $usuario['NomeUsuario'];
                     $_SESSION['emailUsuario'] = $usuario['Email'];
+                    $_SESSION['funcaoUsuario'] = $usuario['Funcao'];
                     $_SESSION['nivelAcesso'] = $usuario['NivelAcesso'];
 
                     return true;
