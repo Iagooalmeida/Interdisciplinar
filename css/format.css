@@ -331,9 +331,3 @@ textarea#resposta {
   -ms-transition: opacity 0.5s ease;
   -o-transition: opacity 0.5s ease;
 }
-
-div #chart_div {
-  width: auto;
-  margin: 0 auto !important;
-  text-align: center !important;
-}
