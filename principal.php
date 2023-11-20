@@ -432,7 +432,6 @@ require_once 'conexao.php';
                         echo '<p>Nenhuma pergunta aprovada no momento.</p>';
                     }
                     ?>
-
             </div>
         </section>
 
@@ -478,9 +477,6 @@ require_once 'conexao.php';
                 </button>
             </form>
 
-
-
-
         </aside>
         <div class="contato_whatsapp">
             <a href="https://api.whatsapp.com/send?phone=551938635210&amp;text=" target="_blank" rel="whatsapp">
@@ -525,7 +521,6 @@ require_once 'conexao.php';
         </div>
     </footer>
 
-    <script src="js/comportamento.js"></script>
 </body>
 
 
