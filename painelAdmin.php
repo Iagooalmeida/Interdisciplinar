@@ -12,7 +12,7 @@ if (!isset($_SESSION['idUsuario'])) {
 }
 
 $pergunta = new Perguntas($conn);
-$perguntas = $pergunta->listarPerguntas(); 
+$perguntas = $pergunta->listarPerguntas();
 
 
 $stmt = $conn->prepare("SELECT NomeTema, COUNT(NomeTema) AS Quantidade FROM temas GROUP BY NomeTema;");
@@ -30,6 +30,7 @@ foreach ($resultado as $row) {
 
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -38,12 +39,43 @@ foreach ($resultado as $row) {
     <link rel="stylesheet" href="css/format.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <!-- Inclua outros scripts se necessário -->
     <script src="js/modal.js"></script>
     <script src="js/filtroPerguntas.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.setOnLoadCallback(drawChart);
 
+        function drawChart() {
+            // Lógica para obter dados do PHP e formatá-los para o gráfico
+            var data = google.visualization.arrayToDataTable([
+                ['Tema', 'Quantidade'],
+                <?php
+                // Utilize os dados obtidos da sua função PHP
+                foreach ($resultado as $row) {
+                    echo "['" . $row['NomeTema'] . "', " . $row['Quantidade'] . "],";
+                }
+                ?>
+            ]);
+
+            var options = {
+                title: 'Quantidade de perguntas por tema',
+                titleTextStyle: {
+                    color: '#000',
+                    fontSize: 20,
+                    bold: true,
+                    textalign: 'center',
+                },
+                is3D: true,
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+            chart.draw(data, options);
+        }
+    </script>
 
 </head>
+
 <body page='lista'>
     <input type="checkbox" id="check">
     <!--header começo-->
@@ -69,8 +101,16 @@ foreach ($resultado as $row) {
         <a href="login/sairLogin.php"><ion-icon name="exit-outline"></ion-icon><span>Sair</span></a>
     </div>
     <!--sidebar final-->
+
     <div class="content">
         <div id='listaRegistros'>
+
+
+            <div id='chart_div' style="text-align: center;"></div>
+
+
+
+
 
             <div class="titulo_ask">
                 <h1>Cadastro de Perguntas FAQ</h1>
@@ -78,13 +118,13 @@ foreach ($resultado as $row) {
             </div>
 
             <!-- Adicione isso onde deseja exibir os filtros -->
-                
-            <div style='display: flex; outline: none;' class="filtro">
+
+            <div class="filtros">
                 <form id="filtroForm">
-                    
+
                     <input type="radio" id="filtroId" name="filtro" value="id">
                     <label for="filtroId">ID</label>
-                   
+
                     <input type="radio" id="filtroAutor" name="filtro" value="autor">
                     <label for="filtroAutor">Autor</label>
 
@@ -100,7 +140,7 @@ foreach ($resultado as $row) {
                 </form>
             </div>
 
-            <?php if(!empty($perguntas)) :?>
+            <?php if (!empty($perguntas)): ?>
                 <table>
                     <thead>
                         <tr>
@@ -115,14 +155,27 @@ foreach ($resultado as $row) {
                     </thead>
                     <?php foreach ($perguntas as $lista): ?>
                         <tr>
-                            <td><?php echo $lista['idPerguntas']; ?></td>
-                            <td><?php echo $lista['Autor'] ?></td>
-                            <td><?php echo $lista['ConteudoPergunta']?></td>
-                            <td><?php echo substr($lista['Resposta'], 0, 60) . (strlen($lista['Resposta']) > 60 ? '...' : ''); ?></td>
-                            <td><?php echo $lista['NomeTema']; ?></td>
-                            <td><?php echo $lista['Status']?></td>
                             <td>
-                                <a href="#"  class="detalhes-btn" data-id="<?php echo $lista['idPerguntas']; ?>" title="Detalhes">
+                                <?php echo $lista['idPerguntas']; ?>
+                            </td>
+                            <td>
+                                <?php echo $lista['Autor'] ?>
+                            </td>
+                            <td>
+                                <?php echo $lista['ConteudoPergunta'] ?>
+                            </td>
+                            <td>
+                                <?php echo substr($lista['Resposta'], 0, 60) . (strlen($lista['Resposta']) > 60 ? '...' : ''); ?>
+                            </td>
+                            <td>
+                                <?php echo $lista['NomeTema']; ?>
+                            </td>
+                            <td>
+                                <?php echo $lista['Status'] ?>
+                            </td>
+                            <td>
+                                <a href="#" class="detalhes-btn" data-id="<?php echo $lista['idPerguntas']; ?>"
+                                    title="Detalhes">
                                     <i style="background: indigo;" class="edit material-icons">info</i>
                                 </a>
 
@@ -130,17 +183,18 @@ foreach ($resultado as $row) {
                                     <i class=" edit material-icons">edit</i>
                                 </a>
 
-                                <button type="button" class="excluir-btn" data-id="<?php echo $lista['idPerguntas']; ?>" title="Excluir">
+                                <button type="button" class="excluir-btn" data-id="<?php echo $lista['idPerguntas']; ?>"
+                                    title="Excluir">
                                     <i class="material-icons">delete</i>
                                 </button>
                             </td>
                         </tr>
-                    <?php endforeach; ?>    
+                    <?php endforeach; ?>
                 </table>
-                <?php else: ?>
+            <?php else: ?>
                 <p>Nenhuma pergunta cadastrada.</p>
 
-             <?php endif; ?>     
+            <?php endif; ?>
         </div>
 
         <div id="myModal" class="modal">
@@ -157,9 +211,12 @@ foreach ($resultado as $row) {
             </div>
         </div>
 
-    
-    
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+
+        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+
 </body>
+
 </html>
