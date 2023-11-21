@@ -3,6 +3,7 @@
 class Perguntas
 {
     public $idPergunta;
+    public $idUsuario;
     private $conn;
     private $autor;
     private $conteudoPergunta;
@@ -123,31 +124,51 @@ class Perguntas
             return false;
         }
     }
+    
 
     public function atualizarPergunta($idPergunta, $idUsuario, $nomeUsuario, $conteudoPergunta, $resposta, $idTema, $status) {
         try {
-            // Sua lógica para atualizar a pergunta no banco de dados
-            $query = "UPDATE perguntas SET Usuarios_idUsuarios = :idUsuario, temas_idTemas = :idTema, Autor = :nomeUsuario, ConteudoPergunta = :conteudoPergunta, Resposta = :resposta, Status = :status WHERE idPerguntas = :idPergunta";
-
-            $stmt = $this->conn->prepare($query);
-
-            $stmt->bindParam(':idUsuario', $idUsuario);
-            $stmt->bindParam(':idTema', $idTema);
-            $stmt->bindParam(':nomeUsuario', $nomeUsuario);
-            $stmt->bindParam(':conteudoPergunta', $conteudoPergunta);
-            $stmt->bindParam(':resposta', $resposta);    
-            $stmt->bindParam(':status', $status);
-            $stmt->bindParam(':idPergunta', $idPergunta);
-
-            // Execute a query
-            $stmt->execute();
-
+            // Verifica se o usuário associado à pergunta existe
+            $queryCheckUser = "SELECT COUNT(*) FROM perguntas WHERE idPerguntas = :idPergunta AND Usuarios_idUsuarios IS NOT NULL";
+            $stmtCheckUser = $this->conn->prepare($queryCheckUser);
+            $stmtCheckUser->bindParam(':idPergunta', $idPergunta);
+            $stmtCheckUser->execute();
+            $usuarioAssociadoExiste = ($stmtCheckUser->fetchColumn() > 0);
+    
+            // Monta a consulta de atualização
+            $queryUpdate = "UPDATE perguntas SET ";
+            if (!$usuarioAssociadoExiste) {
+                // Apenas atualiza Usuarios_idUsuarios e Autor se Usuarios_idUsuarios for NULL
+                $queryUpdate .= "Usuarios_idUsuarios = :idUsuario, Autor = :nomeUsuario, ";
+            }
+            $queryUpdate .= "temas_idTemas = :idTema, ConteudoPergunta = :conteudoPergunta, Resposta = :resposta, Status = :status WHERE idPerguntas = :idPergunta";
+    
+            $stmtUpdate = $this->conn->prepare($queryUpdate);
+            if (!$usuarioAssociadoExiste) {
+                // Só vincula os parâmetros se Usuarios_idUsuarios for NULL
+                $stmtUpdate->bindParam(':idUsuario', $idUsuario);
+                $stmtUpdate->bindParam(':nomeUsuario', $nomeUsuario);
+            }
+            $stmtUpdate->bindParam(':idTema', $idTema);
+            $stmtUpdate->bindParam(':conteudoPergunta', $conteudoPergunta);
+            $stmtUpdate->bindParam(':resposta', $resposta);
+            $stmtUpdate->bindParam(':status', $status);
+            $stmtUpdate->bindParam(':idPergunta', $idPergunta);
+    
+            // Execute a query de atualização
+            $stmtUpdate->execute();
+    
             return true; // Se chegou até aqui, a atualização foi bem-sucedida
+    
         } catch (PDOException $e) {
             echo "Erro na atualização: " . $e->getMessage();
+            error_log("Erro na atualização: " . $e->getMessage());
             return false;
         }
     }
+    
+    
+    
 
     public function validarConteudoPergunta()
     {
@@ -169,6 +190,32 @@ class Perguntas
         } catch (Exception $e) {
             // Trate o erro conforme necessário (ex: log, exibir mensagem, etc.)
             error_log("Erro ao excluir Pergunta: " . $e->getMessage());
+            return false;
+        }
+    }
+
+    public function gravarPergunta($idUsuario) {
+        try {
+            // Sua lógica para gravar a pergunta no banco de dados
+            $query = "INSERT INTO perguntas (Usuarios_idUsuarios, temas_idTemas, Autor, ConteudoPergunta, Resposta, Status) 
+                        VALUES (:idUsuario, :idTema, :autor, :conteudoPergunta, :resposta, :status)";
+
+            $stmt = $this->conn->prepare($query);
+
+            $stmt->bindParam(':idUsuario', $idUsuario);
+            $stmt->bindParam(':idTema', $this->idTema);
+            $stmt->bindParam(':autor', $this->autor);
+            $stmt->bindParam(':conteudoPergunta', $this->conteudoPergunta);
+            $stmt->bindParam(':resposta', $this->resposta);          
+            $stmt->bindParam(':status', $this->status);
+
+            // Execute a query
+            $stmt->execute();
+            return true; // Se chegou até aqui, a gravação foi bem-sucedida
+
+        } catch (PDOException $e) {
+            // Captura e exibe a exceção
+            echo "Erro na gravação: " . $e->getMessage();
             return false;
         }
     }

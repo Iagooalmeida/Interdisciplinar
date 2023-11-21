@@ -110,21 +110,19 @@ foreach ($resultado as $row) {
 
 
 
-
-
             <div class="titulo_ask">
                 <h1>Cadastro de Perguntas FAQ</h1>
-                <a href="Views/cadastroUsuario.html"><button>Inserir</button></a>
+                <a href="Views/cadastrarPergunta.php"><button>Inserir</button></a>
             </div>
 
             <!-- Adicione isso onde deseja exibir os filtros -->
 
-            <div class="filtros">
+            <div style='display: flex; outline: none;' class="filtro">
                 <form id="filtroForm">
-
+                    
                     <input type="radio" id="filtroId" name="filtro" value="id">
                     <label for="filtroId">ID</label>
-
+                   
                     <input type="radio" id="filtroAutor" name="filtro" value="autor">
                     <label for="filtroAutor">Autor</label>
 

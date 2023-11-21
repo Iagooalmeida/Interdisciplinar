@@ -11,6 +11,7 @@ require_once 'conexao.php';
     <link rel="stylesheet" href="css/principal.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link rel="shortcut icon" href="img/fatec_icon.ico" type="image/x-icon">
+    <script src="js/validacao.js"></script>
     <meta name="author" content="Iago Almeida">
     <title>Pagina Principal</title>
 
@@ -442,7 +443,7 @@ require_once 'conexao.php';
                 </header>
                 <div class="floating_placehold">
                     <label for="nome">Nome: <span>*</span></label>
-                    <input type="text" name="nome" id="nome" required>
+                    <input type="text" name="nome" id="nome" onkeyup="handleName(event)" required>
                 </div>
 
                 <div class="floating_placehold">

@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Cadastrar Usuário</title>
+        <script src="../js/validacao.js"></script>
             <style>
                 body {
                 font-family: Arial, sans-serif;
@@ -57,7 +58,7 @@
             <input type="password" name="Senha" required>
 
             <label for="Fone">Tel / Cel: </label>
-            <input type="tel" name="Tel_Cel" id="Tel_Cel">
+            <input type="tel" name="Tel_Cel" id="Tel_Cel" maxlength="15" onkeyup="handlePhone(event)">
 
             <label for="Funcao">Função:</label>
             <select id="Funcao" name="Funcao">
