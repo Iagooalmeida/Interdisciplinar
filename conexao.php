@@ -1,5 +1,5 @@
 <?php
-$servername = "127.0.0.1";
+$servername = "database";
 $username = "root";
 $password = "";
 $dbname = "sis-faq";
