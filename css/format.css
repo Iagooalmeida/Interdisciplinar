@@ -271,7 +271,7 @@ textarea#resposta {
 .titulo_ask {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  margin-block-start: 25px;
 }
 
 .titulo_ask h1 {
