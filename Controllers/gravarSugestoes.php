@@ -21,14 +21,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Obtém o tema selecionado
     $temaSelecionado = isset($_POST["Tema"]) ? $_POST["Tema"] : null;
 
-    // Realiza validações específicas da classe Sugestoes
-    if (!$sugestao->validarEmail()) {
-        echo '<script>';
-        echo 'alert("O email da sugestão é obrigatório e deve ser válido.");';
-        echo 'window.location.href = "../principal.php";';
-        echo '</script>';
-        exit();
-    }
 
     // Insere a sugestão no banco
     $sugestao->inserirSugestao($temaSelecionado);

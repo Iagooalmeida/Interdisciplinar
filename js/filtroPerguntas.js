@@ -26,6 +26,8 @@ $(document).ready(function () {
     });
 
     function aplicarFiltro() {
+        console.log("Função aplicarFiltro chamada."); // Mensagem de depuração
+
         var filtro = $('input[name="filtro"]:checked').val();
         var termo = $('#filtroInput').val().toLowerCase();
 
@@ -55,10 +57,8 @@ $(document).ready(function () {
                 $(this).hide();
             }
         });
-    }  
+    }
 });
-
-// Restante do seu código...
 
 function limparFiltro() {
     // Limpa o campo de entrada
@@ -66,4 +66,4 @@ function limparFiltro() {
 
     // Exibe todas as linhas da tabela
     $('table tbody tr').show();
-}  
+}

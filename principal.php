@@ -15,26 +15,6 @@ require_once 'conexao.php';
     <meta name="author" content="Iago Almeida">
     <title>Pagina Principal</title>
 
-    <script>
-        const handlePhone = (event) => {
-            let input = event.target
-            input.value = phoneMask(input.value)
-        }
-
-        const phoneMask = (value) => {
-            if (!value) return ""
-            value = value.replace(/\D/g, '')
-            value = value.replace(/(\d{2})(\d)/, "($1) $2")
-            value = value.replace(/(\d)(\d{4})$/, "$1-$2")
-            return value
-        }
-    </script>
-    <script>
-        function redirecionar() {
-            window.location.href = "https://fatecitapira.edu.br/maisnoticias.html";
-        }         
-    </script>
-
 </head>
 
 <body>
@@ -433,6 +413,7 @@ require_once 'conexao.php';
                         echo '<p>Nenhuma pergunta aprovada no momento.</p>';
                     }
                     ?>
+
             </div>
         </section>
 
@@ -460,9 +441,10 @@ require_once 'conexao.php';
                     <select id="Tema" name="Tema" required>
                         <!-- Adicione opção padrão -->
                         <option value="" selected disabled>Escolha um tema</option>
+
                         <?php
                         try {
-                            $stmtTemas = $conn->query("SELECT idTemas, NomeTema FROM temas");
+                            $stmtTemas = $conn->query("SELECT idTemas, NomeTema FROM temas WHERE idTemaPai IS NULL ORDER BY NomeTema");
                             while ($tema = $stmtTemas->fetch(PDO::FETCH_ASSOC)) {
                                 echo "<option value='{$tema['idTemas']}'>{$tema['NomeTema']}</option>";
                             }
@@ -471,12 +453,16 @@ require_once 'conexao.php';
                         }
                         ?>
                     </select>
+
                 </div>
                 <textarea name="messagem" id="message" cols="36" rows="6" placeholder="Mensagem"></textarea>
                 <button type="submit" class="button_enviar">
                     Enviar
                 </button>
             </form>
+
+
+
 
         </aside>
         <div class="contato_whatsapp">

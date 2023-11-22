@@ -15,8 +15,8 @@
     // Obtém o idUsuario e o nome da sessão
     $idUsuario = $_SESSION['idUsuario'];
     $nomeUsuario = $_SESSION['nomeUsuario'];
+    $nivelAcesso = $_SESSION['nivelAcesso'];
 
-    // ... (o restante do seu código)
 
     // Verifica se um ID de pergunta foi passado na URL
     if (isset($_GET['id'])) {
@@ -116,6 +116,31 @@
             <label for="resposta">Resposta:</label>
             <textarea name="resposta" id="resposta" rows="8" cols="60"><?php echo $dadosPergunta['Resposta']; ?></textarea>
 
+            
+            <label for="responsavel">Responsável</label>
+            <select name="responsavel" id="responsavel" <?php echo ($_SESSION['nivelAcesso'] != 0 && $dadosPergunta['Usuarios_idUsuarios'] != $_SESSION['idUsuario']) ? 'disabled' : ''; ?>>
+                <option value="" selected disabled>Escolha um responsável</option>
+                <?php
+                try {
+                    $stmtUsuarios = $conn->query("SELECT idUsuarios, NomeUsuario FROM usuarios");
+                    while ($usuario = $stmtUsuarios->fetch(PDO::FETCH_ASSOC)) {
+                        // Verifica se o usuário atual está disponível no banco de dados
+                        $selecionado = ($usuario['idUsuarios'] == $dadosPergunta['Usuarios_idUsuarios']) ? 'selected' : '';
+                        // Adiciona a opção apenas se o nível de acesso for 0 ou o usuário correspondente à pergunta
+                        if ($_SESSION['nivelAcesso'] == 0 || $dadosPergunta['Usuarios_idUsuarios'] == $_SESSION['idUsuario']) {
+                            echo "<option value='{$usuario['idUsuarios']}' $selecionado>{$usuario['NomeUsuario']}</option>";
+                        }
+                    }
+                } catch (PDOException $e) {
+                    echo "Erro ao obter usuários: " . $e->getMessage();
+                }
+                ?>
+            </select>
+
+
+
+            
+
             <label for="tema">Tema:</label>
             <select id="Tema" name="Tema" required>
                 <!-- Adicione opção padrão -->
@@ -136,9 +161,9 @@
                 ?>
             </select>
 
-
             <label for="status">Status:</label>
-            <select name="status" id="status">
+            <select name="status" id="status" required>
+                <option value="" selected disabled>Escolha uma opção:</option>
                 <option value="Aprovado">Aprovado</option>
                 <option value="Pendente">Pendente</option>
                 <option value="Reprovado">Reprovado</option>
