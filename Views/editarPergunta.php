@@ -137,10 +137,6 @@
                 ?>
             </select>
 
-
-
-            
-
             <label for="tema">Tema:</label>
             <select id="Tema" name="Tema" required>
                 <!-- Adicione opção padrão -->

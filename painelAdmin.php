@@ -37,7 +37,7 @@ foreach ($resultado as $row) {
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="js/modal.js"></script>
-    
+    <script src="js/filtroPerguntas.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
     <script type="text/javascript">
@@ -83,8 +83,8 @@ foreach ($resultado as $row) {
             chartArea: {
                 //right: '20%',   // Margem à esquerda
                 top: '15%',    // Margem superior
-                width: '90%',   // Largura da área do gráfico
-                height: '90%',  // Altura da área do gráfico
+                width: '100%',   // Largura da área do gráfico
+                height: '800%',  // Altura da área do gráfico
             },
             margin: '10', // Centraliza o gráficos
         };
@@ -222,6 +222,6 @@ foreach ($resultado as $row) {
 
         <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
         <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-        <script src="js/filtroPerguntas.js"></script>
+        
     </body>
 </html>
