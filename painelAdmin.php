@@ -150,11 +150,11 @@ foreach ($resultado as $row) {
                 <form id="filtroForm">
                     <input type="radio" id="filtroId" name="filtro" value="id">
                     <label for="filtroId">ID</label>
-                   
+                               
                     <input type="radio" id="filtroAutor" name="filtro" value="autor">
                     <label for="filtroAutor">Autor</label>
 
-                    <input type="radio" id="filtroTema" name="filtro" value="tema">
+                    <input type="radio" id="filtroTema" name="filtro" value="tema" checked>
                     <label for="filtroTema">Tema</label>
 
                     <input type="radio" id="filtroStatus" name="filtro" value="status">
@@ -171,7 +171,8 @@ foreach ($resultado as $row) {
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Autor</th>
+                            <th>Origem</th>
+                            <th>Autor</th>                    
                             <th>pergunta</th>
                             <th>Resposta</th>
                             <th>Tema</th>
@@ -182,7 +183,8 @@ foreach ($resultado as $row) {
                     <?php foreach ($perguntas as $lista): ?>
                         <tr>
                             <td><?php echo $lista['idPerguntas']; ?></td>
-                            <td><?php echo $lista['Autor'] ?></td>
+                            <td><?php echo $lista['Origem'] ?></td>
+                            <td><?php echo $lista['Autor'] ?></td>  
                             <td><?php echo $lista['ConteudoPergunta'] ?></td>
                             <td><?php echo substr($lista['Resposta'], 0, 60) . (strlen($lista['Resposta']) > 60 ? '...' : ''); ?></td>
                             <td><?php echo $lista['NomeTema']; ?></td>
