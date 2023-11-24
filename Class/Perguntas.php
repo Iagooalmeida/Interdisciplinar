@@ -13,6 +13,7 @@ class Perguntas
     public $idTema;
     public $status;
     private $origem;
+
     public function getOrigem()
     {
         return $this->origem;
@@ -178,7 +179,34 @@ class Perguntas
         }
     }
     
-    
+    public function atualizacoesPerguntas($idUsuario, $idPergunta)
+    {
+        try {
+            // Use placeholders na consulta SQL
+            $sql = "INSERT INTO atualizacoes (atualizar_fk_idUsuarios, atualizar_fk_idPerguntas) VALUES (?, ?)";
+            
+            // Prepare a declaração
+            $stmt = $this->conn->prepare($sql);
+
+            // Vincule os parâmetros aos placeholders
+            $stmt->bindParam(1, $idUsuario, PDO::PARAM_INT);
+            $stmt->bindParam(2, $idPergunta, PDO::PARAM_INT);
+           
+            // Execute a consulta
+            $stmt->execute();
+
+            // Verifique se a inserção foi bem-sucedida
+            if ($stmt->rowCount() > 0) {
+                return true; // Inserção bem-sucedida
+            } else {
+                return false; // Falha na inserção
+            }
+        } catch (Exception $e) {
+            // Trate o erro conforme necessário (ex: log, exibir mensagem, etc.)
+            error_log("Erro ao gravar atualização: " . $e->getMessage());
+            return false;
+        }
+    }
     
 
     public function validarConteudoPergunta()

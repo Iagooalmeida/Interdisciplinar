@@ -18,7 +18,6 @@ $funcaoUsuario = $_SESSION['funcaoUsuario'];
 
 // Verifica se o usuário tem permissão para atualizar a pergunta
 if ($funcaoUsuario == 'Coordenador' || $funcaoUsuario == 'Administrador') {
-    // Continuação do código...
 
     // Obtém os dados do formulário
     $idPergunta = isset($_POST['idPergunta']) ? $_POST['idPergunta'] : null;
@@ -39,6 +38,12 @@ if ($funcaoUsuario == 'Coordenador' || $funcaoUsuario == 'Administrador') {
     echo '<script>';
     if ($atualizacaoSucesso) {
         echo 'alert("Pergunta atualizada com sucesso!");';
+
+        // Chame a função para atualizações e exiba mensagem de erro se necessário
+        $listaAtualizacao = $pergunta->atualizacoesPerguntas($idPergunta, $idUsuario);
+        if (!$listaAtualizacao) {
+            echo 'alert("Erro ao gravar atualização. Por favor, tente novamente.");';
+        }
     } else {
         echo 'alert("Erro ao atualizar pergunta. Por favor, tente novamente.");';
     }
@@ -50,5 +55,4 @@ if ($funcaoUsuario == 'Coordenador' || $funcaoUsuario == 'Administrador') {
     echo "Você não tem permissão para atualizar perguntas.";
     exit();
 }
-
 ?>
