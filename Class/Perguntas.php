@@ -12,11 +12,22 @@ class Perguntas
     private $visivel;
     public $idTema;
     public $status;
+    private $origem;
+    public function getOrigem()
+    {
+        return $this->origem;
+    }
+
+    public function setOrigem($origem)
+    {
+        $this->origem = $origem;
+    }
 
     public function __construct($conn)
     {
         $this->conn = $conn;
     }
+
 
     public function getResposta()
     {
@@ -107,11 +118,11 @@ class Perguntas
 
 
             // Sua lógica de inserção no banco aqui
-            $sql = "INSERT INTO perguntas (temas_idTemas, Autor, ConteudoPergunta)
-                    VALUES (?, ?, ?)";
+            $sql = "INSERT INTO perguntas (temas_idTemas, Autor, ConteudoPergunta, Origem)
+                    VALUES (?, ?, ?, ?)";
 
             $stmt = $this->conn->prepare($sql);
-            $stmt->execute([$this->idTema, $this->autor, $this->conteudoPergunta]);
+            $stmt->execute([$this->idTema, $this->autor, $this->conteudoPergunta, $this->origem]);
 
             if ($stmt->rowCount() > 0) {
                 return true;
@@ -197,8 +208,8 @@ class Perguntas
     public function gravarPergunta($idUsuario) {
         try {
             // Sua lógica para gravar a pergunta no banco de dados
-            $query = "INSERT INTO perguntas (Usuarios_idUsuarios, temas_idTemas, Autor, ConteudoPergunta, Resposta, Status) 
-                        VALUES (:idUsuario, :idTema, :autor, :conteudoPergunta, :resposta, :status)";
+            $query = "INSERT INTO perguntas (Usuarios_idUsuarios, temas_idTemas, Autor, ConteudoPergunta, Resposta, Status, Origem) 
+                        VALUES (:idUsuario, :idTema, :autor, :conteudoPergunta, :resposta, :status, :origem)";
 
             $stmt = $this->conn->prepare($query);
 
@@ -208,6 +219,7 @@ class Perguntas
             $stmt->bindParam(':conteudoPergunta', $this->conteudoPergunta);
             $stmt->bindParam(':resposta', $this->resposta);          
             $stmt->bindParam(':status', $this->status);
+            $stmt->bindParam(':origem', $this->origem);
 
             // Execute a query
             $stmt->execute();

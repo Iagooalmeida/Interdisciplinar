@@ -37,7 +37,7 @@ foreach ($resultado as $row) {
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="js/modal.js"></script>
-    
+    <script src="js/filtroPerguntas.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
     <script type="text/javascript">
@@ -83,8 +83,8 @@ foreach ($resultado as $row) {
             chartArea: {
                 //right: '20%',   // Margem à esquerda
                 top: '15%',    // Margem superior
-                width: '90%',   // Largura da área do gráfico
-                height: '90%',  // Altura da área do gráfico
+                width: '100%',   // Largura da área do gráfico
+                height: '800%',  // Altura da área do gráfico
             },
             margin: '10', // Centraliza o gráficos
         };
@@ -150,11 +150,11 @@ foreach ($resultado as $row) {
                 <form id="filtroForm">
                     <input type="radio" id="filtroId" name="filtro" value="id">
                     <label for="filtroId">ID</label>
-                   
+                               
                     <input type="radio" id="filtroAutor" name="filtro" value="autor">
                     <label for="filtroAutor">Autor</label>
 
-                    <input type="radio" id="filtroTema" name="filtro" value="tema">
+                    <input type="radio" id="filtroTema" name="filtro" value="tema" checked>
                     <label for="filtroTema">Tema</label>
 
                     <input type="radio" id="filtroStatus" name="filtro" value="status">
@@ -171,7 +171,8 @@ foreach ($resultado as $row) {
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Autor</th>
+                            <th>Origem</th>
+                            <th>Autor</th>                    
                             <th>pergunta</th>
                             <th>Resposta</th>
                             <th>Tema</th>
@@ -182,7 +183,8 @@ foreach ($resultado as $row) {
                     <?php foreach ($perguntas as $lista): ?>
                         <tr>
                             <td><?php echo $lista['idPerguntas']; ?></td>
-                            <td><?php echo $lista['Autor'] ?></td>
+                            <td><?php echo $lista['Origem'] ?></td>
+                            <td><?php echo $lista['Autor'] ?></td>  
                             <td><?php echo $lista['ConteudoPergunta'] ?></td>
                             <td><?php echo substr($lista['Resposta'], 0, 60) . (strlen($lista['Resposta']) > 60 ? '...' : ''); ?></td>
                             <td><?php echo $lista['NomeTema']; ?></td>
@@ -222,6 +224,6 @@ foreach ($resultado as $row) {
 
         <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
         <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-        <script src="js/filtroPerguntas.js"></script>
+        
     </body>
 </html>

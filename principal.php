@@ -72,6 +72,7 @@ require_once 'conexao.php';
             <div class="page">
                 <h1>FAQ - FATEC</h1>
                 <h2>Principais Perguntas e Respostas para o FAQ </h2>
+<<<<<<< HEAD
                 <!-- <details class="card">
                     <summary class="card__header">
                         <img class="card__avatar" alt="Imagem cps_fatec" src="img/cps_fatec.jpg">
@@ -384,6 +385,9 @@ require_once 'conexao.php';
                         <span>Site: <a href="https://fatecitapira.edu.br" target="_blank">Fatec Itapira</a></span>
                     </div>
                 </details> -->
+=======
+                   
+>>>>>>> 8d7e6b21995d29c572decc9390574eedaf07a70c
 
                 <?php
                     // Faça a consulta para obter temas e perguntas correspondentes

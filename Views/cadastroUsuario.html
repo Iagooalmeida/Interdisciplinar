@@ -44,11 +44,12 @@
                 background-color: #45a049;
                 }
             </style>
+            <script src="../js/validacao.js"></script>
     </head>
     <body>
         <form action="../Controllers/inserir_usuario.php" method="POST" enctype="multipart/form-data">
             <label for="NomeUsuario">Nome do Usuário:</label>
-            <input type="text" id="NomeUsuario" name="NomeUsuario" required>
+            <input type="text" id="NomeUsuario" name="NomeUsuario" onkeyup="handleName(event)" required>
         
             <label for="Email">Email:</label>
             <input type="email" id="Email" name="Email" required>
@@ -57,7 +58,7 @@
             <input type="password" name="Senha" required>
 
             <label for="Fone">Tel / Cel: </label>
-            <input type="tel" name="Tel_Cel" id="Tel_Cel">
+            <input type="tel" name="Tel_Cel" id="Tel_Cel" maxlength="15" onkeyup="handlePhone(event)">
 
             <label for="Funcao">Função:</label>
             <select id="Funcao" name="Funcao">

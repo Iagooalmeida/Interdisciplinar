@@ -13,6 +13,8 @@
         $pergunta->status = isset($_POST["status"]) ? $_POST["status"] : null;
         $idUsuario = isset($_POST["idUsuario"]) ? $_POST["idUsuario"] : null;
         $pergunta->setAutor(isset($_POST["nomeUsuario"]) ? trim($_POST["nomeUsuario"]) : null);
+        $origem = "Usuário";
+        $pergunta->setOrigem($origem);
 
         if(empty($pergunta->getConteudoPergunta()) || empty($pergunta->getResposta()) || empty($pergunta->idTema)){
             echo '<script>';
