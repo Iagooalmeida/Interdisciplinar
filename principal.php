@@ -71,57 +71,93 @@ require_once 'conexao.php';
         <section class="conteudo">
             <div class="page">
                 <h1>FAQ - FATEC</h1>
-                <h2>Principais Perguntas e Respostas para o FAQ </h2>
-                   
+                <h2>Principais Perguntas e Respostas para o FAQ</h2>
 
                 <?php
-                    // Faça a consulta para obter temas e perguntas correspondentes
-                    $query = "SELECT t.idTemas, t.NomeTema, p.ConteudoPergunta, p.Resposta
-                            FROM temas t
-                            LEFT JOIN perguntas p ON t.idTemas = p.temas_idTemas
-                            WHERE p.Status = 'Aprovado'
-                            ORDER BY t.NomeTema";
+                // Defina o número de perguntas por página
+                $perguntasPorPagina = 2;
 
-                    $stmt = $conn->prepare($query);
-                    $stmt->execute();
+                // Obtenha o número da página atual a partir do parâmetro 'page'
+                $paginaAtual = isset($_GET['page']) ? $_GET['page'] : 1;
 
-                    // Verifique se há temas e perguntas correspondentes
-                    if ($stmt->rowCount() > 0) {
-                        $temaAtual = null;
+                // Calcule o offset para a consulta SQL
+                $offset = ($paginaAtual - 1) * $perguntasPorPagina;
 
-                        foreach ($stmt as $row) {
-                            // Verifica se o tema mudou
-                            if ($temaAtual !== $row['NomeTema']) {
-                                // Se sim, exibe um cabeçalho para o novo tema
-                                echo '<h2>' . $row['NomeTema'] . '</h2>';
-                                $temaAtual = $row['NomeTema'];
-                            }
-                            echo '<details class="card">';
-                            echo '<summary class="card__header">';
-                            echo '<img class="card__avatar" alt="Imagem cps_fatec" src="img/cps_fatec.jpg">';
-                            echo "<h1>" . nl2br($row['ConteudoPergunta']) . "</h1>";
-                            echo '<span class="card__indicator"></span>';
-                            echo '</summary>';
+                // Modifique a consulta SQL para incluir LIMIT e OFFSET
+                $query = "SELECT t.idTemas, t.NomeTema, p.ConteudoPergunta, p.Resposta
+                        FROM temas t
+                        LEFT JOIN perguntas p ON t.idTemas = p.temas_idTemas
+                        WHERE p.Status = 'Aprovado'
+                        ORDER BY t.NomeTema
+                        LIMIT :perguntasPorPagina OFFSET :offset";
 
-                            echo '<div class="card__body">';
-                            echo "<p>" . nl2br($row['Resposta']) . "</p>";
+                $stmt = $conn->prepare($query);
+                $stmt->bindParam(':perguntasPorPagina', $perguntasPorPagina, PDO::PARAM_INT);
+                $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
+                $stmt->execute();
 
-                            // Adicione links específicos (substitua os URLs pelos corretos)
-                            echo '<p>Links dos sites Abaixo</p>';
-                            echo '<hr>';
-                            echo '<div class="pag_links">';
-                            echo '<span> Portal: <a href="https://siga.cps.sp.gov.br/aluno/login.aspx" target="_blank">Siga</a> </span>';
-                            echo '<span> Site: <a href="https://fatecitapira.edu.br" target="_blank">Fatec Itapira</a> </span>';
-                            echo '</div>';
+                if ($stmt->rowCount() > 0) {
+                    $temaAtual = null;
 
-                            echo '</div>';
-                            echo '</details>';
+                    foreach ($stmt as $row) {
+                        // Verifica se o tema mudou
+                        if ($temaAtual !== $row['NomeTema']) {
+                            // Se sim, exibe um cabeçalho para o novo tema
+                            echo '<h2>' . $row['NomeTema'] . '</h2>';
+                            $temaAtual = $row['NomeTema'];
                         }
-                    } else {
-                        // Se não houver perguntas aprovadas, exiba uma mensagem ou faça algo adequado
-                        echo '<p>Nenhuma pergunta aprovada no momento.</p>';
+                        echo '<details class="card">';
+                        echo '<summary class="card__header">';
+                        echo '<img class="card__avatar" alt="Imagem cps_fatec" src="img/cps_fatec.jpg">';
+                        echo "<h1>" . nl2br($row['ConteudoPergunta']) . "</h1>";
+                        echo '<span class="card__indicator"></span>';
+                        echo '</summary>';
+
+                        echo '<div class="card__body">';
+                        echo "<p>" . nl2br($row['Resposta']) . "</p>";
+
+                        // Adicione links específicos (substitua os URLs pelos corretos)
+                        echo '<p>Links dos sites Abaixo</p>';
+                        echo '<hr>';
+                        echo '<div class="pag_links">';
+                        echo '<span> Portal: <a href="https://siga.cps.sp.gov.br/aluno/login.aspx" target="_blank">Siga</a> </span>';
+                        echo '<span> Site: <a href="https://fatecitapira.edu.br" target="_blank">Fatec Itapira</a> </span>';
+                        echo '</div>';
+
+                        echo '</div>';
+                        echo '</details>';
+                    }
+                } else {
+                    // Se não houver perguntas aprovadas, exiba uma mensagem ou faça algo adequado
+                    echo '<p>Nenhuma pergunta aprovada no momento.</p>';
+                }
+                ?>
+
+                <!-- Adicione links de navegação para a próxima e anterior página -->
+                <div class="pagination">
+                    <?php
+                    // Calcule o número total de perguntas
+                    $totalPerguntasQuery = $conn->query("SELECT COUNT(*) FROM perguntas WHERE Status = 'Aprovado'");
+                    $totalPerguntas = $totalPerguntasQuery->fetchColumn();
+                    $totalPaginas = ceil($totalPerguntas / $perguntasPorPagina);
+
+                    if ($paginaAtual > 1) {
+                        echo '<a href="?page=' . ($paginaAtual - 1) . '">Anterior</a>';
+                    }
+                
+                    // Exiba os números das páginas
+                    for ($i = 1; $i <= $totalPaginas; $i++) {
+                        echo '<a href="?page=' . $i . '">' . $i . '</a>';
+                        // Adicione um espaçamento (pode ajustar o valor conforme necessário)
+                        echo ' ';
+                    }
+                
+                    // Exiba um link para a próxima página, se houver
+                    if ($paginaAtual < $totalPaginas) {
+                        echo '<a href="?page=' . ($paginaAtual + 1) . '">Próxima</a>';
                     }
                     ?>
+                </div>
             </div>
         </section>
 
