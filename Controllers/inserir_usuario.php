@@ -27,9 +27,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
 
-    // Validar a senha
-    if (strlen($senha) < 6) {
-        echo "A senha deve ter pelo menos 6 caracteres";
+    // // Validar a senha
+    // if (strlen($_POST["Senha"]) < 6) {
+    //     echo "A senha deve ter pelo menos 6 caracteres";
+    //     exit;
+    // }
+
+    //Validar a senha
+    if (strlen($_POST["Senha"]) < 6 || !preg_match('/[A-Z]/', $_POST["Senha"]) || !preg_match('/[a-z]/', $_POST["Senha"])) {
+        echo "A senha deve ter pelo menos 6 caracteres e conter pelo menos uma letra maiúscula e uma letra minúscula";
         exit;
     }
 
@@ -69,19 +75,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Chama o método para inserir o usuário
     
         $resultado = $usuario->inserirUsuario($nomeUsuario, $email, $senha, $telCel, $funcao, $fotoPath);
-   
-
-    if ($resultado === false) {
-         // O e-mail já existe, incluir mensagem no script JavaScript
-        echo '<script>';
-        echo 'alert("O e-mail fornecido já está cadastrado. Por favor, tente outro.");';
-    } else {
-        // Inserção bem-sucedida, continue com o restante do código
-        echo 'alert("Usuário cadastrado com sucesso!";)';
-    }
-    echo 'window.location.href = "../gerenciarUsuario.php";'; // Redireciona após a mensagem
-    echo '</script>';
-    exit();
-    
+        if ($resultado === false) {
+            // O e-mail já existe, incluir mensagem no script JavaScript
+            echo '<script>';
+            echo 'alert("O e-mail fornecido já está cadastrado. Por favor, tente outro.");';
+            echo 'window.location.href = "../gerenciarUsuario.php";'; // Redireciona após a mensagem
+            echo '</script>';
+        } else {
+            // Inserção bem-sucedida, continue com o restante do código
+            echo '<script>';
+            echo 'alert("Usuário cadastrado com sucesso!");';
+            echo 'window.location.href = "../gerenciarUsuario.php";'; // Redireciona após a mensagem
+            echo '</script>';
+            exit();
+        }        
 }
 ?>

@@ -32,6 +32,7 @@ if (isset($_GET['id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Usuário</title>
+    <script src="../js/validacao.js"></script>
     <script>
         function cancelarEdicao() {
             // Use window.history para voltar para a página anterior
@@ -84,7 +85,7 @@ if (isset($_GET['id'])) {
         <input type="hidden" name="idUsuario" value="<?php echo $dadosUsuario['idUsuarios']; ?>">
 
         <label for="NomeUsuario">Nome do Usuário:</label>
-        <input type="text" id="NomeUsuario" name="NomeUsuario" value="<?php echo $dadosUsuario['NomeUsuario']; ?>">
+        <input type="text" id="NomeUsuario" name="NomeUsuario" onkeyup="handleName(event)" value="<?php echo $dadosUsuario['NomeUsuario']; ?>">
     
         <label for="Email">Email:</label>
         <input type="email" id="Email" name="Email" value="<?php echo $dadosUsuario['Email']; ?>">
@@ -93,7 +94,7 @@ if (isset($_GET['id'])) {
         <input type="password" name="Senha">
 
         <label for="Fone">Tel / Cel:</label>
-        <input type="tel" name="Tel_Cel" id="Tel_Cel" value="<?php echo $dadosUsuario['Tel_Cel']; ?>">
+        <input type="tel" name="Tel_Cel" id="Tel_Cel" onkeyup="handlePhone(event)" value="<?php echo $dadosUsuario['Tel_Cel']; ?>">
 
         <label for="Funcao">Função:</label>
             <select id="Funcao" name="Funcao" value="<?php echo $dadosUsuario['Funcao']; ?>">

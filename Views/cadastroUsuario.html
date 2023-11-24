@@ -55,10 +55,11 @@
             <input type="email" id="Email" name="Email" required>
 
             <label for="Senha">Senha:</label>
-            <input type="password" name="Senha" required>
+            <input type="password" name="Senha" id="Senha" onkeyup="handlePassword(event)" required>
+            <p id="passwordError" style="color: red;"></p>
 
             <label for="Fone">Tel / Cel: </label>
-            <input type="tel" name="Tel_Cel" id="Tel_Cel" maxlength="15" onkeyup="handlePhone(event)">
+            <input type="tel" name="Tel_Cel" id="Tel_Cel"  onkeyup="handlePhone(event)">
 
             <label for="Funcao">Função:</label>
             <select id="Funcao" name="Funcao">
