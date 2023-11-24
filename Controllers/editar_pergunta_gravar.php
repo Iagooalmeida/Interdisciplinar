@@ -37,13 +37,22 @@ if ($funcaoUsuario == 'Coordenador' || $funcaoUsuario == 'Administrador') {
     // Adicione o código JavaScript para mostrar uma mensagem antes de redirecionar
     echo '<script>';
     if ($atualizacaoSucesso) {
-        echo 'alert("Pergunta atualizada com sucesso!");';
-
         // Chame a função para atualizações e exiba mensagem de erro se necessário
-        $listaAtualizacao = $pergunta->atualizacoesPerguntas($idPergunta, $idUsuario);
-        if (!$listaAtualizacao) {
+        $ultimaAtualizacao = $pergunta->atualizacoesPerguntas( $idUsuario, $idPergunta);
+
+        if ($ultimaAtualizacao) {
+            // Atualize a tabela perguntas com a última data de atualização
+            $atualizacaoPerguntaSucesso = $pergunta->atualizarUltimaAtualizacao($idPergunta, $ultimaAtualizacao);
+
+            if ($atualizacaoPerguntaSucesso) {
+                echo 'alert("Pergunta atualizada com sucesso!");';
+            } else {
+                echo 'alert("Erro ao atualizar pergunta. Por favor, tente novamente.");';
+            }
+        } else {
             echo 'alert("Erro ao gravar atualização. Por favor, tente novamente.");';
         }
+
     } else {
         echo 'alert("Erro ao atualizar pergunta. Por favor, tente novamente.");';
     }

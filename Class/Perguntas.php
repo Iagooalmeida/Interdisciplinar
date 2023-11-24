@@ -197,7 +197,9 @@ class Perguntas
 
             // Verifique se a inserção foi bem-sucedida
             if ($stmt->rowCount() > 0) {
-                return true; // Inserção bem-sucedida
+                // Obtenha a última data de atualização
+                $ultimaAtualizacao = $this->obterUltimaAtualizacao($idPergunta);
+                return $ultimaAtualizacao; // Retorna a última data de atualização
             } else {
                 return false; // Falha na inserção
             }
@@ -207,7 +209,50 @@ class Perguntas
             return false;
         }
     }
-    
+
+    public function obterUltimaAtualizacao($idPergunta)
+    {
+        try {
+            $sql = "SELECT MAX(DataAtualizacao) AS UltimaAtualizacao FROM atualizacoes WHERE atualizar_fk_idPerguntas = ?";
+
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bindParam(1, $idPergunta, PDO::PARAM_INT);
+            $stmt->execute();
+
+            $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if ($resultado && isset($resultado['UltimaAtualizacao'])) {
+                return $resultado['UltimaAtualizacao'];
+            } else {
+                return null;
+            }
+        } catch (Exception $e) {
+            // Trate o erro conforme necessário (ex: log, exibir mensagem, etc.)
+            error_log("Erro ao obter última data de atualização: " . $e->getMessage());
+            return null;
+        }
+    }
+
+    public function atualizarUltimaAtualizacao($idPergunta, $ultimaAtualizacao)
+    {
+        try {
+            $sql = "UPDATE perguntas SET UltimaAtualizacao = ? WHERE idPerguntas = ?";
+
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bindParam(1, $ultimaAtualizacao);
+            $stmt->bindParam(2, $idPergunta, PDO::PARAM_INT);
+            $stmt->execute();
+
+            if ($stmt->rowCount() > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception $e) {
+            error_log("Erro ao atualizar última data de atualização: " . $e->getMessage());
+            return false;
+        }
+    }
 
     public function validarConteudoPergunta()
     {
