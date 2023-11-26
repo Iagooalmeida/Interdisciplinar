@@ -16,25 +16,10 @@ require_once 'conexao.php';
     <title>Pagina Principal</title>
 
     <script>
-        const handlePhone = (event) => {
-            let input = event.target
-            input.value = phoneMask(input.value)
-        }
-
-        const phoneMask = (value) => {
-            if (!value) return ""
-            value = value.replace(/\D/g, '')
-            value = value.replace(/(\d{2})(\d)/, "($1) $2")
-            value = value.replace(/(\d)(\d{4})$/, "$1-$2")
-            return value
-        }
-    </script>
-    <script>
         function redirecionar() {
             window.location.href = "https://fatecitapira.edu.br/maisnoticias.html";
         }         
     </script>
-
 </head>
 
 <body>
@@ -141,17 +126,21 @@ require_once 'conexao.php';
                     $totalPerguntas = $totalPerguntasQuery->fetchColumn();
                     $totalPaginas = ceil($totalPerguntas / $perguntasPorPagina);
 
+                    // Exiba links para a página anterior, se houver
                     if ($paginaAtual > 1) {
                         echo '<a href="?page=' . ($paginaAtual - 1) . '">Anterior</a>';
                     }
-                
+
                     // Exiba os números das páginas
                     for ($i = 1; $i <= $totalPaginas; $i++) {
-                        echo '<a href="?page=' . $i . '">' . $i . '</a>';
+                        // Adicione uma classe para destacar a página atual
+                        $classeDestaque = ($i == $paginaAtual) ? 'pagina-atual' : '';
+
+                        echo '<a href="?page=' . $i . '" class="' . $classeDestaque . '">' . $i . '</a>';
                         // Adicione um espaçamento (pode ajustar o valor conforme necessário)
                         echo ' ';
                     }
-                
+
                     // Exiba um link para a próxima página, se houver
                     if ($paginaAtual < $totalPaginas) {
                         echo '<a href="?page=' . ($paginaAtual + 1) . '">Próxima</a>';

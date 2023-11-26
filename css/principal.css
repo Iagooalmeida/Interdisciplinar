@@ -104,6 +104,20 @@ body {
   }
 }
 
+/* Fim do cabeçalho */
+
+/*Inicio Paginação*/
+.pagination a.pagina-atual {
+  background-color: #43545c;
+  color: white;
+  padding: 5px;
+}
+.pagination a{
+  text-decoration: none;
+  margin-inline-end: 4px;
+}
+/*Fim Paginação*/
+
 /* Inicio Formatação Css do conteudo */
 
 .flex-container {
