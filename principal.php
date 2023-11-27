@@ -1,5 +1,5 @@
 <?php
-require_once 'conexao.php';
+    require_once 'conexao.php';
 ?>
 
 <!DOCTYPE html>
@@ -12,7 +12,6 @@ require_once 'conexao.php';
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link rel="shortcut icon" href="img/fatec_icon.ico" type="image/x-icon">
     <script src="js/validacao.js"></script>
-    <meta name="author" content="Iago Almeida">
     <title>Pagina Principal</title>
 
     <script>
@@ -58,64 +57,70 @@ require_once 'conexao.php';
                 <h1>FAQ - FATEC</h1>
                 <h2>Principais Perguntas e Respostas para o FAQ</h2>
 
+                
+                <input type="text" id="busca" name="busca" placeholder="Pesquisar">
+                
+                
                 <?php
-                // Defina o número de perguntas por página
-                $perguntasPorPagina = 2;
 
-                // Obtenha o número da página atual a partir do parâmetro 'page'
-                $paginaAtual = isset($_GET['page']) ? $_GET['page'] : 1;
 
-                // Calcule o offset para a consulta SQL
-                $offset = ($paginaAtual - 1) * $perguntasPorPagina;
+                    // Defina o número de perguntas por página
+                    $perguntasPorPagina = 2;
 
-                // Modifique a consulta SQL para incluir LIMIT e OFFSET
-                $query = "SELECT t.idTemas, t.NomeTema, p.ConteudoPergunta, p.Resposta
-                        FROM temas t
-                        LEFT JOIN perguntas p ON t.idTemas = p.temas_idTemas
-                        WHERE p.Status = 'Aprovado'
-                        ORDER BY t.NomeTema
-                        LIMIT :perguntasPorPagina OFFSET :offset";
+                    // Obtenha o número da página atual a partir do parâmetro 'page'
+                    $paginaAtual = isset($_GET['page']) ? $_GET['page'] : 1;
 
-                $stmt = $conn->prepare($query);
-                $stmt->bindParam(':perguntasPorPagina', $perguntasPorPagina, PDO::PARAM_INT);
-                $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
-                $stmt->execute();
+                    // Calcule o offset para a consulta SQL
+                    $offset = ($paginaAtual - 1) * $perguntasPorPagina;
 
-                if ($stmt->rowCount() > 0) {
-                    $temaAtual = null;
+                    // Modifique a consulta SQL para incluir LIMIT e OFFSET
+                    $query = "SELECT t.idTemas, t.NomeTema, p.ConteudoPergunta, p.Resposta
+                            FROM temas t
+                            LEFT JOIN perguntas p ON t.idTemas = p.temas_idTemas
+                            WHERE p.Status = 'Aprovado'
+                            ORDER BY t.NomeTema
+                            LIMIT :perguntasPorPagina OFFSET :offset";
 
-                    foreach ($stmt as $row) {
-                        // Verifica se o tema mudou
-                        if ($temaAtual !== $row['NomeTema']) {
-                            // Se sim, exibe um cabeçalho para o novo tema
-                            echo '<h2>' . $row['NomeTema'] . '</h2>';
-                            $temaAtual = $row['NomeTema'];
+                    $stmt = $conn->prepare($query);
+                    $stmt->bindParam(':perguntasPorPagina', $perguntasPorPagina, PDO::PARAM_INT);
+                    $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
+                    $stmt->execute();
+
+                    if ($stmt->rowCount() > 0) {
+                        $temaAtual = null;
+
+                        foreach ($stmt as $row) {
+                            // Verifica se o tema mudou
+                            if ($temaAtual !== $row['NomeTema']) {
+                                // Se sim, exibe um cabeçalho para o novo tema
+                                echo '<h2>' . $row['NomeTema'] . '</h2>';
+                                $temaAtual = $row['NomeTema'];
+                            }
+                            echo '<details class="card">';
+                            echo '<summary class="card__header">';
+                            echo '<img class="card__avatar" alt="Imagem cps_fatec" src="img/cps_fatec.jpg">';
+                            echo "<h1>" . nl2br($row['ConteudoPergunta']) . "</h1>";
+                            echo '<span class="card__indicator"></span>';
+                            echo '</summary>';
+
+                            echo '<div class="card__body">';
+                            echo "<p>" . nl2br($row['Resposta']) . "</p>";
+
+                            // Adicione links específicos (substitua os URLs pelos corretos)
+                            echo '<p>Links dos sites Abaixo</p>';
+                            echo '<hr>';
+                            echo '<div class="pag_links">';
+                            echo '<span> Portal: <a href="https://siga.cps.sp.gov.br/aluno/login.aspx" target="_blank">Siga</a> </span>';
+                            echo '<span> Site: <a href="https://fatecitapira.edu.br" target="_blank">Fatec Itapira</a> </span>';
+                            echo '</div>';
+
+                            echo '</div>';
+                            echo '</details>';
                         }
-                        echo '<details class="card">';
-                        echo '<summary class="card__header">';
-                        echo '<img class="card__avatar" alt="Imagem cps_fatec" src="img/cps_fatec.jpg">';
-                        echo "<h1>" . nl2br($row['ConteudoPergunta']) . "</h1>";
-                        echo '<span class="card__indicator"></span>';
-                        echo '</summary>';
-
-                        echo '<div class="card__body">';
-                        echo "<p>" . nl2br($row['Resposta']) . "</p>";
-
-                        // Adicione links específicos (substitua os URLs pelos corretos)
-                        echo '<p>Links dos sites Abaixo</p>';
-                        echo '<hr>';
-                        echo '<div class="pag_links">';
-                        echo '<span> Portal: <a href="https://siga.cps.sp.gov.br/aluno/login.aspx" target="_blank">Siga</a> </span>';
-                        echo '<span> Site: <a href="https://fatecitapira.edu.br" target="_blank">Fatec Itapira</a> </span>';
-                        echo '</div>';
-
-                        echo '</div>';
-                        echo '</details>';
+                    } else {
+                        // Se não houver perguntas aprovadas, exiba uma mensagem ou faça algo adequado
+                        echo '<p>Nenhuma pergunta aprovada no momento.</p>';
                     }
-                } else {
-                    // Se não houver perguntas aprovadas, exiba uma mensagem ou faça algo adequado
-                    echo '<p>Nenhuma pergunta aprovada no momento.</p>';
-                }
                 ?>
 
                 <!-- Adicione links de navegação para a próxima e anterior página -->
@@ -238,5 +243,9 @@ require_once 'conexao.php';
 
 </body>
 
-
+<script>
+  
+  
+  
+</script>
 </html>
