@@ -154,7 +154,10 @@ foreach ($resultado as $row) {
                     <input type="radio" id="filtroAutor" name="filtro" value="autor">
                     <label for="filtroAutor">Autor</label>
 
-                    <input type="radio" id="filtroTema" name="filtro" value="tema" checked>
+                    <input type="radio" id="filtroPergunta" name="filtro" value="pergunta" checked>
+                    <label for="filtroPergunta">Pergunta</label>
+
+                    <input type="radio" id="filtroTema" name="filtro" value="tema">
                     <label for="filtroTema">Tema</label>
 
                     <input type="radio" id="filtroStatus" name="filtro" value="status">
@@ -163,6 +166,16 @@ foreach ($resultado as $row) {
                     <input type="text" autofocus id="filtroInput" placeholder="Digite o termo de pesquisa">
 
                     <button type="button" onclick="limparFiltro()">Limpar</button>
+
+                    <label style="display: inline-block;" for="visualizacao">Visualização:
+                        <select id="visualizacao" name="visualizacao">
+                            <option value="atual">Tabela Atual</option>
+                            <option value="internas">Somente Interna</option>
+                            <option value="externas">Somente Externa</option>
+                            <option value="aprovadas">Somente Aprovadas</option>
+                            <option value="pendentes">Somente Pendente</option>
+                        </select>
+                    </label>                    
                 </form>
             </div>
 

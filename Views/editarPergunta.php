@@ -98,6 +98,12 @@
             background-color: #45a049;
         }
     </style>
+    <script>
+        function cancelarEdicao() {
+            // Use window.history para voltar para a página anterior
+            window.history.back();
+        }
+    </script>
     </head>
     <body>
         
@@ -167,6 +173,7 @@
 
             <!-- Botão de submit -->
             <button type="submit">Atualizar Pergunta</button>
+            <button style="background: darkgray;" type="button" onclick="cancelarEdicao()">Cancelar</button>
         </form>
     </body>
 </html>

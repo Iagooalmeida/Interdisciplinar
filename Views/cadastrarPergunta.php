@@ -29,6 +29,10 @@ $nomeUsuario = $_SESSION['nomeUsuario'];
                 margin: 0;
                 padding: 0;
                 }
+
+                h1 {
+                    font-size: x-large;
+                }
             
                 form {
                 max-width: 400px;
@@ -62,6 +66,11 @@ $nomeUsuario = $_SESSION['nomeUsuario'];
                 background-color: #45a049;
                 }
             </style>
+            <script>
+                function cancelarEdicao() {
+                    window.location.href = "../painelAdmin.php";
+                }
+            </script>
 </head>
 <body>
     
@@ -87,7 +96,7 @@ $nomeUsuario = $_SESSION['nomeUsuario'];
                     <?php
                         try {
                             require_once '../conexao.php';
-                            $stmtTemas = $conn->query("SELECT idTemas, NomeTema FROM temas WHERE idTemaPai IS NULL ORDER BY NomeTema ASC");
+                            $stmtTemas = $conn->query("SELECT idTemas, NomeTema FROM temas ORDER BY NomeTema ASC");
                             if (!$stmtTemas) {
                                 throw new Exception("Erro ao executar a consulta");
                             }
@@ -109,6 +118,7 @@ $nomeUsuario = $_SESSION['nomeUsuario'];
 
             <!-- Botão de submit -->
             <button type="submit">Atualizar Pergunta</button>
+            <button style="background: darkgray;" type="button" onclick="cancelarEdicao()">Cancelar</button>
     </form>
 </body>
 </html>

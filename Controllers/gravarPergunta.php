@@ -13,7 +13,7 @@
         $pergunta->status = isset($_POST["status"]) ? $_POST["status"] : null;
         $idUsuario = isset($_POST["idUsuario"]) ? $_POST["idUsuario"] : null;
         $pergunta->setAutor(isset($_POST["nomeUsuario"]) ? trim($_POST["nomeUsuario"]) : null);
-        $origem = "Usuário";
+        $origem = "Interna";
         $pergunta->setOrigem($origem);
 
         if(empty($pergunta->getConteudoPergunta()) || empty($pergunta->getResposta()) || empty($pergunta->idTema)){
@@ -37,7 +37,7 @@
         } catch (Exception $e){
             echo '<script>';
             echo 'alert("Erro: ' . $e->getMessage() . '");';
-            //echo 'window.location.href = "../principal.php";';
+            echo 'window.location.href = "../principal.php";';
             echo '</script>';
         }
     }
