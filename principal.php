@@ -241,11 +241,73 @@
         </div>
     </footer>
 
-</body>
 
-<script>
-  
-  
+
+    <?php
+
+        
+        if(!isset($_GET['busca'])) {
+            // Se não houver busca, exibe todas as perguntas
+            $query = "SELECT t.idTemas, t.NomeTema, p.ConteudoPergunta, p.Resposta
+                    FROM temas t
+                    LEFT JOIN perguntas p ON t.idTemas = p.temas_idTemas
+                    WHERE p.Status = 'Aprovado'
+                    ORDER BY t.NomeTema";
+        } else {
+            // Se houver busca, exibe apenas as perguntas que correspondem à busca
+            $query = "SELECT t.idTemas, t.NomeTema, p.ConteudoPergunta, p.Resposta
+                    FROM temas t
+                    LEFT JOIN perguntas p ON t.idTemas = p.temas_idTemas
+                    WHERE p.Status = 'Aprovado' AND p.ConteudoPergunta LIKE :valorBusca
+                    ORDER BY t.NomeTema";
+        }
+
+
+        // Pega o valor da busca
+        $valorBusca = $_GET['busca'];
+
+        // Faz a busca no banco de dados
+        $query = "SELECT t.idTemas, t.NomeTema, p.ConteudoPergunta, p.Resposta
+                FROM temas t
+                LEFT JOIN perguntas p ON t.idTemas = p.temas_idTemas
+                WHERE p.Status = 'Aprovado' AND p.ConteudoPergunta LIKE :valorBusca
+                ORDER BY t.NomeTema";
+
+        $stmt = $conn->prepare($query);
+        $stmt->bindParam(':valorBusca', '%' . $valorBusca . '%', PDO::PARAM_STR);
+        $stmt->execute();
+
+    
+    ?>
+
+
+
+
+
+
+    <script>
+  var busca = $('#busca');
+
+// Adiciona um ouvinte de evento 'keyup' ao elemento de busca
+busca.on('keyup', function() {
+    // Pega o valor atual do campo de busca
+    var valorBusca = $(this).val();
+
+    // Faz uma solicitação AJAX ao servidor
+    $.ajax({
+        url: 'principal.php', // Substitua por seu arquivo PHP que faz a busca
+        type: 'GET',
+        data: { busca: valorBusca },
+        success: function(resposta) {
+            // Substitua o conteúdo da página com a resposta do servidor
+            $('#conteudo').html(resposta);
+        }
+    });
+});
   
 </script>
+
+</body>
+
+
 </html>
