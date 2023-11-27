@@ -49,7 +49,7 @@ $usuarios = $usuario->listarUsuarios();
         <a href="painelAdmin.php" onclick="vizualizar('lista', true)"><ion-icon
                 name="desktop-outline"></ion-icon><span>Painel</span></a>
         <a href="gerenciarUsuario.php"><ion-icon name="person-outline"></ion-icon><span>Usuário</span></a>
-        <a href="grafico.php"><ion-icon name="help-outline"></ion-icon><span>Dúvidas</span></a>
+        <a href="Views/listarVisitante.php"><ion-icon name="help-outline"></ion-icon><span>Feedback</span></a>
         <a href="login/sairLogin.php"><ion-icon name="exit-outline"></ion-icon><span>Sair</span></a>
     </div>
     <!--sidebar final-->

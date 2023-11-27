@@ -331,3 +331,21 @@ textarea#resposta {
   -ms-transition: opacity 0.5s ease;
   -o-transition: opacity 0.5s ease;
 }
+
+td ion-icon {
+  font-size: 24px;
+  color: #007bff; /* Cor azul como exemplo */
+  margin-right: 5px;
+}
+
+td ion-icon:hover {
+  color: #b00b18;
+}
+
+td:nth-child(4) {
+  word-wrap: break-word;
+  width: 13%;}
+
+th:nth-child(5) {
+  width: 50%;
+}
