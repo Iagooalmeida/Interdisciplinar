@@ -342,10 +342,10 @@ td ion-icon:hover {
   color: #b00b18;
 }
 
-td:nth-child(4) {
+.corpo td:nth-child(4) {
   word-wrap: break-word;
   width: 13%;}
 
-th:nth-child(5) {
+.corpo td:nth-child(5) {
   width: 50%;
 }

@@ -138,7 +138,7 @@ class Perguntas
     }
     
 
-    public function atualizarPergunta($idPergunta, $idUsuario, $nomeUsuario, $conteudoPergunta, $resposta, $idTema, $status) {
+    public function atualizarPergunta($idPergunta, $idUsuario, $nomeUsuario, $conteudoPergunta, $resposta, $idTema, $status, $origem) {
         try {
             // Verifica se o usuário associado à pergunta existe
             $queryCheckUser = "SELECT COUNT(*) FROM perguntas WHERE idPerguntas = :idPergunta AND Usuarios_idUsuarios IS NOT NULL";
@@ -151,7 +151,7 @@ class Perguntas
             $queryUpdate = "UPDATE perguntas SET ";
             if (!$usuarioAssociadoExiste) {
                 // Apenas atualiza Usuarios_idUsuarios e Autor se Usuarios_idUsuarios for NULL
-                $queryUpdate .= "Usuarios_idUsuarios = :idUsuario, Autor = :nomeUsuario, ";
+                $queryUpdate .= "Usuarios_idUsuarios = :idUsuario, Autor = :nomeUsuario, Origem = :origem, ";
             }
             $queryUpdate .= "temas_idTemas = :idTema, ConteudoPergunta = :conteudoPergunta, Resposta = :resposta, Status = :status WHERE idPerguntas = :idPergunta";
     
@@ -160,6 +160,7 @@ class Perguntas
                 // Só vincula os parâmetros se Usuarios_idUsuarios for NULL
                 $stmtUpdate->bindParam(':idUsuario', $idUsuario);
                 $stmtUpdate->bindParam(':nomeUsuario', $nomeUsuario);
+                $stmtUpdate->bindParam(':origem', $origem);
             }
             $stmtUpdate->bindParam(':idTema', $idTema);
             $stmtUpdate->bindParam(':conteudoPergunta', $conteudoPergunta);

@@ -78,7 +78,7 @@ $(document).ready(function () {
           case "internas":
               return elemento.find("td:eq(1)").text().toLowerCase() === "interna"; // Mostra apenas perguntas internas
           case "externas":
-              return elemento.find("td:eq(1)").text().toLowerCase() === "visitante"; // Mostra apenas perguntas externas
+              return elemento.find("td:eq(1)").text().toLowerCase() === "externa"; // Mostra apenas perguntas externas
           case "aprovadas":
               return elemento.find("td:eq(6)").text().toLowerCase() === "aprovado"; // Mostra apenas as perguntas aprovadas
           case "pendentes":

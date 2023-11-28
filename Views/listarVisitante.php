@@ -30,7 +30,7 @@ $sugestoesPaginadas = $sugestao->listarSugestoesPaginadas($registrosPorPagina, $
     <title>Cadastro de Usuários</title>
     <link rel="stylesheet" href="../css/format.css">
 </head>
-<body page='lista'>
+<body page='lista' class="corpo">
     <input type="checkbox" id="check">
 
     <!--header começo-->
@@ -52,7 +52,7 @@ $sugestoesPaginadas = $sugestao->listarSugestoesPaginadas($registrosPorPagina, $
         <a href="../painelAdmin.php" onclick="vizualizar('lista', true)"><ion-icon
                 name="desktop-outline"></ion-icon><span>Painel</span></a>
         <a href="../gerenciarUsuario.php"><ion-icon name="person-outline"></ion-icon><span>Usuário</span></a>
-        <a href="#"><ion-icon name="help-outline"></ion-icon><span>Feedback</span></a>
+        <a href="#"><ion-icon name="thumbs-up"></ion-icon></ion-icon><span>Feedback</span></a>
         <a href="../login/sairLogin.php"><ion-icon name="exit-outline"></ion-icon><span>Sair</span></a>
     </div>
     <!--sidebar final-->

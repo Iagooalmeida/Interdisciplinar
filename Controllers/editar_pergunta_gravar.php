@@ -27,12 +27,13 @@ if ($funcaoUsuario == 'Coordenador' || $funcaoUsuario == 'Administrador') {
     $resposta = isset($_POST['resposta']) ? trim($_POST['resposta']) : null;
     $idTema = isset($_POST['Tema']) ? $_POST['Tema'] : null;
     $status = isset($_POST['status']) ? $_POST['status'] : null;
+    $origem = isset($_POST['origem']) ? $_POST['origem'] : null;
 
     // Crie uma instância da classe Perguntas
     $pergunta = new Perguntas($conn);
 
     // Chame a função para atualizar a pergunta
-    $atualizacaoSucesso = $pergunta->atualizarPergunta($idPergunta, $idUsuario, $nomeUsuario, $conteudoPergunta, $resposta, $idTema, $status);
+    $atualizacaoSucesso = $pergunta->atualizarPergunta($idPergunta, $idUsuario, $nomeUsuario, $conteudoPergunta, $resposta, $idTema, $status, $origem);
 
     // Adicione o código JavaScript para mostrar uma mensagem antes de redirecionar
     echo '<script>';

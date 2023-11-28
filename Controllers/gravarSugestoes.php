@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $pergunta->setAutor(isset($_POST["nome"]) ? trim($_POST["nome"]) : null);
     $pergunta->setConteudoPergunta(isset($_POST["messagem"]) ? trim($_POST["messagem"]) : null);
-    $pergunta->setOrigem("Visitante");
+    $pergunta->setOrigem("Externa");
 
     // Obtém o tema selecionado
     $temaSelecionado = isset($_POST["Tema"]) ? $_POST["Tema"] : null;

@@ -112,7 +112,7 @@
             <!-- Adicione os campos ocultos para idUsuario e nomeUsuario -->
             <input type="hidden" name="idUsuario" value="<?php echo $_SESSION['idUsuario']; ?>">
             <input type="hidden" name="nomeUsuario" value="<?php echo $_SESSION['nomeUsuario']; ?>">
-
+            <input type="hidden" name="origem" value="Interna">
             <input type="hidden" name="idPergunta" value="<?php echo $idPergunta; ?>">
 
             <!-- Campos do formulário -->
