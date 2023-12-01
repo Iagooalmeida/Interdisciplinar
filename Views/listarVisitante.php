@@ -66,7 +66,7 @@ $sugestoesPaginadas = $sugestao->listarSugestoesPaginadas($registrosPorPagina, $
             </div>
     
             <div style='display: flex;' class="filtro">
-                <input style='flex:1' placeholder="PESQUISAR" autofocus id='inputPesquisa' />
+                
             </div>
 
 
@@ -80,7 +80,7 @@ $sugestoesPaginadas = $sugestao->listarSugestoesPaginadas($registrosPorPagina, $
                     <th>Nome</th>
                     <th>Email</th>
                     <th>Tel / Cel</th>
-                    <th>Pergunta Sugerida</th>    
+                    <th>Dúvida Sugerida</th>    
                     <th>Data</th>
                     <th>Ações</th>   
                 </tr>

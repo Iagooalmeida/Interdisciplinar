@@ -130,6 +130,7 @@ foreach ($resultado as $row) {
         </div>
         <a href="#" onclick="vizualizar('lista', true)"><ion-icon
                 name="desktop-outline"></ion-icon><span>Painel</span></a>
+        <a href="gerenciarTema.php"><ion-icon name="book-outline"></ion-icon><span>Temas</span></a>
         <a href="gerenciarUsuario.php"><ion-icon name="person-outline"></ion-icon><span>Usuário</span></a>
         <a href="Views/listarVisitante.php"><ion-icon name="thumbs-up"></ion-icon></ion-icon><span>Feedback</span></a>
         <a href="login/sairLogin.php"><ion-icon name="exit-outline"></ion-icon><span>Sair</span></a>
