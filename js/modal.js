@@ -43,6 +43,7 @@ function exibirDetalhesPergunta(detalhes) {
     $("#detalhe-status").text(detalhes.Status);
     $("#detalhe-data").text(detalhes.DataSubmissao);
     $("#detalhe-atualizacao").text(detalhes.UltimaAtualizacao);
+    $("#detalhe-autor-ultima-atualizacao").text(detalhes.NomeAutorUltimaAtualizacao);
 
     // Abre o modal
     $("#myModal").show();

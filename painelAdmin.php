@@ -14,7 +14,10 @@ if (!isset($_SESSION['idUsuario'])) {
 $pergunta = new Perguntas($conn);
 $perguntas = $pergunta->listarPerguntas();
 
-$stmt = $conn->prepare("SELECT NomeTema, COUNT(NomeTema) AS Quantidade FROM temas GROUP BY NomeTema;");
+$stmt = $conn->prepare("SELECT temas.NomeTema, COUNT(perguntas.idPerguntas) AS Quantidade
+                        FROM temas
+                        LEFT JOIN perguntas ON temas.idTemas = perguntas.temas_idTemas
+                        GROUP BY temas.NomeTema;");
 $stmt->execute();
 $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -141,9 +144,7 @@ foreach ($resultado as $row) {
 
     <div class="content">
         <div id='listaRegistros'>
-
-        
-        
+             
         <div class="grafico">
             <h3 class="titulo_grafico">Distribuição Temática de Perguntas</h3>
             <div></div>
@@ -183,6 +184,10 @@ foreach ($resultado as $row) {
                             <option value="pendentes">Somente Pendente</option>
                         </select>
                     </label>                    
+
+                    <label for="ordenarData">Ordenar por Data:</label>
+                    <input type="date" id="ordenarData" name="ordenarData" placeholder="Escolha uma data">
+
                 </form>
             </div>
 
@@ -239,6 +244,7 @@ foreach ($resultado as $row) {
                 <p><strong>Status:</strong> <span id="detalhe-status"></span></p>
                 <p><strong>Data do Cadastro:</strong> <span id="detalhe-data"></span></p>
                 <p><strong>Última Atualização:</strong> <span id="detalhe-atualizacao"></span></p>
+                <p><strong>Autor da Última Atualização:</strong> <span id="detalhe-autor-ultima-atualizacao"></span></p>
             </div>
         </div>
 

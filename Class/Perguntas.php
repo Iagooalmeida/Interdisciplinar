@@ -342,8 +342,14 @@ class Perguntas
             // Limpa o ID para evitar SQL injection
             $idPergunta = $this->limparInput($idPergunta);
 
-            // Prepara a query SQL para obter as informações da pergunta
-            $sql = "SELECT * FROM perguntas WHERE idPerguntas = :idPergunta";
+            // Prepara a query SQL para obter as informações da pergunta com JOIN para obter o nome do autor da última atualização
+            $sql = "SELECT perguntas.*, usuarios.NomeUsuario AS NomeAutorUltimaAtualizacao
+                    FROM perguntas
+                    LEFT JOIN atualizacoes ON perguntas.idPerguntas = atualizacoes.atualizar_fk_idPerguntas
+                    LEFT JOIN usuarios ON atualizacoes.atualizar_fk_idUsuarios = usuarios.idUsuarios
+                    WHERE perguntas.idPerguntas = :idPergunta
+                    ORDER BY atualizacoes.DataAtualizacao DESC
+                    LIMIT 1";
 
             // Prepara a query
             $stmt = $this->conn->prepare($sql);
