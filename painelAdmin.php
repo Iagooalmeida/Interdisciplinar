@@ -56,6 +56,7 @@ foreach ($resultado as $row) {
 
         var options = {
             title: '',
+            width: '500',
             titleTextStyle: {
                 color: '#333',
                 fontSize: 24,
@@ -78,13 +79,14 @@ foreach ($resultado as $row) {
             legend: {
                 textStyle: {
                     color: '#333',
+                    fontSize: 14,
                 },
             },
             chartArea: {
                 //right: '20%',   // Margem à esquerda
                 top: '15%',    // Margem superior
                 width: '100%',   // Largura da área do gráfico
-                height: '800%',  // Altura da área do gráfico
+                height: '900%',  // Altura da área do gráfico
             },
             margin: '10', // Centraliza o gráficos
         };
@@ -141,11 +143,11 @@ foreach ($resultado as $row) {
         <div id='listaRegistros'>
 
         
-        <h3 class="titulo_grafico">Visão Geral da Distribuição de Perguntas por Categoria</h3>
-        <div class="chupisco">
-            
+        
+        <div class="grafico">
+            <h3 class="titulo_grafico">Distribuição Temática de Perguntas</h3>
             <div></div>
-            <div id='chart_div' style="text-align: center;"></div>
+            <div id='chart_div'></div>
             <div></div>
         </div>
             
