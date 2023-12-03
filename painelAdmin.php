@@ -55,7 +55,7 @@ foreach ($resultado as $row) {
         ]);
 
         var options = {
-            title: 'Quantidade de Perguntas por Tema',
+            title: '',
             titleTextStyle: {
                 color: '#333',
                 fontSize: 24,
@@ -66,14 +66,14 @@ foreach ($resultado as $row) {
             is3D: true,
             pieSliceText: 'percentage', // Exibir porcentagem
             pieSliceTextStyle: {
-                color: 'whitw', // Cor do texto das fatias
+                color: 'white', // Cor do texto das fatias
                 fontSize: 14,    // Tamanho da fonte do texto das fatias
                 textStyle: {
                     bold: true, // Negrito
                 }
             },
             backgroundColor: {
-                fill: '#f5f5f5',
+                fill: '#fff', // Cor de fundo
             },
             legend: {
                 textStyle: {
@@ -140,7 +140,16 @@ foreach ($resultado as $row) {
     <div class="content">
         <div id='listaRegistros'>
 
+        
+        <h3 class="titulo_grafico">Visão Geral da Distribuição de Perguntas por Categoria</h3>
+        <div class="chupisco">
+            
+            <div></div>
             <div id='chart_div' style="text-align: center;"></div>
+            <div></div>
+        </div>
+            
+        
 
             <div class="titulo_ask">
                 <h1>Cadastro de Perguntas FAQ</h1>

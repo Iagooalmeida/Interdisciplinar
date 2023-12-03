@@ -111,13 +111,11 @@ label #sidebar_btn:hover {
   background-size: cover;
   background-position: center;
   transition: 0.5s;
-  /* width: calc(100%  - 250px); */
   position: relative;
   margin-left: 250px;
   top: 69px;
   z-index: 1;
   overflow: hidden;
-  /* height: 100vh; */
 }
 
 #check:checked ~ .content {
@@ -154,12 +152,6 @@ body[page="lista"] #listaRegistros {
 body[page="cadastro"] #cadastroRegistro {
   display: none;
 }
-
-/*
-        body{
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 14px;
-        } */
 
 a {
   text-decoration: none;
@@ -344,8 +336,20 @@ td ion-icon:hover {
 
 .corpo td:nth-child(4) {
   word-wrap: break-word;
-  width: 13%;}
+  width: 13%;
+}
 
 .corpo td:nth-child(5) {
   width: 50%;
+}
+
+.titulo_grafico {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.chupisco {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
 }
