@@ -160,8 +160,6 @@ foreach ($resultado as $row) {
 
             <div style='display: flex; outline: none;' class="filtro">
                 <form id="filtroForm">
-                    <input type="radio" id="filtroId" name="filtro" value="id">
-                    <label for="filtroId">ID</label>
                                
                     <input type="radio" id="filtroAutor" name="filtro" value="autor">
                     <label for="filtroAutor">Autor</label>
@@ -171,9 +169,6 @@ foreach ($resultado as $row) {
 
                     <input type="radio" id="filtroTema" name="filtro" value="tema">
                     <label for="filtroTema">Tema</label>
-
-                    <input type="radio" id="filtroStatus" name="filtro" value="status">
-                    <label for="filtroStatus">Status</label>
 
                     <input type="text" autofocus id="filtroInput" placeholder="Digite o termo de pesquisa">
 

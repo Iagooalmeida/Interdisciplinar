@@ -356,14 +356,6 @@ class Perguntas
 
             // Obtém os resultados como um array associativo
             $detalhesPergunta = $stmt->fetch(PDO::FETCH_ASSOC);
-            
-            // Converte as datas para o formato brasileiro
-            $detalhesPergunta['DataSubmissao'] = (new DateTime($detalhesPergunta['DataSubmissao']))->format('d/m/Y H:i:s');
-            $detalhesPergunta['UltimaAtualizacao'] = $detalhesPergunta['UltimaAtualizacao'] ? (new DateTime($detalhesPergunta['UltimaAtualizacao']))->format('d/m/Y H:i:s') : null;
-
-            // Retorna os detalhes da pergunta
-            echo json_encode($detalhesPergunta);
-            exit;
 
             // Verifica se há resultados
             if (!$detalhesPergunta) {
@@ -371,17 +363,19 @@ class Perguntas
                 return null;
             }
 
+            // Converte as datas para o formato brasileiro
+            $detalhesPergunta['DataSubmissao'] = (new DateTime($detalhesPergunta['DataSubmissao']))->format('d/m/Y H:i:s');
+            $detalhesPergunta['UltimaAtualizacao'] = $detalhesPergunta['UltimaAtualizacao'] ? (new DateTime($detalhesPergunta['UltimaAtualizacao']))->format('d/m/Y H:i:s') : null;
+
             // Retorna os detalhes da pergunta
             return $detalhesPergunta;
 
-
-            // Retorna os detalhes da pergunta
-            return $detalhesPergunta;
         } catch (Exception $e) {
             // Trate o erro conforme necessário (ex: log, exibir mensagem, etc.)
             error_log("Erro ao obter detalhes da pergunta (ID: $idPergunta): " . $e->getMessage());
             return false;
         }
     }
+
 }
 ?>

@@ -271,7 +271,7 @@ textarea#resposta {
   font-size: 24px;
 }
 
-/*Css para o modal*/
+/* CSS para o modal */
 .modal {
   display: none;
   position: fixed;
@@ -286,13 +286,16 @@ textarea#resposta {
 
 .modal-content {
   background-color: #fefefe;
-  margin: 15% auto;
+  margin: 5% auto; /* Reduzido de 15% para 5% */
   padding: 20px;
   border: 1px solid #888;
-  width: 50%;
+  width: 70%; /* Aumentado de 50% para 70% */
+  max-width: 600px; /* Definindo uma largura máxima para o modal */
   background-color: #fff; /* Cor de fundo do modal */
   border-radius: 8px; /* Borda arredondada */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Sombra */
+  position: relative;
+  top: 10vh;
 }
 
 .close {
@@ -313,7 +316,9 @@ textarea#resposta {
   color: #333;
   font-size: 1.5em;
   margin-bottom: 20px;
+  text-align: center;
 }
+
 
 .modal {
   transition: opacity 0.5s ease;
