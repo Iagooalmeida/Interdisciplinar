@@ -166,41 +166,49 @@ foreach ($resultado as $row) {
             <div class="filtro">
                 <form id="filtroForm">
                                
-                    <label style="display: inline-block;" for="visualizacao">Visualização:
-                        <select id="visualizacao" name="visualizacao">
-                            <option value="atual">Tabela Atual</option>
-                            <option value="internas">Somente Interna</option>
-                            <option value="externas">Somente Externa</option>
-                            <option value="aprovadas">Somente Aprovadas</option>
-                            <option value="pendentes">Somente Pendente</option>
-                        </select>
-                    </label> 
+                <fieldset>
+                    <legend>Filtros e Ordenação:</legend>
+
                     
-                    <label style="display: inline-block;" for="ordenarTema">
-                        Ordenar por Tema:
-                        <select id="ordenarTema" name="ordenarTema">
-                            <option value="todos">Todos</option>
-                            <?php foreach ($tema as $key => $value) : ?>
-                                <option value="<?php echo $value; ?>"><?php echo $value; ?></option>
-                            <?php endforeach; ?>
-                        </select>
-                    </label>
-                    
-                    <label style="display: inline-block;" for="filtroAutor">
-                        Filtrar por Autor:
-                        <select id="filtroAutor" name="filtroAutor">
-                            <option value="todos">Todos</option>
-                            <?php foreach ($autores as $autor) : ?>
-                                <option value="<?php echo $autor; ?>"><?php echo $autor; ?></option>
-                            <?php endforeach; ?>
-                        </select>
-                    </label>
+                        <div class="form-row">
+                            <label for="visualizacao">Visualização:</label>
+                            <select id="visualizacao" name="visualizacao">
+                                <option value="atual">Tabela Atual</option>
+                                <option value="internas">Somente Interna</option>
+                                <option value="externas">Somente Externa</option>
+                                <option value="aprovadas">Somente Aprovadas</option>
+                                <option value="pendentes">Somente Pendente</option>
+                            </select>
+                        </div>
 
+                        <div class="form-row">
+                            <label for="ordenarTema">Tema:</label>
+                            <select id="ordenarTema" name="ordenarTema">
+                                <option value="todos">Todos</option>
+                                <?php foreach ($tema as $key => $value) : ?>
+                                    <option value="<?php echo $value; ?>"><?php echo $value; ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
 
+                        <div class="form-row">
+                        <label style="display: inline-block;" for="filtroAutor">
+                            Autor:
+                            <select id="filtroAutor" name="filtroAutor" class="selecao-autor">
+                                <option value="todos">Todos</option>
+                                <?php foreach ($autores as $autor) : ?>
+                                    <option value="<?php echo $autor; ?>"><?php echo $autor; ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </label>
+                        </div>
 
-                    <label style="display: inline-block;" for="ordenarData">Ordenar por Data:
-                        <input type="date" id="ordenarData" name="ordenarData" placeholder="Escolha uma data">
-                    </label>
+                        <div class="form-row">
+                            <label for="ordenarData">Data:
+                                <input type="date" id="ordenarData" name="ordenarData" placeholder="Escolha uma data">
+                            </label>
+                        </div>
+                    </fieldset>
 
                         <fieldset>
                             <legend>Buscar Perguntas:</legend>

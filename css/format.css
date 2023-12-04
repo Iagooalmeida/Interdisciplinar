@@ -378,12 +378,53 @@ td ion-icon:hover {
 }
 
 fieldset {
-  max-width: 100%;  /* Preenche a largura inteira da tela */
-  margin: 20px 0;  /* Adiciona espaçamento acima e abaixo do fieldset */
-  padding: 17px;  /* Adiciona espaçamento interno ao conteúdo do fieldset */
-  border: 1px solid #ccc;  /* Adiciona uma borda ao redor do fieldset */
-  border-radius: 8px;  /* Adiciona bordas arredondadas ao fieldset */
+  max-width: 100%;
+  margin: 20px 0;
+  padding: 17px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
 }
+
+/* Container que envolve os elementos .form-row */
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Define colunas de tamanho mínimo de 200px */
+  gap: 10px; /* Espaçamento entre os elementos */
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  align-items: center;
+  gap: 10px; /* Ajuste o espaçamento conforme necessário */
+  margin-bottom: 10px;
+  margin-inline-start: 15px;
+}
+
+label, select, input {
+  vertical-align: middle;
+  white-space: nowrap; /* Adicionado para evitar quebra de linha */
+}
+
+
+select, input {
+  margin-left: 10px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+@media (max-width: 600px) {
+  .form-row {
+    flex: 100%; /* Ocupa todo o espaço disponível em telas menores */
+  }
+}
+
 
 /* Estilizando a legenda (opcional) */
 legend {
@@ -392,5 +433,5 @@ legend {
 }
 
 #filtroInput {
-  width: 300px;  /* Ajuste o valor conforme necessário */
+  width: 60%;  /* Ajuste o valor conforme necessário */
 }
