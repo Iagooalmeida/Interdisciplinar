@@ -61,45 +61,17 @@ require_once 'conexao.php';
                 <h1>FAQ - FATEC</h1>
                 <h2>Principais Perguntas e Respostas para o FAQ</h2>
 
+<<<<<<< HEAD
 
                 <input type="text" id="busca" placeholder="Digite o termo de pesquisa" oninput="buscarProdutos()">
+=======
+                <!-- Input de busca  -->
+                <input type="text" id="busca" oninput="buscarProdutos()">
+                <!-- Div onde os resultados da busca são mostrados -->
+>>>>>>> 3684564 (Não mudei nada git é loko)
                 <div id="resultado"></div>
 
-
-                <!-- <script>
-                    $(document).ready(function () {
-                        $("#busca").on("input", buscarProdutos);
-
-                        function buscarProdutos() {
-                            var termo = $("#busca").val();
-
-                            $.ajax({
-                                type: "POST",
-                                url: "busca_perguntas.php",
-                                data: { termo: termo },
-                                success: function (response) {
-                                    $("#resultado").html(response);
-
-                                    if (termo.length > 0) {
-                                        $("#resultado").show();
-                                        // $("#resultado").css("display", "flex");
-                                        $("#resultado").nextAll().hide();
-                                    } else {
-                                        $("#resultado").hide();
-                                        $("#resultado").nextAll().show();
-
-
-
-                                    }
-                                }
-                            });
-                        }
-                    });
-                </script> -->
-
-
-
-
+                <!-- Começo da lógica para mostrar as perguntas cadastradas do banco  -->
                 <?php
 
 
@@ -282,6 +254,7 @@ require_once 'conexao.php';
     </footer>
 
 
+
     <script>
         $(document).ready(function () {
             $("#busca").on("input", buscarProdutos);
@@ -311,11 +284,6 @@ require_once 'conexao.php';
             }
         });
     </script>
-
-
-
-
-
 
 </body>
 
