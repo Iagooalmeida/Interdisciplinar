@@ -1,9 +1,5 @@
 <?php
-// Configuração do banco de dados
-$servername = "database";
-$username = "root";
-$password = "";
-$dbname = "sis-faq";
+require_once "conexao.php";
 
 // Recebe o termo de busca do Ajax
 $termo = $_POST['termo'];

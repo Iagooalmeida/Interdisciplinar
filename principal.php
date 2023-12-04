@@ -62,7 +62,7 @@ require_once 'conexao.php';
                 <h2>Principais Perguntas e Respostas para o FAQ</h2>
 
 
-                <input type="text" id="busca" oninput="buscarProdutos()">
+                <input type="text" id="busca" placeholder="Digite o termo de pesquisa" oninput="buscarProdutos()">
                 <div id="resultado"></div>
 
 
