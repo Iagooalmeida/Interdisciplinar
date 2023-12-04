@@ -1,6 +1,10 @@
 <?php
 require_once 'Class/Perguntas.php';
 require_once 'conexao.php';
+require_once 'Class/Usuario.php'; // Certifique-se de ter o caminho correto para a classe Usuario
+$usuario = new Usuario($conn);
+$autores = $usuario->listarAutores(); // Certifique-se de ter um método adequado na classe Usuario para listar os autores
+
 // Inicie a sessão
 session_start();
 
@@ -159,22 +163,9 @@ foreach ($resultado as $row) {
                 <a href="Views/cadastrarPergunta.php"><button>Inserir</button></a>
             </div>
 
-            <div style='display: flex; outline: none;' class="filtro">
+            <div class="filtro">
                 <form id="filtroForm">
                                
-                    <input type="radio" id="filtroAutor" name="filtro" value="autor">
-                    <label for="filtroAutor">Autor</label>
-
-                    <input type="radio" id="filtroPergunta" name="filtro" value="pergunta" checked>
-                    <label for="filtroPergunta">Pergunta</label>
-
-                    <input type="radio" id="filtroTema" name="filtro" value="tema">
-                    <label for="filtroTema">Tema</label>
-
-                    <input type="text" autofocus id="filtroInput" placeholder="Digite o termo de pesquisa">
-
-                    <button type="button" onclick="limparFiltro()">Limpar</button>
-
                     <label style="display: inline-block;" for="visualizacao">Visualização:
                         <select id="visualizacao" name="visualizacao">
                             <option value="atual">Tabela Atual</option>
@@ -183,10 +174,45 @@ foreach ($resultado as $row) {
                             <option value="aprovadas">Somente Aprovadas</option>
                             <option value="pendentes">Somente Pendente</option>
                         </select>
-                    </label>                    
+                    </label> 
+                    
+                    <label style="display: inline-block;" for="ordenarTema">
+                        Ordenar por Tema:
+                        <select id="ordenarTema" name="ordenarTema">
+                            <option value="todos">Todos</option>
+                            <?php foreach ($tema as $key => $value) : ?>
+                                <option value="<?php echo $value; ?>"><?php echo $value; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </label>
+                    
+                    <label style="display: inline-block;" for="filtroAutor">
+                        Filtrar por Autor:
+                        <select id="filtroAutor" name="filtroAutor">
+                            <option value="todos">Todos</option>
+                            <?php foreach ($autores as $autor) : ?>
+                                <option value="<?php echo $autor; ?>"><?php echo $autor; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </label>
 
-                    <label for="ordenarData">Ordenar por Data:</label>
-                    <input type="date" id="ordenarData" name="ordenarData" placeholder="Escolha uma data">
+
+
+                    <label style="display: inline-block;" for="ordenarData">Ordenar por Data:
+                        <input type="date" id="ordenarData" name="ordenarData" placeholder="Escolha uma data">
+                    </label>
+
+                        <fieldset>
+                            <legend>Buscar Perguntas:</legend>
+
+                            <input style="display: none;" type="radio" id="filtroPergunta" name="filtro" value="pergunta" checked>
+                            <label for="filtroPergunta">Filtro: </label>
+
+                            <input type="text" autofocus id="filtroInput" placeholder="Digite o termo de pesquisa">
+
+                        <button type="button" onclick="limparFiltro()">Limpar</button>
+                    </fieldset>
+             
 
                 </form>
             </div>
@@ -196,24 +222,30 @@ foreach ($resultado as $row) {
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Origem</th>
+                            <th style="display: none;">Origem</th>
                             <th>Autor</th>                    
                             <th>pergunta</th>
                             <th>Resposta</th>
                             <th>Tema</th>
                             <th>Status</th>
+                            <th >Data Cadastro</th> <!-- Coluna invisível para a data -->
                             <th>Ações</th>
                         </tr>
                     </thead>
                     <?php foreach ($perguntas as $lista): ?>
                         <tr>
                             <td><?php echo $lista['idPerguntas']; ?></td>
-                            <td><?php echo $lista['Origem'] ?></td>
+                            <td style="display: none;"><?php echo $lista['Origem'] ?></td>
                             <td><?php echo $lista['Autor'] ?></td>  
                             <td><?php echo $lista['ConteudoPergunta'] ?></td>
-                            <td><?php echo substr($lista['Resposta'], 0, 60) . (strlen($lista['Resposta']) > 60 ? '...' : ''); ?></td>
+                            <td class="resposta-col">
+                                <?php echo substr($lista['Resposta'], 0, 90) . (strlen($lista['Resposta']) > 90 ? '...' : ''); ?>
+                            </td>
                             <td><?php echo $lista['NomeTema']; ?></td>
                             <td><?php echo $lista['Status'] ?></td>
+                            <td class="data-col"><?php echo date('d/m/Y', strtotime($lista['DataSubmissao'])); ?></td>
+
+
                             <td>
                                 <a href="#" class="detalhes-btn" data-id="<?php echo $lista['idPerguntas']; ?>" title="Detalhes">
                                     <i style="background: indigo;" class="edit material-icons">info</i>

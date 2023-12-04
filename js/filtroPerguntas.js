@@ -12,13 +12,21 @@ function limparFiltro() {
 
 $(document).ready(function () {
     // Adiciona eventos de mudança e entrada nos elementos de entrada
-    $('input[name="filtro"], #filtroInput, #visualizacao').on("change input", function () {
+    $('input[name="filtro"], #filtroInput, #visualizacao, #ordenarTema').on("change input", function () {
         aplicarFiltro();
     });
-  
+
+    $("#filtroAutor").on("change", function () {
+        aplicarFiltro();
+    });
+
+    $("#ordenarData").on("change", function () {
+        aplicarFiltro();
+    });
+
     $(".excluir-btn").on("click", function () {
         var idPergunta = $(this).data("id");
-  
+
         if (confirm("Tem certeza que deseja excluir este usuário?")) {
             $.ajax({
                 url: "Controllers/excluir_Pergunta.php",
@@ -36,16 +44,29 @@ $(document).ready(function () {
             });
         }
     });
-  
+
     function aplicarFiltro() {
         var filtro = $('input[name="filtro"]:checked').val();
         var termo = $("#filtroInput").val().toLowerCase();
         var visualizacao = $("#visualizacao").val();
-  
+        var dataFiltro = $("#ordenarData").val();
+        var temaFiltro = $("#ordenarTema").val();
+        var filtroAutor = $("#filtroAutor").val();
+
+        var dataFormatada = dataFiltro.split('-').reverse().join('/');
+
+        // console.log("Filtro:", filtro);
+        // console.log("Termo:", termo);
+        // console.log("Visualização:", visualizacao);
+        // console.log("Data Filtro:", dataFiltro);
+        // console.log("Tema Filtro:", temaFiltro);
+        // console.log("Filtro Autor:", filtroAutor);
+
+    
         // Filtra as linhas da tabela com base na opção selecionada
         $("table tbody tr").each(function () {
             var colunaTexto = "";
-  
+    
             switch (filtro) {
                 case "autor":
                     colunaTexto = $(this).find("td:eq(2)").text(); // Coluna Autor
@@ -53,29 +74,47 @@ $(document).ready(function () {
                 case "pergunta":
                     colunaTexto = $(this).find("td:eq(3)").text(); // Coluna Pergunta
                     break;
-                case "tema":
-                    colunaTexto = $(this).find("td:eq(5)").text(); // Coluna Tema
-                    break;
             }
-  
+    
             // Remove espaços em branco extras no início e no final
             colunaTexto = colunaTexto.trim();
             termo = termo.trim();
-  
+    
+            // Identifica a posição da coluna de data dinamicamente
+            var indexColunaData = $(this).find("td:contains('/20')").index();
+    
             // Verifica se o termo de pesquisa está contido em qualquer parte da string
             if (contemTermo(colunaTexto, termo) && atendeCondicaoVisualizacao($(this), visualizacao)) {
-                $(this).show();
+                // Verifica se a data está dentro do filtro, se aplicável
+                if (dataFormatada === "" || $(this).find("td:eq(" + indexColunaData + ")").text().trim() === dataFormatada) {
+                    // Verifica se o tema está dentro do filtro, se aplicável
+                    if (temaFiltro === "todos" || $(this).find("td:eq(5)").text().trim() === temaFiltro) {
+                        // Verifica se o autor está dentro do filtro, se aplicável
+                        if (filtroAutor === "todos" || $(this).find("td:eq(2)").text().trim() === filtroAutor) {
+                            $(this).show();
+                        } else {
+                            $(this).hide();
+                        }
+                    } else {
+                        $(this).hide();
+                    }
+                } else {
+                    $(this).hide();
+                }
             } else {
                 $(this).hide();
             }
         });
     }
-  
+    
+    
+    
+    
     // Função para verificar se um termo está contido em qualquer parte da string
     function contemTermo(texto, termo) {
         return texto.toLowerCase().includes(termo);
     }
-  
+
     // Função para verificar a condição de visualização selecionada
     function atendeCondicaoVisualizacao(elemento, condicao) {
         switch (condicao) {
@@ -93,6 +132,4 @@ $(document).ready(function () {
                 return true;
         }
     }
-  
-  });
-  
+});

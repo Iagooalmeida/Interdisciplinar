@@ -271,6 +271,12 @@ textarea#resposta {
   font-size: 24px;
 }
 
+.resposta-col {
+  max-width: 500px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 /* CSS para o modal */
 .modal {
   display: none;
@@ -363,4 +369,28 @@ td ion-icon:hover {
 
 .auto {
   width: 3px;
+}
+
+@media (max-width: 768px) {
+  .auto {
+    width: 100%;
+  }
+}
+
+fieldset {
+  max-width: 100%;  /* Preenche a largura inteira da tela */
+  margin: 20px 0;  /* Adiciona espaçamento acima e abaixo do fieldset */
+  padding: 17px;  /* Adiciona espaçamento interno ao conteúdo do fieldset */
+  border: 1px solid #ccc;  /* Adiciona uma borda ao redor do fieldset */
+  border-radius: 8px;  /* Adiciona bordas arredondadas ao fieldset */
+}
+
+/* Estilizando a legenda (opcional) */
+legend {
+  font-weight: bold;  /* Deixa a legenda em negrito */
+  margin-bottom: 10px;  /* Adiciona espaçamento abaixo da legenda */
+}
+
+#filtroInput {
+  width: 300px;  /* Ajuste o valor conforme necessário */
 }

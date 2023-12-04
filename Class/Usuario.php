@@ -27,6 +27,27 @@ class Usuario
         }
     }
 
+    public function listarAutores()
+    {
+        try {
+            $sql = "SELECT DISTINCT Autor FROM perguntas";
+            $stmt = $this->conn->query($sql);
+
+            if ($stmt) {
+                // Retorna os resultados como um array associativo
+                return $stmt->fetchAll(PDO::FETCH_COLUMN);
+            } else {
+                throw new Exception("Erro ao executar a consulta SQL");
+            }
+        } catch (Exception $e) {
+            // Trate o erro conforme necessário (ex: log, exibir mensagem, etc.)
+            error_log("Erro ao listar autores: " . $e->getMessage());
+            return [];
+        }
+    }
+
+    
+
     private function limparInput($data)
     {
         $data = trim($data);
@@ -167,34 +188,34 @@ class Usuario
 
 
     public function obterUsuarioPorID($idUsuario)
-{
-    try {
-        // Limpa o ID para evitar SQL injection
-        $idUsuario = $this->limparInput($idUsuario);
+    {
+        try {
+            // Limpa o ID para evitar SQL injection
+            $idUsuario = $this->limparInput($idUsuario);
 
-        // Prepara a query SQL para obter as informações do usuário
-        $sql = "SELECT * FROM usuarios WHERE idUsuarios = :idUsuario";
+            // Prepara a query SQL para obter as informações do usuário
+            $sql = "SELECT * FROM usuarios WHERE idUsuarios = :idUsuario";
 
-        // Prepara a query
-        $stmt = $this->conn->prepare($sql);
+            // Prepara a query
+            $stmt = $this->conn->prepare($sql);
 
-        // Binda os parâmetros
-        $stmt->bindParam(':idUsuario', $idUsuario, PDO::PARAM_INT);
+            // Binda os parâmetros
+            $stmt->bindParam(':idUsuario', $idUsuario, PDO::PARAM_INT);
 
-        // Executa a query
-        $stmt->execute();
+            // Executa a query
+            $stmt->execute();
 
-        // Obtém os resultados como um array associativo
-        $dadosUsuario = $stmt->fetch(PDO::FETCH_ASSOC);
+            // Obtém os resultados como um array associativo
+            $dadosUsuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        // Retorna os dados do usuário
-        return $dadosUsuario;
-    } catch (Exception $e) {
-        // Trate o erro conforme necessário (ex: log, exibir mensagem, etc.)
-        error_log("Erro ao obter usuário por ID: " . $e->getMessage());
-        return false;
+            // Retorna os dados do usuário
+            return $dadosUsuario;
+        } catch (Exception $e) {
+            // Trate o erro conforme necessário (ex: log, exibir mensagem, etc.)
+            error_log("Erro ao obter usuário por ID: " . $e->getMessage());
+            return false;
+        }
     }
-}
 
     public function validarLogin($email, $senha)
     {
