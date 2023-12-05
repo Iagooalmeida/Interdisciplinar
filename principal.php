@@ -58,11 +58,13 @@ require_once 'conexao.php';
     <main main class="flex-container">
         <section class="conteudo">
             <div class="page">
-                <h1>FAQ - FATEC</h1>
-                <h2>Principais Perguntas e Respostas para o FAQ</h2>
 
+                <div class="titulos_faq">
+                    <h1>FAQ - FATEC</h1>
+                    <h2>Principais Perguntas e Respostas para o FAQ</h2>
+                </div>
                 <!-- Input de busca  -->
-                <input type="text" id="busca" oninput="buscarProdutos()">
+                <input type="text" id="busca" oninput="buscarProdutos()" placeholder="Pesquisar pergunta">
                 <!-- Div onde os resultados da busca são mostrados -->
                 <div id="resultado"></div>
 
@@ -218,38 +220,38 @@ require_once 'conexao.php';
             <!-- Css relacionado ao contato endereço -->
             <div class="footer">
                 <div class="img_icone" title="icone">
-                    <img src="icon/location-icon-white-png.png" width="30px" height="auto" alt="">
+                    <img src="icon/location-icon-white-png.png">
                 </div>
-                <h2><strong>Endereço</strong></h2>
+                <h2 class="titulo_rodape"><strong>Endereço</strong></h2>
                 <p>Rua Tereza Lera Paoletti, 570/590 - Jardim Bela Vista, 13974-080</p>
             </div>
             <!-- Css relacionado ao contato telefone -->
             <div class="footer">
                 <div class="img_icone" title="icone">
-                    <img src="icon/telefone-do-lab-white-contact-icon-png.png" width="30px" height="auto"
-                        alt="icone telefone">
+                    <img src="icon/telefone-do-lab-white-contact-icon-png.png" alt="icone telefone">
                 </div>
-                <h2><strong>Telefone:</strong></h2>
+                <h2 class="titulo_rodape"><strong>Telefone:</strong></h2>
                 <p>Telefones: (19) 3843-1996</p>
                 <p>Whatsapp: (19) 98933-6291 | (19) 3863-5210</p>
             </div>
             <!-- Css relacionado ao E-mail -->
             <div class="footer">
                 <div class="img_icone" title="icone">
-                    <img src="icon/mail-png-994910.png" width="40px" height="auto" alt="icone email">
+                    <img src="icon/mail-png-994910.png" class="icon_email">
                 </div>
-                <h2><strong>E-mail</strong></h2>
+                <h2 class="titulo_rodape"><strong>E-mail</strong></h2>
                 <p>contato@fatecitapira.edu.br</p>
             </div>
         </div>
         <div class="Copyright">
-            <h3>Copyright © 2023 Fatec Itapira - Todos os Direitos Reservados - Desenvolvido por alunos T.I. da Fatec
+            <h3 class="nota_rodape">Copyright © 2023 Fatec Itapira - Todos os Direitos Reservados - Desenvolvido por
+                alunos T.I. da Fatec
             </h3>
         </div>
     </footer>
 
 
-    <!-- Script relaciona ao input #busca -->
+    <!-- Script relacionado ao input #busca -->
     <script src="js/busca.js"></script>
 
 </body>

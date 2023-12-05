@@ -23,7 +23,9 @@ $(document).ready(function () {
             "--arrow-translate",
             "-50%",
             "--arrow-rotation",
-            "45deg"
+            "45deg",
+            "margin-bottom",
+            "30px"
           );
           $("#resultado").nextAll().hide();
         } else {

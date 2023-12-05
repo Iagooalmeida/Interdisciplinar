@@ -112,7 +112,7 @@ body {
   color: white;
   padding: 5px;
 }
-.pagination a{
+.pagination a {
   text-decoration: none;
   margin-inline-end: 4px;
 }
@@ -120,13 +120,33 @@ body {
 
 /* Inicio Formatação Css do conteudo */
 
+.titulos_faq {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+  margin-block-end: 2rem;
+}
+
 #busca {
   width: 100%;
   padding: 12px 20px;
-  margin: 8px 0;
   box-sizing: border-box;
   border: 2px solid #ccc;
-  border-radius: 4px;
+  border-radius: 10px;
+  text-align: center;
+  outline: none;
+  font-size: 18px;
+}
+
+#resultado {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 2rem;
+  margin-block-end: 3rem;
 }
 
 .flex-container {
@@ -178,6 +198,7 @@ body {
 .page h2 {
   font-size: 1.12em;
   color: #2e3e46;
+  margin-top: 20px;
 }
 
 :root {
@@ -498,7 +519,6 @@ textarea#message {
 
 .rodape {
   border: 1px solid #000000;
-  /* height: 25vh; */
   position: relative;
   top: 140px;
   background: #0f597d;
@@ -526,7 +546,7 @@ textarea#message {
 }
 
 .rodape .container_footer p {
-  font-size: 0.98em;
+  font-size: 0.9em;
 }
 
 .footer .img_icone {
@@ -538,6 +558,23 @@ textarea#message {
 
 .footer .img_icone img {
   margin-top: 4px;
+  width: 20px;
+}
+
+footer .img_icone .icon_email {
+  width: 30px;
+}
+
+.titulo_rodape {
+  font-size: 1.2em;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.nota_rodape {
+  font-size: 0.9em;
+  font-weight: 600;
+  margin-bottom: 10px;
 }
 
 /*Responsivel*/
@@ -666,13 +703,14 @@ textarea#message {
   }
 }
 
-.rodape .Copyright {
-  width: 100%;
-  text-align: center;
+.Copyright {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: #151d2094;
   color: white;
   font-size: 0.9em;
-  padding: 10px;
+  padding-top: 10px;
   font-family: ui-rounded;
 }
 

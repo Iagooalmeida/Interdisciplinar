@@ -34,7 +34,6 @@ try {
     // Exibe os resultados
     if ($stmt->rowCount() > 0) {
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            // echo "<p>ID Tema: " . $row["idTemas"] . " - Nome do Tema: " . $row["NomeTema"] . " - Conteúdo da Pergunta: " . $row["ConteudoPergunta"] . " - Resposta: " . $row["Resposta"] . "</p>";
 
             echo '<details class="card">';
             echo '<summary class="card__header">';
