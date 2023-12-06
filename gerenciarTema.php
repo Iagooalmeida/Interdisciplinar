@@ -5,7 +5,7 @@ require_once 'conexao.php';
 session_start();
 
 // Verifique se o usuário está autenticado
-if (!isset($_SESSION['idUsuario'])) {
+if(!isset($_SESSION['idUsuario'])) {
     // Se não estiver autenticado, redirecione para a página de login
     header("Location: login/login.html");
     exit();
@@ -20,6 +20,7 @@ $temas = $tema->listarTemas();
 
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -89,29 +90,28 @@ $temas = $tema->listarTemas();
         #formularioCadastro button:hover {
             background-color: #45a049;
         }
-
-
     </style>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script>
-    $(document).ready(function() {
-        $("#abrirModal").click(function() {
-            $("#myModal").css("display", "block");
-        });
+        $(document).ready(function () {
+            $("#abrirModal").click(function () {
+                $("#myModal").css("display", "block");
+            });
 
-        $(".fechar").click(function() {
-            $("#myModal").css("display", "none");
-        });
-
-        $(window).click(function(event) {
-            if (event.target.id === "myModal") {
+            $(".fechar").click(function () {
                 $("#myModal").css("display", "none");
-            }
+            });
+
+            $(window).click(function (event) {
+                if (event.target.id === "myModal") {
+                    $("#myModal").css("display", "none");
+                }
+            });
         });
-    });
-</script>
-    
+    </script>
+
 </head>
+
 <body page='lista'>
     <input type="checkbox" id="check">
     <!--header começo-->
@@ -142,80 +142,92 @@ $temas = $tema->listarTemas();
     <div class="content">
         <div id='listaRegistros'>
 
-        <div class="titulo_ask">
-            <h1>Gerenciador de Temas</h1>
-            <button id="abrirModal">Inserir</button>
-        </div>
-
-        <div id="myModal" class="modal">
-            <div class="modal-content">
-                <span class="fechar">&times;</span>
-                <h2>Cadastrar Novo Tema</h2>
-                <form id="formularioCadastro" action="Controllers/gravar_tema.php" method="post">
-                    <!-- Campo Nome do Tema -->
-                    <label for="nomeTema">Nome do Tema:</label>
-                    <input type="text" id="nomeTema" name="nomeTema" placeholder="Nome do Tema" required>
-
-                    <!-- Campo Descrição do Tema -->
-                    <label for="descricaoTema">Descrição do Tema:</label>
-                    <textarea id="descricaoTema" name="descricaoTema" rows="4" cols="50" placeholder="Descrição do Tema"></textarea>
-
-                    <!-- Botão de Cadastro -->
-                    <button type="submit">Cadastrar</button>
-                </form>
+            <div class="titulo_ask">
+                <h1>Gerenciador de Temas</h1>
+                <button id="abrirModal">Inserir</button>
             </div>
-        </div>
+
+            <div id="myModal" class="modal">
+                <div class="modal-content">
+                    <span class="fechar">&times;</span>
+                    <h2>Cadastrar Novo Tema</h2>
+                    <form id="formularioCadastro" action="Controllers/gravar_tema.php" method="post">
+                        <!-- Campo Nome do Tema -->
+                        <label for="nomeTema">Nome do Tema:</label>
+                        <input type="text" id="nomeTema" name="nomeTema" placeholder="Nome do Tema" required>
+
+                        <!-- Campo Descrição do Tema -->
+                        <label for="descricaoTema">Descrição do Tema:</label>
+                        <textarea id="descricaoTema" name="descricaoTema" rows="4" cols="50"
+                            placeholder="Descrição do Tema"></textarea>
+
+                        <!-- Botão de Cadastro -->
+                        <button type="submit">Cadastrar</button>
+                    </form>
+                </div>
+            </div>
 
 
-    
+
             <div style='display: flex;' class="filtro">
                 <input style='flex:1' placeholder="PESQUISAR" autofocus id='inputPesquisa' />
             </div>
 
 
-        <!-- Botão Adicionar -->
-    
-    <?php if (!empty($temas)): ?>
-        <table>
-            <tr>
-                <thead>
-                <th>ID</th>
-                <th>Nome do Tema</th>
-                <th>Descrição</th>
-                <th>Data do Cadastro</th>
-                <th>Ações</th>    
-            </tr>
-            </thead>
-            <?php foreach ($temas as $lista): ?>
-                <tr>
-                    <td><?php echo $lista['idTemas']; ?></td>
-                    <td><?php echo $lista['NomeTema']; ?></td>
-                    <td><?php echo $lista['descricaoTema']; ?></td>
-                    <td><?php echo date('d/m/Y', strtotime($lista['dataCadastro'])); ?></td>
-                    <td>
-                        <!-- Botão Editar -->
-                        <a href="Views/editarUsuario.php?id=<?php echo $user['idUsuarios']; ?>" style="display: inline-block;">
-                            <button>Editar</button>
-                        </a>
+            <!-- Botão Adicionar -->
 
-                        <form method="post" action="Controllers/excluir_tema.php" style="display: inline-block;">
-                            <input type="hidden" name="id" value="<?= $lista['idTemas']; ?>">
-                            <input type="hidden" name="acao" value="excluir">
-                            <button type="submit" style="background-color: #a00;" onclick="return confirm('Tem certeza que deseja excluir?');">Excluir</button>
-                        </form>
-                    </td>
+            <?php if(!empty($temas)): ?>
+                <table>
+                    <tr>
+                        <thead>
+                            <th>ID</th>
+                            <th>Nome do Tema</th>
+                            <th>Descrição</th>
+                            <th>Data do Cadastro</th>
+                            <th>Ações</th>
+                    </tr>
+                    </thead>
+                    <?php foreach($temas as $lista): ?>
+                        <tr>
+                            <td>
+                                <?php echo $lista['idTemas']; ?>
+                            </td>
+                            <td>
+                                <?php echo $lista['NomeTema']; ?>
+                            </td>
+                            <td>
+                                <?php echo $lista['descricaoTema']; ?>
+                            </td>
+                            <td>
+                                <?php echo date('d/m/Y', strtotime($lista['dataCadastro'])); ?>
+                            </td>
+                            <td>
+                                <!-- Botão Editar -->
+                                <a href="Views/editarUsuario.php?id=<?php echo $user['idUsuarios']; ?>"
+                                    style="display: inline-block;">
+                                    <button>Editar</button>
+                                </a>
 
-                </tr>
-                
-            <?php endforeach; ?>
-        </table>
-    <?php else: ?>
-        <p>Nenhum usuário cadastrado.</p>
-    <?php endif; ?>
+                                <form method="post" action="Controllers/excluir_tema.php" style="display: inline-block;">
+                                    <input type="hidden" name="id" value="<?= $lista['idTemas']; ?>">
+                                    <input type="hidden" name="acao" value="excluir">
+                                    <button type="submit" style="background-color: #a00;"
+                                        onclick="return confirm('Tem certeza que deseja excluir?');">Excluir</button>
+                                </form>
+                            </td>
 
-        </div>  
+                        </tr>
+
+                    <?php endforeach; ?>
+                </table>
+            <?php else: ?>
+                <p>Nenhum usuário cadastrado.</p>
+            <?php endif; ?>
+
+        </div>
     </div>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
+
 </html>
