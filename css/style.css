@@ -98,11 +98,15 @@ body {
 }
 
 .btn_voltar {
+  display: inline-block;
   width: 40%;
   height: 40px;
   background-color: #a11b1b;
   border: none;
   color: #e1e1e1;
   border-radius: 18px;
+  text-decoration: none;
+  text-align: center;
+  line-height: 40px;
   cursor: pointer;
 }
