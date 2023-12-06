@@ -40,15 +40,11 @@ $temas = $tema->listarTemas();
         }
 
         .modal-content {
-            position: absolute;
-            top: 10%;
-            left: 50%;
-            transform: translate(-50%, -50%);
             background-color: #fefefe;
             padding: 20px;
             border: 1px solid #888;
             width: 80%;
-            max-width: 400px; /* Ajuste a largura máxima conforme necessário */
+            max-width: 430px; /* Ajuste a largura máxima conforme necessário */
         }
 
         .fechar {
@@ -136,7 +132,7 @@ $temas = $tema->listarTemas();
         </div>
         <a href="painelAdmin.php" onclick="vizualizar('lista', true)"><ion-icon
                 name="desktop-outline"></ion-icon><span>Painel</span></a>
-        <a href="gerenciarTema.php"><ion-icon name="book-outline"></ion-icon><span>Temas</span></a>
+        <a href="#"><ion-icon name="book-outline"></ion-icon><span>Temas</span></a>
         <a href="gerenciarUsuario.php"><ion-icon name="person-outline"></ion-icon><span>Usuário</span></a>
         <a href="Views/listarVisitante.php"><ion-icon name="thumbs-up"></ion-icon></ion-icon><span>Feedback</span></a>
         <a href="login/sairLogin.php"><ion-icon name="exit-outline"></ion-icon><span>Sair</span></a>

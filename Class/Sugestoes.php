@@ -78,7 +78,7 @@ class Sugestoes
         return $data;
     }
 
-    public function inserirSugestao($idTema)
+    public function inserirSugestao()
     {
         try {
 
@@ -87,16 +87,15 @@ class Sugestoes
             $this->email = $this->limparInput($this->email);
             $this->telefone = $this->limparInput($this->telefone);
             $this->conteudoSugestao = $this->limparInput($this->conteudoSugestao);
-            $idTema = $this->limparInput($idTema);
 
             // Sua lógica de inserção no banco aqui, incluindo o uso do $idTema
 
             // Exemplo:
-            $sql = "INSERT INTO sugestoes (Nome, Email, Telefone, ConteudoSugestao, idTema)
-                    VALUES (?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO sugestoes (Nome, Email, Telefone, ConteudoSugestao)
+                    VALUES (?, ?, ?, ?)";
 
             $stmt = $this->conn->prepare($sql);
-            $stmt->execute([$this->nome, $this->email, $this->telefone, $this->conteudoSugestao, $idTema]);
+            $stmt->execute([$this->nome, $this->email, $this->telefone, $this->conteudoSugestao]);
 
             if ($stmt->rowCount() > 0) {
                 return true;

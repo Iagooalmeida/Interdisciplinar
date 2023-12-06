@@ -183,7 +183,7 @@ body {
 
 .page h1 {
   color: #2e3e46;
-  font-size: 1.23em;
+  font-size: 1.2em;
 }
 
 .page h1:nth-child(1) {
@@ -259,7 +259,7 @@ hr {
 }
 
 img.card__avatar {
-  width: 62px;
+  width: 58px;
 }
 
 .card__indicator {

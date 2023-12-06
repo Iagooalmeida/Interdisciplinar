@@ -171,7 +171,7 @@ foreach ($resultado as $row) {
 
                     
                         <div class="form-row">
-                            <label for="visualizacao">Visualização:</label>
+                            <label for="visualizacao">Visualização:</label><br>
                             <select id="visualizacao" name="visualizacao">
                                 <option value="atual">Tabela Atual</option>
                                 <option value="internas">Somente Interna</option>
@@ -182,7 +182,7 @@ foreach ($resultado as $row) {
                         </div>
 
                         <div class="form-row">
-                            <label for="ordenarTema">Tema:</label>
+                            <label for="ordenarTema">Tema:</label><br>
                             <select id="ordenarTema" name="ordenarTema">
                                 <option value="todos">Todos</option>
                                 <?php foreach ($tema as $key => $value) : ?>
@@ -193,7 +193,7 @@ foreach ($resultado as $row) {
 
                         <div class="form-row">
                         <label style="display: inline-block;" for="filtroAutor">
-                            Autor:
+                            Autor: <br>
                             <select id="filtroAutor" name="filtroAutor" class="selecao-autor">
                                 <option value="todos">Todos</option>
                                 <?php foreach ($autores as $autor) : ?>
@@ -204,7 +204,7 @@ foreach ($resultado as $row) {
                         </div>
 
                         <div class="form-row">
-                            <label for="ordenarData">Data:
+                            <label for="ordenarData">Data: <br>
                                 <input type="date" id="ordenarData" name="ordenarData" placeholder="Escolha uma data">
                             </label>
                         </div>
@@ -229,7 +229,7 @@ foreach ($resultado as $row) {
                 <table>
                     <thead>
                         <tr>
-                            <th>ID</th>
+                            <th style="display: none;">ID</th>
                             <th style="display: none;">Origem</th>
                             <th>Autor</th>                    
                             <th>pergunta</th>
@@ -242,12 +242,12 @@ foreach ($resultado as $row) {
                     </thead>
                     <?php foreach ($perguntas as $lista): ?>
                         <tr>
-                            <td><?php echo $lista['idPerguntas']; ?></td>
+                            <td style="display: none;"><?php echo $lista['idPerguntas']; ?></td>
                             <td style="display: none;"><?php echo $lista['Origem'] ?></td>
                             <td><?php echo $lista['Autor'] ?></td>  
                             <td><?php echo $lista['ConteudoPergunta'] ?></td>
                             <td class="resposta-col">
-                                <?php echo substr($lista['Resposta'], 0, 90) . (strlen($lista['Resposta']) > 90 ? '...' : ''); ?>
+                                <?php echo nl2br(substr($lista['Resposta'], 0, 95) . (strlen($lista['Resposta']) > 95 ? '...' : '')); ?>
                             </td>
                             <td><?php echo $lista['NomeTema']; ?></td>
                             <td><?php echo $lista['Status'] ?></td>

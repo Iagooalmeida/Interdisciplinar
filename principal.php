@@ -73,7 +73,7 @@ require_once 'conexao.php';
 
 
                 // Defina o número de perguntas por página
-                $perguntasPorPagina = 2;
+                $perguntasPorPagina = 15;
 
                 // Obtenha o número da página atual a partir do parâmetro 'page'
                 $paginaAtual = isset($_GET['page']) ? $_GET['page'] : 1;
@@ -190,7 +190,7 @@ require_once 'conexao.php';
                         <option value="" selected disabled>Escolha um tema</option>
                         <?php
                         try {
-                            $stmtTemas = $conn->query("SELECT idTemas, NomeTema FROM temas");
+                            $stmtTemas = $conn->query("SELECT idTemas, NomeTema FROM temas ORDER BY NomeTema");
                             while ($tema = $stmtTemas->fetch(PDO::FETCH_ASSOC)) {
                                 echo "<option value='{$tema['idTemas']}'>{$tema['NomeTema']}</option>";
                             }

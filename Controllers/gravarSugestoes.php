@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     // Insere a sugestão no banco
-    $sugestao->inserirSugestao($temaSelecionado);
+    $sugestao->inserirSugestao();
 
     // Realiza validações específicas da classe Perguntas
     if (!$pergunta->validarConteudoPergunta()) {

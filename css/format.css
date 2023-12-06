@@ -296,12 +296,12 @@ textarea#resposta {
   padding: 20px;
   border: 1px solid #888;
   width: 70%; /* Aumentado de 50% para 70% */
-  max-width: 600px; /* Definindo uma largura máxima para o modal */
+  max-width: 700px; /* Definindo uma largura máxima para o modal */
   background-color: #fff; /* Cor de fundo do modal */
   border-radius: 8px; /* Borda arredondada */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Sombra */
   position: relative;
-  top: 10vh;
+  top: 8vh;
 }
 
 .close {
@@ -401,22 +401,27 @@ fieldset {
   display: grid;
   grid-template-columns: max-content 1fr;
   align-items: center;
-  gap: 10px; /* Ajuste o espaçamento conforme necessário */
+  gap: 6px; /* Ajuste o espaçamento conforme necessário */
   margin-bottom: 10px;
-  margin-inline-start: 15px;
+  margin-inline-start: 0px;
 }
 
 label, select, input {
+  text-align: left;
   vertical-align: middle;
   white-space: nowrap; /* Adicionado para evitar quebra de linha */
 }
 
 
 select, input {
-  margin-left: 10px;
+  /* margin-left: 10px; */
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 3px;
+}
+
+input#filtroInput {
+  outline-color: #b00b1880;
 }
 
 @media (max-width: 600px) {

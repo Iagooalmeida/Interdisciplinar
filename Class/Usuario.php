@@ -30,7 +30,7 @@ class Usuario
     public function listarAutores()
     {
         try {
-            $sql = "SELECT DISTINCT Autor FROM perguntas";
+            $sql = "SELECT NomeUsuario FROM usuarios";
             $stmt = $this->conn->query($sql);
 
             if ($stmt) {

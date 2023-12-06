@@ -83,7 +83,8 @@ class Perguntas
     {
         try {
             $sql = "SELECT perguntas.*, temas.NomeTema FROM perguntas
-                LEFT JOIN temas ON perguntas.temas_idTemas = temas.idTemas";
+                LEFT JOIN temas ON perguntas.temas_idTemas = temas.idTemas
+                ORDER BY perguntas.DataSubmissao DESC";
             $stmt = $this->conn->query($sql);
 
             if ($stmt) {
