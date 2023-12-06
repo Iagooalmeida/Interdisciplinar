@@ -31,11 +31,12 @@ body {
 }
 .card_cabecalho {
   display: flex;
+  height: 100px;
   justify-content: space-between;
   align-items: center;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1rem;
+  /* padding: 0 1rem; */
 }
 
 .logotipo img {
@@ -61,7 +62,7 @@ body {
 .nav-item a {
   text-decoration: none;
   color: #b32d30;
-  padding: 38px 26px;
+  padding: 46px 26px;
   font-size: 120%;
   font-weight: 700;
 }
@@ -69,7 +70,7 @@ body {
 .nav-item a:hover {
   color: #fff;
   background-color: #2e3e46;
-  border-radius: 5px;
+  /* border-radius: 5px; */
 }
 
 @media screen and (max-width: 768px) {
