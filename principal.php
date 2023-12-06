@@ -76,7 +76,7 @@ require_once 'conexao.php';
 
 
                 // Defina o número de perguntas por página
-                $perguntasPorPagina = 15;
+                $perguntasPorPagina = 12;
 
                 // Obtenha o número da página atual a partir do parâmetro 'page'
                 $paginaAtual = isset($_GET['page']) ? $_GET['page'] : 1;
