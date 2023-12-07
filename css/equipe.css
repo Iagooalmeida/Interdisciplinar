@@ -25,6 +25,26 @@ body {
   margin-bottom: 10px;
 }
 
+.alinhar-icones {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.alinhar-icones a {
+  margin-right: 10px;
+  text-decoration: none;
+}
+
+p .icone-redes {
+  width: auto;
+  height: 35px;
+  margin: 0 10px;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
 .developer h2 {
   margin-bottom: 5px;
 }
