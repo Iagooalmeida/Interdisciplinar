@@ -15,14 +15,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['acao']) && $_POST['aca
 
         // Chama o método para excluir o usuário
         if ($tema->excluirTema($idTema)) {
-            header('Location: ../gerenciarTema.php');
+            echo "<script>alert('Tema excluído com sucesso'); window.history.back();</script>";
         } else {
-            echo "Erro ao excluir usuário";
+            echo "<script>alert('Erro ao excluir tema. Tema associado a uma pergunta'); window.history.back();</script>";
         }
     } else {
-        echo "ID do usuário não fornecido no formulário.";
+        echo "<script>alert('ID do Tema não fornecido no formulário.'); window.history.back();</script>";
     }
 } else {
-    echo "Ação inválida.";
+    echo "<script>alert('Ação inválida.'); window.history.back();</script>";
 }
 ?>

@@ -134,5 +134,28 @@ class Temas
             return false;
         }
     }
+
+    // Adicione este método à classe Temas
+        public function editarTema($idTema)
+        {
+            try {
+                $sql = "UPDATE temas SET NomeTema = ?, descricaoTema = ? WHERE idTemas = ?";
+                $stmt = $this->conn->prepare($sql);
+                $stmt->bindValue(1, $this->getNomeTema(), PDO::PARAM_STR);
+                $stmt->bindValue(2, $this->getDescricaoTema(), PDO::PARAM_STR);
+                $stmt->bindValue(3, $idTema, PDO::PARAM_INT);
+                $stmt->execute();
+
+                if ($stmt->rowCount() > 0) {
+                    return true;
+                } else {
+                    throw new Exception("Erro ao editar tema");
+                }
+            } catch (Exception $e) {
+                error_log("Erro ao editar tema: " . $e->getMessage());
+                return false;
+            }
+        }
+
 }
 ?>

@@ -27,69 +27,9 @@ $temas = $tema->listarTemas();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Usuários</title>
     <link rel="stylesheet" href="css/format.css">
+    <link rel="stylesheet" href="css/modal.css">
     <style>
-        /* Adicione ao seu CSS existente */
-
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-        }
-
-        .modal-content {
-            background-color: #fefefe;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-            max-width: 430px; /* Ajuste a largura máxima conforme necessário */
-        }
-
-        .fechar {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        #formularioCadastro {
-            display: grid;
-            gap: 10px;
-        }
-
-        #formularioCadastro label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-
-        #formularioCadastro input,
-        #formularioCadastro textarea,
-        #formularioCadastro select {
-            width: 100%;
-            padding: 8px;
-            box-sizing: border-box;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-
-        #formularioCadastro button {
-            background-color: #4caf50;
-            color: white;
-            padding: 10px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        #formularioCadastro button:hover {
-            background-color: #45a049;
-        }
+        
     </style>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script>
@@ -109,6 +49,20 @@ $temas = $tema->listarTemas();
             });
         });
     </script>
+
+    <script>
+        function abrirEditarModal(id, nome, descricao) {
+            $("#editIdTema").val(id);
+            $("#editNomeTema").val(nome);
+            $("#editDescricaoTema").val(descricao);
+            $("#editarModal").css("display", "block");
+        }
+
+        function fecharEditarModal() {
+            $("#editarModal").css("display", "none");
+        }
+    </script>
+
 
 </head>
 
@@ -147,8 +101,8 @@ $temas = $tema->listarTemas();
                 <button id="abrirModal">Inserir</button>
             </div>
 
-            <div id="myModal" class="modal">
-                <div class="modal-content">
+            <div id="myModal" class="modal modal-common">
+                <div class="modal-content modal-common-content">
                     <span class="fechar">&times;</span>
                     <h2>Cadastrar Novo Tema</h2>
                     <form id="formularioCadastro" action="Controllers/gravar_tema.php" method="post">
@@ -203,10 +157,8 @@ $temas = $tema->listarTemas();
                             </td>
                             <td>
                                 <!-- Botão Editar -->
-                                <a href="Views/editarUsuario.php?id=<?php echo $user['idUsuarios']; ?>"
-                                    style="display: inline-block;">
-                                    <button>Editar</button>
-                                </a>
+                                <button onclick="abrirEditarModal('<?php echo $lista['idTemas']; ?>', '<?php echo $lista['NomeTema']; ?>', 
+                                '<?php echo $lista['descricaoTema']; ?>')">Editar</button>
 
                                 <form method="post" action="Controllers/excluir_tema.php" style="display: inline-block;">
                                     <input type="hidden" name="id" value="<?= $lista['idTemas']; ?>">
@@ -223,6 +175,23 @@ $temas = $tema->listarTemas();
             <?php else: ?>
                 <p>Nenhum usuário cadastrado.</p>
             <?php endif; ?>
+
+            <!-- Novo modal para edição -->
+            <div id="editarModal" class="modal modal-common">
+                <div class="modal-content modal-common-content">
+                    <span class="fechar" onclick="fecharEditarModal()">&times;</span>
+                    <h2>Editar Tema</h2>
+                    <form id="formularioEdicao" action="Views/editarTema.php" method="post">
+                        <input type="hidden" id="editIdTema" name="idTema">
+                        <label for="editNomeTema">Nome do Tema:</label>
+                        <input type="text" id="editNomeTema" name="nomeTema" placeholder="Nome do Tema" required>
+                        <label for="editDescricaoTema">Descrição do Tema:</label>
+                        <textarea id="editDescricaoTema" name="descricaoTema" rows="4" cols="50"
+                            placeholder="Descrição do Tema"></textarea>
+                        <button type="submit">Salvar Alterações</button>
+                    </form>
+                </div>
+            </div>
 
         </div>
     </div>
