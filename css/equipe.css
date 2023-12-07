@@ -1,0 +1,47 @@
+body {
+  background-color: #f4f4f4;
+}
+
+.container {
+  margin-top: 200px;
+  width: 100%;
+  display: flex;
+  gap: 100px;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-content: center;
+  text-align: center;
+}
+
+.developer {
+  margin-bottom: 30px;
+}
+
+.developer img {
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.developer h2 {
+  margin-bottom: 5px;
+}
+
+.developer p {
+  margin: 0;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.social-icons a {
+  display: inline-block;
+  margin: 0 10px;
+  text-decoration: none;
+  color: #333;
+}

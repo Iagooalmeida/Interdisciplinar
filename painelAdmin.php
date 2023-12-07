@@ -48,72 +48,67 @@ foreach ($resultado as $row) {
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
     <script type="text/javascript">
-    google.charts.load('current', { 'packages': ['corechart'] });
-    google.charts.setOnLoadCallback(drawChart);
+        google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.setOnLoadCallback(drawChart);
 
-    function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-            ['Tema', 'Quantidade'],
-            <?php
-            foreach ($resultado as $row) {
-                echo "['" . $row['NomeTema'] . "', " . $row['Quantidade'] . "],";
-            }
-            ?>
-        ]);
-
-        var options = {
-            title: '',
-            width: '500',
-            titleTextStyle: {
-                color: '#333',
-                fontSize: 24,
-                bold: true,
-                textAlign: 'center',
-                
-            },
-            is3D: true,
-            pieSliceText: 'percentage', // Exibir porcentagem
-            pieSliceTextStyle: {
-                color: 'white', // Cor do texto das fatias
-                fontSize: 14,    // Tamanho da fonte do texto das fatias
-                textStyle: {
-                    bold: true, // Negrito
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Tema', 'Quantidade'],
+                <?php
+                foreach ($resultado as $row) {
+                    echo "['" . $row['NomeTema'] . "', " . $row['Quantidade'] . "],";
                 }
-            },
-            backgroundColor: {
-                fill: '#fff', // Cor de fundo
-            },
-            legend: {
-                textStyle: {
-                    color: '#333',
-                    fontSize: 14,
+                ?>
+            ]);
+
+            var options = {
+                width: '550',
+                height: '250',
+                is3D: true,
+                pieSliceText: 'percentage', // Exibir porcentagem
+
+                pieSliceTextStyle: {
+                    color: 'white', // Cor do texto das fatias
+                    fontSize: 14,    // Tamanho da fonte do texto das fatias
+                    textStyle: {
+                        bold: true, // Negrito
+                    }
                 },
-            },
-            chartArea: {
-                //right: '20%',   // Margem à esquerda
-                top: '15%',    // Margem superior
-                width: '100%',   // Largura da área do gráfico
-                height: '900%',  // Altura da área do gráfico
-            },
-            margin: '10', // Centraliza o gráficos
-        };
 
-        // Defina as dimensões do contêiner do gráfico
-        var chartContainer = document.getElementById('chart_div');
-        chartContainer.style.width = '100%'; // Defina a largura desejada
-        chartContainer.style.height ='200px'; // Defina a altura desejada
+                backgroundColor: {
+                    fill: '#fff', // Cor de fundo
+                },
+                legend: {
+                    textStyle: {
+                        color: '#333',
+                        fontSize: 14,
+                    },
+                },
+                chartArea: {
+                    //right: '20%',   // Margem à esquerda
+                    top: '15%',    // Margem superior
+                    width: '100%',   // Largura da área do gráfico
+                    height: '900%',  // Altura da área do gráfico
+                },
+                // Centraliza o gráficos
+            };
 
-        var chart = new google.visualization.PieChart(chartContainer);
+            // Defina as dimensões do contêiner do gráfico
+            var chartContainer = document.getElementById('chart_div');
+            chartContainer.style.width = '100%'; // Defina a largura desejada
+            chartContainer.style.height = '200px'; // Defina a altura desejada
 
-        // Adicione um ouvinte de redimensionamento para ajustar o gráfico quando a janela for redimensionada
-        window.addEventListener('resize', function () {
+            var chart = new google.visualization.PieChart(chartContainer);
+
+            // Adicione um ouvinte de redimensionamento para ajustar o gráfico quando a janela for redimensionada
+            window.addEventListener('resize', function () {
+                chart.draw(data, options);
+            });
+
+            // Desenhe o gráfico pela primeira vez
             chart.draw(data, options);
-        });
-
-        // Desenhe o gráfico pela primeira vez
-        chart.draw(data, options);
-    }
-</script>
+        }
+    </script>
 
 
 
@@ -134,8 +129,8 @@ foreach ($resultado as $row) {
     <!--começo da barra lateral-->
     <div class="sidebar">
         <div class="center">
-        <div class="foto-usuario">
-            <?php
+            <div class="foto-usuario">
+                <?php
                 $fotoPath = isset($_SESSION['fotoPath']) ? basename($_SESSION['fotoPath']) : '';
                 $caminhoRelativo = 'uploads/' . $fotoPath;
 
@@ -145,8 +140,8 @@ foreach ($resultado as $row) {
                 } else {
                     echo '<img class="foto-usuario-img" src="uploads/manager_icon_129392.png" alt="Imagem Padrão">';
                 }
-            ?>
-        </div>
+                ?>
+            </div>
 
             <h2>
                 <?php echo $_SESSION['nomeUsuario']; ?>
@@ -163,14 +158,14 @@ foreach ($resultado as $row) {
 
     <div class="content">
         <div id='listaRegistros'>
-             
-        <div class="grafico">
-            <h3 class="titulo_grafico">Distribuição Temática de Perguntas</h3>
-            <div></div>
-            <div id='chart_div'></div>
-            <div></div>
-        </div>
-            
+
+            <div class="grafico">
+                <h3 class="titulo_grafico">Distribuição Temática de Perguntas</h3>
+                <div></div>
+                <div id='chart_div'></div>
+                <div></div>
+            </div>
+
             <div class="titulo_ask">
                 <h1>Cadastro de Perguntas FAQ</h1>
                 <a href="Views/cadastrarPergunta.php"><button>Inserir</button></a>
@@ -178,11 +173,11 @@ foreach ($resultado as $row) {
 
             <div class="filtro">
                 <form id="filtroForm">
-                               
-                <fieldset>
-                    <legend>Filtros e Ordenação:</legend>
 
-                    
+                    <fieldset>
+                        <legend>Filtros e Ordenação:</legend>
+
+
                         <div class="form-row">
                             <label for="visualizacao">Visualização:</label><br>
                             <select id="visualizacao" name="visualizacao">
@@ -198,42 +193,47 @@ foreach ($resultado as $row) {
                             <label for="ordenarTema">Tema:</label><br>
                             <select id="ordenarTema" name="ordenarTema">
                                 <option value="todos">Todos</option>
-                                <?php foreach ($tema as $key => $value) : ?>
-                                    <option value="<?php echo $value; ?>"><?php echo $value; ?></option>
+                                <?php foreach ($tema as $key => $value): ?>
+                                    <option value="<?php echo $value; ?>">
+                                        <?php echo $value; ?>
+                                    </option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
 
                         <div class="form-row">
                             <label style="display: inline-block;" for="filtroAutor">
-                            Autor: </label><br>
+                                Autor: </label><br>
                             <select id="filtroAutor" name="filtroAutor" class="selecao-autor">
                                 <option value="todos">Todos</option>
-                                <?php foreach ($autores as $autor) : ?>
-                                    <option value="<?php echo $autor; ?>"><?php echo $autor; ?></option>
+                                <?php foreach ($autores as $autor): ?>
+                                    <option value="<?php echo $autor; ?>">
+                                        <?php echo $autor; ?>
+                                    </option>
                                 <?php endforeach; ?>
                             </select>
-                        
+
                         </div>
 
                         <div class="form-row">
                             <label for="ordenarData">Data: </label><br>
-                                <input type="date" id="ordenarData" name="ordenarData" placeholder="Escolha uma data">
-                            
+                            <input type="date" id="ordenarData" name="ordenarData" placeholder="Escolha uma data">
+
                         </div>
                     </fieldset>
 
-                        <fieldset>
-                            <legend>Buscar Perguntas:</legend>
+                    <fieldset>
+                        <legend>Buscar Perguntas:</legend>
 
-                            <input style="display: none;" type="radio" id="filtroPergunta" name="filtro" value="pergunta" checked>
-                            <label for="filtroPergunta">Filtro: </label>
+                        <input style="display: none;" type="radio" id="filtroPergunta" name="filtro" value="pergunta"
+                            checked>
+                        <label for="filtroPergunta">Filtro: </label>
 
-                            <input type="text" autofocus id="filtroInput" placeholder="Digite o termo de pesquisa">
+                        <input type="text" autofocus id="filtroInput" placeholder="Digite o termo de pesquisa">
 
                         <button type="button" onclick="limparFiltro()">Limpar</button>
                     </fieldset>
-             
+
 
                 </form>
             </div>
@@ -244,40 +244,56 @@ foreach ($resultado as $row) {
                         <tr>
                             <th style="display: none;">ID</th>
                             <th style="display: none;">Origem</th>
-                            <th>Autor</th>                    
+                            <th>Autor</th>
                             <th>pergunta</th>
                             <th>Resposta</th>
                             <th>Tema</th>
                             <th>Status</th>
-                            <th >Data Cadastro</th> <!-- Coluna invisível para a data -->
+                            <th>Data Cadastro</th> <!-- Coluna invisível para a data -->
                             <th>Ações</th>
                         </tr>
                     </thead>
                     <?php foreach ($perguntas as $lista): ?>
                         <?php
-                            // Verificar a origem e definir a classe CSS correspondente
-                            $classeOrigem = ($lista['Origem'] == 'Externa') ? 'linha-externa' : '';
+                        // Verificar a origem e definir a classe CSS correspondente
+                        $classeOrigem = ($lista['Origem'] == 'Externa') ? 'linha-externa' : '';
                         ?>
 
                         <tr class="<?php echo $classeOrigem; ?>">
-                            <td style="display: none;"><?php echo $lista['idPerguntas']; ?></td>
-                            <td style="display: none;"><?php echo $lista['Origem'] ?></td>
-                            <td><?php echo $lista['Autor'] ?></td>  
-                            <td><?php echo $lista['ConteudoPergunta'] ?></td>
+                            <td style="display: none;">
+                                <?php echo $lista['idPerguntas']; ?>
+                            </td>
+                            <td style="display: none;">
+                                <?php echo $lista['Origem'] ?>
+                            </td>
+                            <td>
+                                <?php echo $lista['Autor'] ?>
+                            </td>
+                            <td>
+                                <?php echo $lista['ConteudoPergunta'] ?>
+                            </td>
                             <td class="resposta-col">
                                 <?php echo nl2br(substr($lista['Resposta'], 0, 95) . (strlen($lista['Resposta']) > 95 ? '...' : '')); ?>
                             </td>
-                            <td><?php echo $lista['NomeTema']; ?></td>
-                            <td><?php echo $lista['Status'] ?></td>
-                            <td class="data-col"><?php echo date('d/m/Y', strtotime($lista['DataSubmissao'])); ?></td>
                             <td>
-                                <a href="#" class="detalhes-btn" data-id="<?php echo $lista['idPerguntas']; ?>" title="Detalhes">
+                                <?php echo $lista['NomeTema']; ?>
+                            </td>
+                            <td>
+                                <?php echo $lista['Status'] ?>
+                            </td>
+                            <td class="data-col">
+                                <?php echo date('d/m/Y', strtotime($lista['DataSubmissao'])); ?>
+                            </td>
+                            <td>
+                                <a href="#" class="detalhes-btn" data-id="<?php echo $lista['idPerguntas']; ?>"
+                                    title="Detalhes">
                                     <i style="background: indigo;" class="edit material-icons">info</i>
                                 </a>
                                 <a href="Views/editarPergunta.php?id=<?php echo $lista['idPerguntas']; ?>" title="Editar">
                                     <i class=" edit material-icons">edit</i>
                                 </a>
-                                <button type="button" class="excluir-btn" data-id="<?php echo $lista['idPerguntas']; ?>" title="Excluir">
+                                <button type="button" class="excluir-btn" data-id="<?php echo $lista['idPerguntas']; ?>"
+                                    title="Excluir">
                                     <i class="material-icons">delete</i>
                                 </button>
                             </td>
@@ -306,6 +322,7 @@ foreach ($resultado as $row) {
 
         <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
         <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-        
-    </body>
+
+</body>
+
 </html>
