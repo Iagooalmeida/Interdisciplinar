@@ -134,19 +134,19 @@ foreach ($resultado as $row) {
     <!--começo da barra lateral-->
     <div class="sidebar">
         <div class="center">
-        <div class="foto-usuario">
-            <?php
-                $fotoPath = isset($_SESSION['fotoPath']) ? basename($_SESSION['fotoPath']) : '';
-                $caminhoRelativo = 'uploads/' . $fotoPath;
+            <div class="foto-usuario">
+                <?php
+                    $fotoPath = isset($_SESSION['fotoPath']) ? basename($_SESSION['fotoPath']) : '';
+                    $caminhoRelativo = 'uploads/' . $fotoPath;
 
-                // Verifica se há um caminho da imagem e exibe a tag <img> com a classe 'foto-usuario-img'
-                if (!empty($fotoPath)) {
-                    echo '<img class="foto-usuario-img" src="' . $caminhoRelativo . '" alt="Foto do Usuário">';
-                } else {
-                    echo '<img class="foto-usuario-img" src="uploads/manager_icon_129392.png" alt="Imagem Padrão">';
-                }
-            ?>
-        </div>
+                    // Verifica se há um caminho da imagem e exibe a tag <img> com a classe 'foto-usuario-img'
+                    if (!empty($fotoPath)) {
+                        echo '<img class="foto-usuario-img" src="' . $caminhoRelativo . '" alt="Foto do Usuário">';
+                    } else {
+                        echo '<img class="foto-usuario-img" src="uploads/manager_icon_129392.png" alt="Imagem Padrão">';
+                    }
+                ?>
+            </div>
 
             <h2>
                 <?php echo $_SESSION['nomeUsuario']; ?>
