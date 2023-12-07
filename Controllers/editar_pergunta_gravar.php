@@ -1,3 +1,16 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atualizar Pergunta</title>
+
+    <!-- Adicione os links para o SweetAlert2 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
+</head>
+<body>
 <?php
 
 require_once '../Class/Perguntas.php';
@@ -17,7 +30,7 @@ if (!isset($_SESSION['idUsuario'])) {
 $funcaoUsuario = $_SESSION['funcaoUsuario'];
 
 // Verifica se o usuário tem permissão para atualizar a pergunta
-if ($funcaoUsuario == 'Coordenador' || $funcaoUsuario == 'Administrador') {
+if ($funcaoUsuario == 'Coordenação' || $funcaoUsuario == 'Administrador' || $funcaoUsuario == 'Administrativo') {
 
     // Obtém os dados do formulário
     $idPergunta = isset($_POST['idPergunta']) ? $_POST['idPergunta'] : null;
@@ -39,25 +52,47 @@ if ($funcaoUsuario == 'Coordenador' || $funcaoUsuario == 'Administrador') {
     echo '<script>';
     if ($atualizacaoSucesso) {
         // Chame a função para atualizações e exiba mensagem de erro se necessário
-        $ultimaAtualizacao = $pergunta->atualizacoesPerguntas( $idUsuario, $idPergunta);
+        $ultimaAtualizacao = $pergunta->atualizacoesPerguntas($idUsuario, $idPergunta);
 
         if ($ultimaAtualizacao) {
             // Atualize a tabela perguntas com a última data de atualização
             $atualizacaoPerguntaSucesso = $pergunta->atualizarUltimaAtualizacao($idPergunta, $ultimaAtualizacao);
 
             if ($atualizacaoPerguntaSucesso) {
-                echo 'alert("Pergunta atualizada com sucesso!");';
+                echo 'Swal.fire({';
+                echo '    icon: "success",';
+                echo '    title: "Sucesso",';
+                echo '    text: "Pergunta atualizada com sucesso!"';
+                echo '}).then(() => {';
+                echo '    window.location.href = "../painelAdmin.php";';
+                echo '});';
             } else {
-                echo 'alert("Erro ao atualizar pergunta. Por favor, tente novamente.");';
+                echo 'Swal.fire({';
+                echo '    icon: "error",';
+                echo '    title: "Erro",';
+                echo '    text: "Erro ao atualizar pergunta. Por favor, tente novamente."';
+                echo '}).then(() => {';
+                echo '    window.location.href = "../painelAdmin.php";';
+                echo '});';
             }
         } else {
-            echo 'alert("Erro ao gravar atualização. Por favor, tente novamente.");';
+            echo 'Swal.fire({';
+            echo '    icon: "error",';
+            echo '    title: "Erro",';
+            echo '    text: "Erro ao gravar atualização. Por favor, tente novamente."';
+            echo '}).then(() => {';
+            echo '    window.location.href = "../painelAdmin.php";';
+            echo '});';
         }
-
     } else {
-        echo 'alert("Erro ao atualizar pergunta. Por favor, tente novamente.");';
+        echo 'Swal.fire({';
+        echo '    icon: "error",';
+        echo '    title: "Erro",';
+        echo '    text: "Erro ao atualizar pergunta. Por favor, tente novamente."';
+        echo '}).then(() => {';
+        echo '    window.location.href = "../painelAdmin.php";';
+        echo '});';
     }
-    echo 'window.location.href = "../painelAdmin.php";'; // Redireciona após a mensagem
     echo '</script>';
     exit();
 } else {
@@ -66,3 +101,5 @@ if ($funcaoUsuario == 'Coordenador' || $funcaoUsuario == 'Administrador') {
     exit();
 }
 ?>
+</body>
+</html>

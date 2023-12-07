@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 06-Dez-2023 às 04:40
+-- Tempo de geração: 07-Dez-2023 às 22:58
 -- Versão do servidor: 10.4.32-MariaDB
 -- versão do PHP: 8.0.30
 
@@ -50,7 +50,12 @@ INSERT INTO `atualizacoes` (`idAtualizacao`, `atualizar_fk_idUsuarios`, `atualiz
 (9, 1, 9, '2023-12-05 19:51:15'),
 (10, 1, 9, '2023-12-05 19:56:36'),
 (11, 1, 10, '2023-12-05 20:28:10'),
-(12, 1, 10, '2023-12-05 20:28:54');
+(12, 1, 10, '2023-12-05 20:28:54'),
+(13, 1, 16, '2023-12-06 15:41:38'),
+(14, 3, 15, '2023-12-07 17:24:25'),
+(15, 3, 15, '2023-12-07 17:24:54'),
+(16, 3, 15, '2023-12-07 17:28:45'),
+(17, 3, 15, '2023-12-07 17:29:36');
 
 -- --------------------------------------------------------
 
@@ -90,8 +95,9 @@ INSERT INTO `perguntas` (`idPerguntas`, `Usuarios_idUsuarios`, `temas_idTemas`, 
 (12, 1, 3, 'Master', 'Qual a pontuação mínima necessária no vestibular para ser aprovado?', 'A pontuação mínima pode variar a cada vestibular. As informações específicas sobre a pontuação mínima necessária estão disponíveis no edital do processo seletivo, divulgado pela universidade.', 'Aprovado', '2023-12-05 21:11:12', NULL, 'Interna'),
 (13, 1, 1, 'Master', 'Como posso solicitar uma revisão de nota?', 'Para solicitar a revisão de nota, entre em contato com o professor da disciplina ou o departamento acadêmico responsável. Eles fornecerão informações sobre o procedimento a ser seguido.', 'Aprovado', '2023-12-05 21:26:17', NULL, 'Interna'),
 (14, 3, 6, 'Alice', 'Quais são os recursos disponíveis nos laboratórios para estudantes de ciências?', 'Os laboratórios oferecem uma variedade de recursos, incluindo equipamentos especializados e materiais. Informações detalhadas podem ser obtidas junto aos professores responsáveis pelos laboratórios.', 'Aprovado', '2023-12-06 00:24:24', NULL, 'Interna'),
-(15, 3, 7, 'Alice', 'Há programas de intercâmbio específicos para o meu curso?', 'Sim, a universidade oferece programas de intercâmbio específicos para diversos cursos. Consulte o departamento internacional ou o coordenador do curso para obter informações sobre as oportunidades disponíveis.', 'Aprovado', '2023-12-06 00:30:24', NULL, 'Interna'),
-(16, 3, 6, 'Alice', 'Como reservar salas de estudo para grupos?', 'A reserva de salas de estudo para grupos pode ser feita através do sistema de reserva online da universidade. Consulte o site ou a biblioteca para obter informações sobre como proceder.', 'Aprovado', '2023-12-06 00:34:39', NULL, 'Interna');
+(15, 3, 7, 'Alice', 'Há programas de intercâmbio específicos para o meu curso?', 'Sim, a universidade oferece programas de intercâmbio específicos para diversos cursos. Consulte o departamento internacional ou o coordenador do curso para obter informações sobre as oportunidades disponíveis.', 'Pendente', '2023-12-06 00:30:24', '2023-12-07 17:29:36', 'Interna'),
+(16, 3, 6, 'Alice', 'Como reservar salas de estudo para grupos?', 'A reserva de salas de estudo para grupos pode ser feita através do sistema de reserva online da universidade. Consulte o site ou a biblioteca para obter informações sobre como proceder.', 'Pendente', '2023-12-06 00:34:39', '2023-12-06 15:41:38', 'Interna'),
+(17, NULL, 2, 'Iago', 'Como faço para acessar o siga pela primeira vez ?', NULL, 'Pendente', '2023-12-06 18:36:43', NULL, 'Externa');
 
 -- --------------------------------------------------------
 
@@ -116,7 +122,8 @@ CREATE TABLE `sugestoes` (
 INSERT INTO `sugestoes` (`idSugestao`, `Nome`, `Email`, `Telefone`, `ConteudoSugestao`, `Status`, `DataSubmissao`) VALUES
 (3, 'Daenerys', 'dany@mail.com', '(19) 96368-3433', 'Como fazer minha rematrícula?', 'Pendente', '2023-12-05 14:48:53'),
 (4, 'Alicent', 'alice@gmail.com', '(95) 42962-9895', 'Quando abre o vestibular?', 'Pendente', '2023-12-05 16:37:21'),
-(5, 'Sam', 'Sam88@outlook.com', '(98) 9548-4621', 'Como faço para pedir um atestado?', 'Pendente', '2023-12-05 19:06:38');
+(5, 'Sam', 'Sam88@outlook.com', '(98) 9548-4621', 'Como faço para pedir um atestado?', 'Pendente', '2023-12-05 19:06:38'),
+(6, 'Iago', 'iago598@gmail.com', '(26) 4156-3056', 'Como faço para acessar o siga pela primeira vez ?', 'Pendente', '2023-12-06 18:36:43');
 
 -- --------------------------------------------------------
 
@@ -128,7 +135,7 @@ CREATE TABLE `temas` (
   `idTemas` int(10) UNSIGNED NOT NULL,
   `NomeTema` varchar(50) NOT NULL,
   `descricaoTema` text DEFAULT NULL,
-  `dataCadastro` date NOT NULL
+  `dataCadastro` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
@@ -137,11 +144,10 @@ CREATE TABLE `temas` (
 
 INSERT INTO `temas` (`idTemas`, `NomeTema`, `descricaoTema`, `dataCadastro`) VALUES
 (1, 'Registro Acadêmico', 'Tema Principal Relacionado com temas secundário como matricula e documentação em geral', '2023-12-01'),
-(2, 'Acesso e Tecnologia', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam ducimus, dicta commodi nihil et.', '2023-12-05'),
+(2, 'Acesso e Tecnologia', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam ducimus, dicta commodi nihil et. Teste', '2023-12-05'),
 (3, 'Vestibular', 'Tema Principal relacionado a Vestibular', '2023-12-05'),
-(4, 'Estágios', 'Lista de perguntas relacionado a Estágio.', '2023-12-05'),
 (5, 'Intercâmbio', 'Lista de perguntas relacionado a estudo no Exterior e Intercâmbio', '2023-12-05'),
-(6, 'Recursos Acadêmicos', 'Recursos da fatec Itapira utilizado pelos aluno fatec itapira ', '2023-12-05'),
+(6, 'Outros', 'Recursos da fatec Itapira utilizado pelos aluno fatec itapira ', '2023-12-05'),
 (7, 'Cursos', 'Informações sobre Cursos FATEC-ITAPIRA', '2023-12-06'),
 (8, 'Matrícula', 'Tema secundário Relacionado a tema Principal Registros Acadêmico', '2023-12-06');
 
@@ -169,9 +175,9 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`idUsuarios`, `NomeUsuario`, `Email`, `Senha`, `Tel_Cel`, `Funcao`, `NivelAcesso`, `DataCadastro`, `DataUltimaAtualizacao`, `FotoPath`) VALUES
-(1, 'Master', 'master@master.com', '$2y$10$9h6mcR.7yI7.vFsNfWx4vOVcpbuovwwIYnTI9jjxpn3QcGqnPaCOi', '(19) 9999-9999', 'Administrador', 0, '2023-11-11', '2023-11-11 02:14:09', NULL),
-(2, 'Bob', 'user@gmail.com', '$2y$10$Fke0gQqj2ECey2jVt4NeCeYOALAvMF.mf47wX6zwWfrNJwWn2Tk6O', '(98) 59564-4695', 'Administrador(a)', 1, '2023-12-05', '2023-12-06 05:04:29', ''),
-(3, 'Alice', 'alice@gmail.com', '$2y$10$C78mPvC1FBPj/to/jx61n.v4GsIOvFx2uQZ4grESMzuMX8t5uvYMa', '(98) 42658-4984', 'Coordenador(a)', 1, '2023-12-06', '2023-12-06 05:04:21', 'C:\\xampp\\htdocs\\Interdisciplinar\\Controllers/../uploads/7fd464ebcda0cca6cd430402042dc8d3.jpg');
+(1, 'Master', 'master@master.com', '$2y$10$9h6mcR.7yI7.vFsNfWx4vOVcpbuovwwIYnTI9jjxpn3QcGqnPaCOi', '(19) 9999-9999', 'Administrativo', 0, '2023-11-11', '2023-12-07 20:18:57', NULL),
+(2, 'Bob', 'user@gmail.com', '$2y$10$Fke0gQqj2ECey2jVt4NeCeYOALAvMF.mf47wX6zwWfrNJwWn2Tk6O', '(98) 59564-4695', 'Administrativo', 1, '2023-12-05', '2023-12-06 23:15:48', ''),
+(3, 'Alice', 'alice@gmail.com', '$2y$10$C78mPvC1FBPj/to/jx61n.v4GsIOvFx2uQZ4grESMzuMX8t5uvYMa', '(98) 42658-4984', 'Coordenação', 1, '2023-12-06', '2023-12-08 00:23:09', 'C:\\xampp\\htdocs\\Interdisciplinar\\Controllers/../uploads/7fd464ebcda0cca6cd430402042dc8d3.jpg');
 
 --
 -- Índices para tabelas despejadas
@@ -220,25 +226,25 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de tabela `atualizacoes`
 --
 ALTER TABLE `atualizacoes`
-  MODIFY `idAtualizacao` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `idAtualizacao` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de tabela `perguntas`
 --
 ALTER TABLE `perguntas`
-  MODIFY `idPerguntas` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `idPerguntas` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de tabela `sugestoes`
 --
 ALTER TABLE `sugestoes`
-  MODIFY `idSugestao` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idSugestao` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de tabela `temas`
 --
 ALTER TABLE `temas`
-  MODIFY `idTemas` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `idTemas` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de tabela `usuarios`

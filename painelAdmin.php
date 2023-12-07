@@ -14,9 +14,6 @@ if (!isset($_SESSION['idUsuario'])) {
     header("Location: login/login.html");
     exit();
 }
-// Regenerar o ID da sessão após a autenticação para maior segurança
-session_regenerate_id();
-
 
 $pergunta = new Perguntas($conn);
 $perguntas = $pergunta->listarPerguntas();
@@ -51,10 +48,10 @@ foreach ($resultado as $row) {
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
     <script type="text/javascript">
-        google.charts.load('current', { 'packages': ['corechart'] });
-        google.charts.setOnLoadCallback(drawChart);
+    google.charts.load('current', { 'packages': ['corechart'] });
+    google.charts.setOnLoadCallback(drawChart);
 
-        function drawChart() {
+    function drawChart() {
             var data = google.visualization.arrayToDataTable([
                 ['Tema', 'Quantidade'],
                 <?php
@@ -110,7 +107,7 @@ foreach ($resultado as $row) {
             // Desenhe o gráfico pela primeira vez
             chart.draw(data, options);
         }
-    </script>
+</script>
 
 
 
@@ -131,17 +128,17 @@ foreach ($resultado as $row) {
     <!--começo da barra lateral-->
     <div class="sidebar">
         <div class="center">
-            <div class="foto-usuario">
+        <div class="foto-usuario">
                 <?php
-                    $fotoPath = isset($_SESSION['fotoPath']) ? basename($_SESSION['fotoPath']) : '';
-                    $caminhoRelativo = 'uploads/' . $fotoPath;
+                $fotoPath = isset($_SESSION['fotoPath']) ? basename($_SESSION['fotoPath']) : '';
+                $caminhoRelativo = 'uploads/' . $fotoPath;
 
-                    // Verifica se há um caminho da imagem e exibe a tag <img> com a classe 'foto-usuario-img'
-                    if (!empty($fotoPath)) {
-                        echo '<img class="foto-usuario-img" src="' . $caminhoRelativo . '" alt="Foto do Usuário">';
-                    } else {
-                        echo '<img class="foto-usuario-img" src="uploads/manager_icon_129392.png" alt="Imagem Padrão">';
-                    }
+                // Verifica se há um caminho da imagem e exibe a tag <img> com a classe 'foto-usuario-img'
+                if (!empty($fotoPath)) {
+                    echo '<img class="foto-usuario-img" src="' . $caminhoRelativo . '" alt="Foto do Usuário">';
+                } else {
+                    echo '<img class="foto-usuario-img" src="uploads/manager_icon_129392.png" alt="Imagem Padrão">';
+                }
                 ?>
             </div>
 
@@ -160,13 +157,15 @@ foreach ($resultado as $row) {
 
     <div class="content">
         <div id='listaRegistros'>
-
-            <div class="grafico">
-                <h3 class="titulo_grafico">Distribuição Temática de Perguntas</h3>
-                <div></div>
-                <div id='chart_div'></div>
-                <div></div>
-            </div>
+             
+        <div class="grafico">
+            <h3 class="titulo_grafico">Distribuição Temática de Perguntas</h3>
+            <div></div>
+            <div id='chart_div'></div>
+            <div></div>
+        </div>
+            
+        
 
             <div class="titulo_ask">
                 <h1>Cadastro de Perguntas FAQ</h1>
@@ -175,11 +174,11 @@ foreach ($resultado as $row) {
 
             <div class="filtro">
                 <form id="filtroForm">
+                               
+                <fieldset>
+                    <legend>Filtros e Ordenação:</legend>
 
-                    <fieldset>
-                        <legend>Filtros e Ordenação:</legend>
-
-
+                    
                         <div class="form-row">
                             <label for="visualizacao">Visualização:</label><br>
                             <select id="visualizacao" name="visualizacao">
@@ -195,47 +194,42 @@ foreach ($resultado as $row) {
                             <label for="ordenarTema">Tema:</label><br>
                             <select id="ordenarTema" name="ordenarTema">
                                 <option value="todos">Todos</option>
-                                <?php foreach ($tema as $key => $value): ?>
-                                    <option value="<?php echo $value; ?>">
-                                        <?php echo $value; ?>
-                                    </option>
+                                <?php foreach ($tema as $key => $value) : ?>
+                                    <option value="<?php echo $value; ?>"><?php echo $value; ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
 
                         <div class="form-row">
-                            <label style="display: inline-block;" for="filtroAutor">
-                                Autor: </label><br>
+                        <label style="display: inline-block;" for="filtroAutor">
+                            Autor: <br>
                             <select id="filtroAutor" name="filtroAutor" class="selecao-autor">
                                 <option value="todos">Todos</option>
-                                <?php foreach ($autores as $autor): ?>
-                                    <option value="<?php echo $autor; ?>">
-                                        <?php echo $autor; ?>
-                                    </option>
+                                <?php foreach ($autores as $autor) : ?>
+                                    <option value="<?php echo $autor; ?>"><?php echo $autor; ?></option>
                                 <?php endforeach; ?>
                             </select>
-
+                        </label>
                         </div>
 
                         <div class="form-row">
-                            <label for="ordenarData">Data: </label><br>
-                            <input type="date" id="ordenarData" name="ordenarData" placeholder="Escolha uma data">
-
+                            <label for="ordenarData">Data: <br>
+                                <input type="date" id="ordenarData" name="ordenarData" placeholder="Escolha uma data">
+                            </label>
                         </div>
                     </fieldset>
 
-                    <fieldset>
-                        <legend>Buscar Perguntas:</legend>
+                        <fieldset>
+                            <legend>Buscar Perguntas:</legend>
 
-                        <input style="display: none;" type="radio" id="filtroPergunta" name="filtro" value="pergunta"
-                            checked>
-                        <label for="filtroPergunta">Filtro: </label>
+                            <input style="display: none;" type="radio" id="filtroPergunta" name="filtro" value="pergunta" checked>
+                            <label for="filtroPergunta">Filtro: </label>
 
-                        <input type="text" autofocus id="filtroInput" placeholder="Digite o termo de pesquisa">
+                            <input type="text" autofocus id="filtroInput" placeholder="Digite o termo de pesquisa">
 
                         <button type="button" onclick="limparFiltro()">Limpar</button>
                     </fieldset>
-
+             
 
                 </form>
             </div>
@@ -246,56 +240,37 @@ foreach ($resultado as $row) {
                         <tr>
                             <th style="display: none;">ID</th>
                             <th style="display: none;">Origem</th>
-                            <th>Autor</th>
+                            <th>Autor</th>                    
                             <th>pergunta</th>
                             <th>Resposta</th>
                             <th>Tema</th>
                             <th>Status</th>
-                            <th>Data Cadastro</th> <!-- Coluna invisível para a data -->
+                            <th >Data Cadastro</th> <!-- Coluna invisível para a data -->
                             <th>Ações</th>
                         </tr>
                     </thead>
                     <?php foreach ($perguntas as $lista): ?>
-                        <?php
-                        // Verificar a origem e definir a classe CSS correspondente
-                        $classeOrigem = ($lista['Origem'] == 'Externa') ? 'linha-externa' : '';
-                        ?>
-
-                        <tr class="<?php echo $classeOrigem; ?>">
-                            <td style="display: none;">
-                                <?php echo $lista['idPerguntas']; ?>
-                            </td>
-                            <td style="display: none;">
-                                <?php echo $lista['Origem'] ?>
-                            </td>
-                            <td>
-                                <?php echo $lista['Autor'] ?>
-                            </td>
-                            <td>
-                                <?php echo $lista['ConteudoPergunta'] ?>
-                            </td>
+                        <tr>
+                            <td style="display: none;"><?php echo $lista['idPerguntas']; ?></td>
+                            <td style="display: none;"><?php echo $lista['Origem'] ?></td>
+                            <td><?php echo $lista['Autor'] ?></td>  
+                            <td><?php echo $lista['ConteudoPergunta'] ?></td>
                             <td class="resposta-col">
                                 <?php echo nl2br(substr($lista['Resposta'], 0, 95) . (strlen($lista['Resposta']) > 95 ? '...' : '')); ?>
                             </td>
+                            <td><?php echo $lista['NomeTema']; ?></td>
+                            <td><?php echo $lista['Status'] ?></td>
+                            <td class="data-col"><?php echo date('d/m/Y', strtotime($lista['DataSubmissao'])); ?></td>
+
+
                             <td>
-                                <?php echo $lista['NomeTema']; ?>
-                            </td>
-                            <td>
-                                <?php echo $lista['Status'] ?>
-                            </td>
-                            <td class="data-col">
-                                <?php echo date('d/m/Y', strtotime($lista['DataSubmissao'])); ?>
-                            </td>
-                            <td>
-                                <a href="#" class="detalhes-btn" data-id="<?php echo $lista['idPerguntas']; ?>"
-                                    title="Detalhes">
+                                <a href="#" class="detalhes-btn" data-id="<?php echo $lista['idPerguntas']; ?>" title="Detalhes">
                                     <i style="background: indigo;" class="edit material-icons">info</i>
                                 </a>
                                 <a href="Views/editarPergunta.php?id=<?php echo $lista['idPerguntas']; ?>" title="Editar">
                                     <i class=" edit material-icons">edit</i>
                                 </a>
-                                <button type="button" class="excluir-btn" data-id="<?php echo $lista['idPerguntas']; ?>"
-                                    title="Excluir">
+                                <button type="button" class="excluir-btn" data-id="<?php echo $lista['idPerguntas']; ?>" title="Excluir">
                                     <i class="material-icons">delete</i>
                                 </button>
                             </td>
@@ -324,9 +299,6 @@ foreach ($resultado as $row) {
 
         <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
         <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css">
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
-</body>
-
+        
+    </body>
 </html>
