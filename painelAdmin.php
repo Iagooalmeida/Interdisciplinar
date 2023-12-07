@@ -134,8 +134,23 @@ foreach ($resultado as $row) {
     <!--começo da barra lateral-->
     <div class="sidebar">
         <div class="center">
-            <img src="icon/manager_icon_129392.png" class="image" alt="">
-            <h2><?php echo $_SESSION['nomeUsuario']; ?></h2>
+        <div class="foto-usuario">
+            <?php
+                $fotoPath = isset($_SESSION['fotoPath']) ? basename($_SESSION['fotoPath']) : '';
+                $caminhoRelativo = 'uploads/' . $fotoPath;
+
+                // Verifica se há um caminho da imagem e exibe a tag <img> com a classe 'foto-usuario-img'
+                if (!empty($fotoPath)) {
+                    echo '<img class="foto-usuario-img" src="' . $caminhoRelativo . '" alt="Foto do Usuário">';
+                } else {
+                    echo '<img class="foto-usuario-img" src="uploads/manager_icon_129392.png" alt="Imagem Padrão">';
+                }
+            ?>
+        </div>
+
+            <h2>
+                <?php echo $_SESSION['nomeUsuario']; ?>
+            </h2>
         </div>
         <a href="#" onclick="vizualizar('lista', true)"><ion-icon
                 name="desktop-outline"></ion-icon><span>Painel</span></a>
@@ -156,8 +171,6 @@ foreach ($resultado as $row) {
             <div></div>
         </div>
             
-        
-
             <div class="titulo_ask">
                 <h1>Cadastro de Perguntas FAQ</h1>
                 <a href="Views/cadastrarPergunta.php"><button>Inserir</button></a>

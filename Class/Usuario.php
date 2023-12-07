@@ -239,6 +239,7 @@ class Usuario
                     $_SESSION['emailUsuario'] = $usuario['Email'];
                     $_SESSION['funcaoUsuario'] = $usuario['Funcao'];
                     $_SESSION['nivelAcesso'] = $usuario['NivelAcesso'];
+                    $_SESSION['fotoPath'] = $usuario['FotoPath'];
 
                     return true;
                 } else {

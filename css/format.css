@@ -44,16 +44,18 @@ header {
   -ms-transition: 0.5s;
   -o-transition: 0.5s;
 }
-.sidebar .image {
-  width: 108px;
-  height: 108px;
-  border-radius: 100px;
-  -webkit-border-radius: 100px;
-  -moz-border-radius: 100px;
-  -ms-border-radius: 100px;
-  -o-border-radius: 100px;
+/* Estilos para a classe 'foto-usuario-img' */
+.foto-usuario-img {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
   background-color: #daf3ff;
 }
+
 .sidebar h2 {
   color: #ccc;
   margin-top: 0;
