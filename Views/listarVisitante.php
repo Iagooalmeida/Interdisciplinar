@@ -9,6 +9,8 @@ if (!isset($_SESSION['idUsuario'])) {
     header("Location: login/login.html");
     exit();
 }
+// Regenerar o ID da sessão após a autenticação para maior segurança
+session_regenerate_id();
 
 $sugestao = new Sugestoes($conn);
 $totalRegistros = $sugestao->contarSugestoes();
@@ -148,5 +150,7 @@ $sugestoesPaginadas = $sugestao->listarSugestoesPaginadas($registrosPorPagina, $
     </div>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
 </body>
 </html>

@@ -10,6 +10,11 @@ if (!isset($_SESSION['idUsuario'])) {
     header("Location: login/login.html");
     exit();
 }
+// Regenerar o ID da sessão após a autenticação para maior segurança
+session_regenerate_id();
+
+$idUsuarioSessao = $_SESSION['idUsuario'];
+$nivelAcessoSessao = $_SESSION['nivelAcesso'];
 
 // Cria uma instância da classe Usuario
 $usuario = new Usuario($conn);
@@ -80,7 +85,7 @@ $usuarios = $usuario->listarUsuarios();
             </div>
     
             <div style='display: flex;' class="filtro">
-                <input style='flex:1' placeholder="PESQUISAR" autofocus id='inputPesquisa' />
+                <!-- <input style='flex:1' placeholder="PESQUISAR" autofocus id='inputPesquisa' /> -->
             </div>
 
 
@@ -119,8 +124,25 @@ $usuarios = $usuario->listarUsuarios();
                     <td><?php echo $user['Funcao']; ?></td>
                     <td><?php echo date('d/m/Y', strtotime($user['DataCadastro'])); ?></td>
                     <td>
-                        <!-- Botão Editar -->
-                        <a href="Views/editarUsuario.php?id=<?php echo $user['idUsuarios']; ?>"><button>Editar</button></a>
+                    <a href="Views/editarUsuario.php?id=<?php echo $user['idUsuarios']; ?>" onclick="return verificarPermissaoEditar(<?php echo $nivelAcessoSessao; ?>, <?php echo $user['idUsuarios']; ?>)"><button>Editar</button></a>
+
+                    <!-- Script para verificar permissões -->
+                    <script>
+                        function verificarPermissaoEditar(nivelAcesso, idUsuario) {
+                            // Se o usuário for master (nivelAcesso = 0) OU o usuário na sessão atual for o mesmo que está sendo editado, permitir a navegação
+                            if (nivelAcesso === 0 || idUsuario == <?php echo $idUsuarioSessao; ?>) {
+                                return true;
+                            } else {
+                                Swal.fire({
+                                icon: 'error',
+                                title: 'Permissão negada',
+                                text: 'Desculpe, você não tem permissão para editar este usuário',
+                            });
+                                return false; // Impede a navegação para a página de edição
+                            }
+                        }
+                    </script>   
+
 
                         <form method="post" action="Controllers/excluir_usuario.php">
                             <input type="hidden" name="acao" value="excluir">
@@ -141,5 +163,9 @@ $usuarios = $usuario->listarUsuarios();
     </div>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
+
 </body>
 </html>
