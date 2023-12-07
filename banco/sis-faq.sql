@@ -128,7 +128,7 @@ CREATE TABLE `temas` (
   `idTemas` int(10) UNSIGNED NOT NULL,
   `NomeTema` varchar(50) NOT NULL,
   `descricaoTema` text DEFAULT NULL,
-  `dataCadastro` date NOT NULL DEFAULT current_timestamp()
+  `dataCadastro` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
