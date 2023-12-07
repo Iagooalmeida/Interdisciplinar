@@ -44,7 +44,7 @@ $usuarios = $usuario->listarUsuarios();
     <div class="sidebar">
         <div class="center">
             <img src="icon/manager_icon_129392.png" class="image" alt="">
-            <h2>Admin</h2>
+            <h2><?php echo $_SESSION['nomeUsuario']; ?></h2>
         </div>
         <a href="painelAdmin.php" onclick="vizualizar('lista', true)"><ion-icon
                 name="desktop-outline"></ion-icon><span>Painel</span></a>
@@ -80,6 +80,7 @@ $usuarios = $usuario->listarUsuarios();
                 <th>Email</th>
                 <th>Tel / Cel</th>
                 <th>Função</th>
+                <th>Data do Cadastro</th>
                 <th>Ações</th>    
             </tr>
             </thead>
@@ -100,6 +101,7 @@ $usuarios = $usuario->listarUsuarios();
                     <td><?php echo $user['Email']; ?></td>
                     <td><?php echo $user['Tel_Cel']; ?></td>
                     <td><?php echo $user['Funcao']; ?></td>
+                    <td><?php echo date('d/m/Y', strtotime($user['DataCadastro'])); ?></td>
                     <td>
                         <!-- Botão Editar -->
                         <a href="Views/editarUsuario.php?id=<?php echo $user['idUsuarios']; ?>"><button>Editar</button></a>

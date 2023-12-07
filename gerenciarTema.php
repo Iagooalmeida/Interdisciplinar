@@ -128,7 +128,7 @@ $temas = $tema->listarTemas();
     <div class="sidebar">
         <div class="center">
             <img src="icon/manager_icon_129392.png" class="image" alt="">
-            <h2>Admin</h2>
+            <h2><?php echo $_SESSION['nomeUsuario']; ?></h2>
         </div>
         <a href="painelAdmin.php" onclick="vizualizar('lista', true)"><ion-icon
                 name="desktop-outline"></ion-icon><span>Painel</span></a>

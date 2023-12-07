@@ -440,3 +440,9 @@ legend {
 #filtroInput {
   width: 60%;  /* Ajuste o valor conforme necessário */
 }
+
+/*CSS linha-externa será adicionada à linha da tabela se a origem for "Externa".*/
+.linha-externa {
+  background-color: #b1e1eb;
+    font-weight: 500;
+}

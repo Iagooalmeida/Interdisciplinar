@@ -98,8 +98,8 @@ if (isset($_GET['id'])) {
 
         <label for="Funcao">Função:</label>
             <select id="Funcao" name="Funcao" value="<?php echo $dadosUsuario['Funcao']; ?>">
-                <option value="Administrador(a)">Administrador(a)</option>
-                <option value="Coordenador(a)">Coordenador(a)</option>
+                <option value="Administrativo">Administrativo</option>
+                <option value="Coordenação">Coordenação</option>
             </select>
         
         <input type="hidden" name="fotoAtual" value="<?php echo $dadosUsuario['FotoPath']; ?>">

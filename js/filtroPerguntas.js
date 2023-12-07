@@ -6,6 +6,15 @@ function limparFiltro() {
     // Limpa a seleção da caixa de visualização
     $("#visualizacao").val("atual");
 
+    // Limpa a seleção da caixa de ordenação por tema
+    $("#ordenarTema").val("todos");
+
+    // Limpa a seleção da caixa de filtro por autor
+    $("#filtroAutor").val("todos");
+
+    // Limpa a data
+    $("#ordenarData").val("");
+
     // Exibe todas as linhas da tabela
     $("table tbody tr").show();
 }

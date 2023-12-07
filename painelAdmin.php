@@ -135,7 +135,7 @@ foreach ($resultado as $row) {
     <div class="sidebar">
         <div class="center">
             <img src="icon/manager_icon_129392.png" class="image" alt="">
-            <h2>Admin</h2>
+            <h2><?php echo $_SESSION['nomeUsuario']; ?></h2>
         </div>
         <a href="#" onclick="vizualizar('lista', true)"><ion-icon
                 name="desktop-outline"></ion-icon><span>Painel</span></a>
@@ -192,21 +192,21 @@ foreach ($resultado as $row) {
                         </div>
 
                         <div class="form-row">
-                        <label style="display: inline-block;" for="filtroAutor">
-                            Autor: <br>
+                            <label style="display: inline-block;" for="filtroAutor">
+                            Autor: </label><br>
                             <select id="filtroAutor" name="filtroAutor" class="selecao-autor">
                                 <option value="todos">Todos</option>
                                 <?php foreach ($autores as $autor) : ?>
                                     <option value="<?php echo $autor; ?>"><?php echo $autor; ?></option>
                                 <?php endforeach; ?>
                             </select>
-                        </label>
+                        
                         </div>
 
                         <div class="form-row">
-                            <label for="ordenarData">Data: <br>
+                            <label for="ordenarData">Data: </label><br>
                                 <input type="date" id="ordenarData" name="ordenarData" placeholder="Escolha uma data">
-                            </label>
+                            
                         </div>
                     </fieldset>
 
@@ -241,7 +241,12 @@ foreach ($resultado as $row) {
                         </tr>
                     </thead>
                     <?php foreach ($perguntas as $lista): ?>
-                        <tr>
+                        <?php
+                            // Verificar a origem e definir a classe CSS correspondente
+                            $classeOrigem = ($lista['Origem'] == 'Externa') ? 'linha-externa' : '';
+                        ?>
+
+                        <tr class="<?php echo $classeOrigem; ?>">
                             <td style="display: none;"><?php echo $lista['idPerguntas']; ?></td>
                             <td style="display: none;"><?php echo $lista['Origem'] ?></td>
                             <td><?php echo $lista['Autor'] ?></td>  
@@ -252,8 +257,6 @@ foreach ($resultado as $row) {
                             <td><?php echo $lista['NomeTema']; ?></td>
                             <td><?php echo $lista['Status'] ?></td>
                             <td class="data-col"><?php echo date('d/m/Y', strtotime($lista['DataSubmissao'])); ?></td>
-
-
                             <td>
                                 <a href="#" class="detalhes-btn" data-id="<?php echo $lista['idPerguntas']; ?>" title="Detalhes">
                                     <i style="background: indigo;" class="edit material-icons">info</i>
