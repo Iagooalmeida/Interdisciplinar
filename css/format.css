@@ -265,7 +265,7 @@ textarea#resposta {
 .titulo_ask {
   display: flex;
   justify-content: space-between;
-  margin-block-start: 25px;
+  margin-top: 100px;
 }
 
 .titulo_ask h1 {
@@ -326,7 +326,6 @@ textarea#resposta {
   margin-bottom: 20px;
   text-align: center;
 }
-
 
 .modal {
   transition: opacity 0.5s ease;
@@ -395,7 +394,10 @@ fieldset {
 /* Container que envolve os elementos .form-row */
 .container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Define colunas de tamanho mínimo de 200px */
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(200px, 1fr)
+  ); /* Define colunas de tamanho mínimo de 200px */
   gap: 10px; /* Espaçamento entre os elementos */
 }
 
@@ -408,14 +410,16 @@ fieldset {
   margin-inline-start: 0px;
 }
 
-label, select, input {
+label,
+select,
+input {
   text-align: left;
   vertical-align: middle;
   white-space: nowrap; /* Adicionado para evitar quebra de linha */
 }
 
-
-select, input {
+select,
+input {
   /* margin-left: 10px; */
   padding: 8px;
   border: 1px solid #ccc;
@@ -432,19 +436,18 @@ input#filtroInput {
   }
 }
 
-
 /* Estilizando a legenda (opcional) */
 legend {
-  font-weight: bold;  /* Deixa a legenda em negrito */
-  margin-bottom: 10px;  /* Adiciona espaçamento abaixo da legenda */
+  font-weight: bold; /* Deixa a legenda em negrito */
+  margin-bottom: 10px; /* Adiciona espaçamento abaixo da legenda */
 }
 
 #filtroInput {
-  width: 60%;  /* Ajuste o valor conforme necessário */
+  width: 60%; /* Ajuste o valor conforme necessário */
 }
 
 /*CSS linha-externa será adicionada à linha da tabela se a origem for "Externa".*/
 .linha-externa {
   background-color: #b1e1eb;
-    font-weight: 500;
+  font-weight: 500;
 }

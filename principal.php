@@ -40,7 +40,7 @@ require_once 'conexao.php';
     <header id="cabecalho">
         <div class="card_cabecalho">
             <figure class="logotipo">
-                <a href="#"><img src="img/logo_fatec.png" alt="Logo Fatec Itapira" title="logo_fatec"></a>
+                <a href="principal.php"><img src="img/logo_fatec.png" alt="Logo Fatec Itapira" title="logo_fatec"></a>
             </figure>
 
             <nav class="nav" title="menu">
@@ -48,7 +48,7 @@ require_once 'conexao.php';
                     <li class="nav-item"><a href="https://fatecitapira.edu.br/">Home</a></li>
                     <li class="nav-item"><a href="https://www.vestibularfatec.com.br/home/"
                             target="_blank">Vestibular</a></li>
-                    <li class="nav-item"><a href="principal.html" title="duvidas">Dúvidas frequentes</a></li>
+                    <li class="nav-item"><a href="equipe.html" title="duvidas">Conheça os desenvolvedores</a></li>
                     <li class="nav-item"><a href="login/login.html">Painel</a></li>
                 </ul>
             </nav>
@@ -61,7 +61,7 @@ require_once 'conexao.php';
 
                 <div class="titulos_faq">
                     <h1>FAQ - FATEC</h1>
-                    <h2>Principais Perguntas e Respostas para o FAQ</h2>
+                    <h2>Dúvidas Recorrentes:</h2>
                 </div>
 
 
@@ -97,25 +97,25 @@ require_once 'conexao.php';
                 $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
                 $stmt->execute();
 
-                if($stmt->rowCount() > 0) {
+                if ($stmt->rowCount() > 0) {
                     $temaAtual = null;
 
-                    foreach($stmt as $row) {
+                    foreach ($stmt as $row) {
                         // Verifica se o tema mudou
-                        if($temaAtual !== $row['NomeTema']) {
+                        if ($temaAtual !== $row['NomeTema']) {
                             // Se sim, exibe um cabeçalho para o novo tema
-                            echo '<h2>'.$row['NomeTema'].'</h2>';
+                            echo '<h2>' . $row['NomeTema'] . '</h2>';
                             $temaAtual = $row['NomeTema'];
                         }
                         echo '<details class="card">';
                         echo '<summary class="card__header">';
                         echo '<img class="card__avatar" alt="Imagem cps_fatec" src="img/cps_fatec.jpg">';
-                        echo "<h1>".nl2br($row['ConteudoPergunta'])."</h1>";
+                        echo "<h1>" . nl2br($row['ConteudoPergunta']) . "</h1>";
                         echo '<span class="card__indicator"></span>';
                         echo '</summary>';
 
                         echo '<div class="card__body">';
-                        echo "<p>".nl2br($row['Resposta'])."</p>";
+                        echo "<p>" . nl2br($row['Resposta']) . "</p>";
 
                         // Adicione links específicos (substitua os URLs pelos corretos)
                         echo '<p>Links dos sites Abaixo</p>';
@@ -143,23 +143,23 @@ require_once 'conexao.php';
                     $totalPaginas = ceil($totalPerguntas / $perguntasPorPagina);
 
                     // Exiba links para a página anterior, se houver
-                    if($paginaAtual > 1) {
-                        echo '<a href="?page='.($paginaAtual - 1).'">Anterior</a>';
+                    if ($paginaAtual > 1) {
+                        echo '<a href="?page=' . ($paginaAtual - 1) . '">Anterior</a>';
                     }
 
                     // Exiba os números das páginas
-                    for($i = 1; $i <= $totalPaginas; $i++) {
+                    for ($i = 1; $i <= $totalPaginas; $i++) {
                         // Adicione uma classe para destacar a página atual
                         $classeDestaque = ($i == $paginaAtual) ? 'pagina-atual' : '';
 
-                        echo '<a href="?page='.$i.'" class="'.$classeDestaque.'">'.$i.'</a>';
+                        echo '<a href="?page=' . $i . '" class="' . $classeDestaque . '">' . $i . '</a>';
                         // Adicione um espaçamento (pode ajustar o valor conforme necessário)
                         echo ' ';
                     }
 
                     // Exiba um link para a próxima página, se houver
-                    if($paginaAtual < $totalPaginas) {
-                        echo '<a href="?page='.($paginaAtual + 1).'">Próxima</a>';
+                    if ($paginaAtual < $totalPaginas) {
+                        echo '<a href="?page=' . ($paginaAtual + 1) . '">Próxima</a>';
                     }
                     ?>
                 </div>
@@ -198,7 +198,7 @@ require_once 'conexao.php';
                                 echo "<option value='{$tema['idTemas']}'>{$tema['NomeTema']}</option>";
                             }
                         } catch (PDOException $e) {
-                            echo "Erro ao obter temas: ".$e->getMessage();
+                            echo "Erro ao obter temas: " . $e->getMessage();
                         }
                         ?>
                     </select>
